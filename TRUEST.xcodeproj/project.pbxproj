@@ -37,7 +37,7 @@
 		6BE1D1931D9904AD001B19E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D1911D9904AD001B19E0 /* LaunchScreen.storyboard */; };
 		6BF17C781DAE966200E60484 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF17C771DAE966200E60484 /* ContactsViewController.swift */; };
 		6BF17C7A1DAE978E00E60484 /* ContactsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */; };
-		6BF8F2F91DB9E9B700E8AD9D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF8F2F81DB9E9B700E8AD9D /* GoogleService-Info.plist */; };
+		6BF8F2FE1DB9FDEE00E8AD9D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF8F2FD1DB9FDEE00E8AD9D /* GoogleService-Info.plist */; };
 		E93D9D8AF76F8BABD253199D /* Pods_TRUEST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +76,7 @@
 		6BE1D1941D9904AD001B19E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BF17C771DAE966200E60484 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCollectionViewCell.swift; sourceTree = "<group>"; };
-		6BF8F2F81DB9E9B700E8AD9D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6BF8F2FD1DB9FDEE00E8AD9D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF29872BA91A898FE8E06FB7 /* Pods-TRUEST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRUEST.release.xcconfig"; path = "Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST.release.xcconfig"; sourceTree = "<group>"; };
 		FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRUEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -146,7 +146,7 @@
 		6BE1D1841D9904AD001B19E0 /* TRUEST */ = {
 			isa = PBXGroup;
 			children = (
-				6BF8F2F81DB9E9B700E8AD9D /* GoogleService-Info.plist */,
+				6BF8F2FD1DB9FDEE00E8AD9D /* GoogleService-Info.plist */,
 				6B81D2B21D9FE6DA00D42BA8 /* supporting */,
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
@@ -242,8 +242,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BE1D1931D9904AD001B19E0 /* LaunchScreen.storyboard in Resources */,
-				6BF8F2F91DB9E9B700E8AD9D /* GoogleService-Info.plist in Resources */,
 				6BE1D18B1D9904AD001B19E0 /* Main.storyboard in Resources */,
+				6BF8F2FE1DB9FDEE00E8AD9D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
