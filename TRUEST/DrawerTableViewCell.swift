@@ -36,7 +36,8 @@ extension DrawerTableViewCell {
         ContentView.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         
         cellBackground.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-        cellBackground.layer.borderColor = UIColor(red: 96/255, green: 171/255, blue: 129/255, alpha: 1).CGColor
+        cellBackground.layer.borderColor = UIColor(hexString: "#60ab81").CGColor
+            //UIColor(red: 96/255, green: 171/255, blue: 129/255, alpha: 1).CGColor
         cellBackground.layer.borderWidth = 5.0
         cellBackground.layer.cornerRadius = cellBackground.frame.height / 2
         cellBackground.clipsToBounds = true
