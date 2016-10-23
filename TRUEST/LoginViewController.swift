@@ -35,9 +35,11 @@ class LoginViewController: UIViewController {
 /////////////// 判斷user是否登入過，給予不同的開場畫面 ///////////
         FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
             if user != nil {
-                
-                NavigationLogo.shared.setup()
                 // user is signed in
+                NavigationLogo.shared.setup()
+                
+                CurrentUserInfoManager().loadCurrentUserInfo()
+                
                 // move user to homeViewController
                 switchViewController(from: self, to: "TabBarController") // ContactsViewController  //
                 
@@ -67,16 +69,6 @@ extension LoginViewController {
     
     private func setup() {
         
-        // login label for Facebook
-        //facebookLabel.text = "f"
-        //facebookLabel.font = UIFont(name: (facebookLabel.font?.fontName)!, size: 30)
-        //facebookLabel.textAlignment = .Center
-       // facebookLabel.textColor = UIColor.whiteColor()
-        //facebookLabel.backgroundColor = UIColor.ascFacebookLogoColor()
-        //facebookLabel.layer.masksToBounds = true
-       // facebookLabel.layer.cornerRadius = facebookLabel.frame.width/2  // it's a circle base on it's size
-        
-        // a invisible login button for Facebook
         facebookButton.setTitle("", forState: .Normal) // use setTitle to set button's title, don't use titleLabel
        facebookButton.layer.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).CGColor
         
@@ -98,8 +90,7 @@ extension LoginViewController {
 extension LoginViewController {
     
     private func loginWithFacebook() {
-     //   self.hideLoginButtons(true)
-        
+
         self.loadingSpinner.startAnimating()
         
         // get Facebook login authentication
@@ -119,6 +110,7 @@ extension LoginViewController {
                 self.hideLoginButtons(false)
                 self.loadingSpinner.stopAnimating()
             } else {
+                
                 // permission get
                 print("FB logged in")
                 
@@ -132,9 +124,7 @@ extension LoginViewController {
                     print("sign in firebase with FB")
                     self.getFBUserData()
                 }
-                
-                
-                // TODO: link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
+
                 self.dismissViewControllerAnimated(true, completion: nil)
                 
                 switchViewController(from: self, to: "TabBarController")
@@ -170,6 +160,8 @@ extension LoginViewController {
                 }
                 print("FB user info get")
                 
+                // TODO: try to orginaze all the info data download in a specific thread in background
+//                CoreDataModel().deleteFBUser()
                 self.cleanUserInfo()
                 
                 // get user's firebase UID
