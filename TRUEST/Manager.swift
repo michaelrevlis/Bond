@@ -156,29 +156,6 @@ class CurrentUserManager {
 
 
 
-
-extension CGRect {
-    init(center: CGPoint, size: CGSize) {
-        let originX = center.x - (size.width / 2)
-        let originY = center.y - (size.height / 2)
-        self.init(origin: CGPoint(x: originX, y: originY), size: size)
-    }
-}
-
-
-
-// 嘗試將開啟新UIViewController做成一個func
-func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
-    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    
-    let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
-    
-    destinationViewController.modalPresentationStyle = .CurrentContext
-    destinationViewController.modalTransitionStyle = .CoverVertical
-    
-    originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
-}
-
 //以後要把downloadPostcards寫在背景執行
 //func downloadPostcards() {
 //    firebaseStorageRef.shared.child("-KTm_8FrWO9NfS-6lN5b").dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
@@ -191,19 +168,6 @@ func switchViewController(from originalViewController: UIViewController, to iden
 //    }
 //}
 
-
-extension NSDate {
-    func isLessThanDate(dateToCompare: NSDate) -> Bool {
-        
-        var isLess = false
-        
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
-            isLess = true
-        }
-        
-        return isLess
-    }
-}
 
 
 // setup navigationLogo

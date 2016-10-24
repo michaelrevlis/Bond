@@ -41,8 +41,8 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         CollectionView.backgroundColor = UIColor.whiteColor()
         
-        NavigationItem.titleView = NavigationLogo.shared.titleView
-                
+//        NavigationItem.titleView = NavigationLogo.shared.titleView
+        
     }
 
     override func viewWillAppear(animated: Bool) {

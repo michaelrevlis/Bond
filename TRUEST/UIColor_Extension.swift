@@ -11,6 +11,7 @@ import UIKit
 
 extension UIColor {
     
+    // allow setup a color with color code
     convenience init(hexString: String) {
         let hex = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
         var int = UInt32()
@@ -46,4 +47,6 @@ extension UIColor {
         return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
     }
 }
+
+
 
