@@ -28,5 +28,22 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+    
+    
+    class func SD_BackgroudWhite_EEEEEE() -> UIColor {
+        return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+    }
+    
+    class func SD_CellBackgroudGray_D8D8D8() -> UIColor {
+        return UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
+    }
+    
+    class func SD_CellBorderGreen_60AB81() -> UIColor {
+        return UIColor(red: 96/255, green: 171/255, blue: 129/255, alpha: 1)
+    }
+    
+    class func SD_ImageTintGray_979797() -> UIColor {
+        return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+    }
 }
 
