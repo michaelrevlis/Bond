@@ -31,9 +31,9 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         print("hi I'm at ContactsViewController")
         
         
-        FriendManager.shared.delegate = self
+        ContactsManager.shared.delegate = self
         
-        FriendManager.shared.myFriends()
+        ContactsManager.shared.myFriends()
 
         CollectionView.delegate = self
         
@@ -125,9 +125,9 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 
 
-extension ContactsViewController: FriendManagerDelegate {
+extension ContactsViewController: ContactsManagerDelegate {
     
-    func manager(manager: FriendManager, didGetFriendList friendList: [existedFBUser]) {
+    func manager(manager: ContactsManager, didGetFriendList friendList: [existedFBUser]) {
         self.friendList = friendList
         
         self.CollectionView.reloadData()

@@ -15,9 +15,15 @@ import CoreData
 
 class CurrentUserInfoManager {
     
-    let currentUserAuth = FIRAuth.auth()!.currentUser!.uid
+    static let shared = CurrentUserInfoManager()
     
-    func loadCurrentUserInfo() {
+    private(set) var currentUserNode = String()
+    private(set) var currentUserName = String()
+    private(set) var currentUserPictureUrl = String()
+    
+    private let currentUserAuth = FIRAuth.auth()!.currentUser!.uid
+    
+    func downloadCurrentUserInfo() {
         
         FirebaseDatabaseRef.shared.child("users").queryOrderedByChild("authID").queryEqualToValue(currentUserAuth).observeEventType(.ChildAdded, withBlock: { snapshot in
             
@@ -26,35 +32,23 @@ class CurrentUserInfoManager {
                             fbID = result["fbID"] as? String,
                             name = result["name"] as? String,
                             pictureUrl = result["pictureUrl"] as? String,
+                            authID = result["authID"] as? String,
                             userNode = result["userNode"] as? String
                 else { fatalError() }
             
-            let currentUserInfo = ["authID": self.currentUserAuth, "email": email, "fbID": fbID, "name": name, "pictureUrl": pictureUrl, "userNode": userNode]
+            let userDefaults_currentUserInfo = NSUserDefaults.standardUserDefaults()
+                 userDefaults_currentUserInfo.setObject(name, forKey: "user_name")
+                 userDefaults_currentUserInfo.setObject(fbID, forKey: "user_fbID")
+                 userDefaults_currentUserInfo.setObject(email, forKey: "user_email")
+                 userDefaults_currentUserInfo.setObject(userNode, forKey: "user_userNode")
+                 userDefaults_currentUserInfo.setObject(pictureUrl, forKey: "user_pictureUrl")
+                 userDefaults_currentUserInfo.setObject(authID, forKey: "user_authID")
+
+            self.currentUserNode = userDefaults_currentUserInfo.stringForKey("user_userNode") as String!
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            self.currentUserName = userDefaults_currentUserInfo.stringForKey("user_name") as String!
             
-            let managedContext = appDelegate.managedObjectContext
-            
-            let entity = NSEntityDescription.entityForName("FBUser", inManagedObjectContext: managedContext)
-            
-            let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-            
-            for (key, value) in currentUserInfo {
-                user.setValue(value, forKey: key)
-            }
-            
-            do {
-                try managedContext.save()
-                print("saving user info in core data")
-                
-                CurrentUserManager.shared.getUserID()
-                CurrentUserManager.shared.getUserName()
-                CurrentUserManager.shared.getUserPicture()
-                MailboxManager.shared.downloadReceivedPostcards()
-            } catch {
-                print("Error in saving userInfo into core data")
-            }
-            
+            self.currentUserPictureUrl = userDefaults_currentUserInfo.stringForKey("user_pictureUrl") as String!
             
         })
         

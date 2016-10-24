@@ -45,9 +45,16 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     }
     
     @IBAction func LogoutPressed(sender: AnyObject) {
+        
         try! FIRAuth.auth()!.signOut()
+        
         FBSDKAccessToken.setCurrentAccessToken(nil)
-        self.dismissViewControllerAnimated(true, completion:{}) //避免使用switch時造成tabbar仍然存在
+        
+        let a = SettingManager()
+        
+        a.cleanUpUserData()
+        
+        self.dismissViewControllerAnimated(true, completion:{})
     }
    
     @IBAction func PictureChangePressed(sender: AnyObject) {
@@ -66,12 +73,12 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imgUrl = CurrentUserManager.shared.currentUserPictureURL
+        let imgUrl = CurrentUserInfoManager.shared.currentUserPictureUrl
         NavigationLogo.shared.setup()
         NavigationItem.titleView = NavigationLogo.shared.titleView
         DisplayNameField.hidden = true
         IDField.hidden = true
-        DisplayNameLabel.text = CurrentUserManager.shared.currentUserName
+        DisplayNameLabel.text = CurrentUserInfoManager.shared.currentUserName
         IDLabel.text = ""
         IDField.delegate = self
         DisplayNameField.delegate = self

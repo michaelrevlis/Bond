@@ -25,134 +25,134 @@ class FirebaseStorageRef {
 
 
 // TODO: 將core data的存取寫成model
-class CurrentUserManager {
-    
-    static let shared = CurrentUserManager()
-
-    private(set) var currentUserNode = String()
-    private(set) var currentUserName = String()
-    private(set) var currentUserPictureURL = String()
-    
-    func getUserID() {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        let request = NSFetchRequest(entityName: "FBUser")
-        
-        do {
-            
-            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
-            
-            for result in results {
-                
-                guard let  userNode = result.userNode
-                    else {
-                        print("error when getting current user's userNode from core data")
-                        return
-                }
-                
-                self.currentUserNode = userNode                
-                print("current user node: \(CurrentUserManager.shared.currentUserNode)")
-                
-            }
-            
-            
-            
-            
-        
-            
-            
-        }catch{
-            
-            fatalError("Failed to fetch data: \(error)")
-            
-        }
-    }
-    
-    func getUserName() {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        let request = NSFetchRequest(entityName: "FBUser")
-        
-        do {
-            
-            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
-            
-            for result in results {
-                
-                guard let  userName = result.name
-                    else {
-                        print("error when getting current user's userName from core data")
-                        return
-                }
-                
-                self.currentUserName = userName
-                print("current user node: \(CurrentUserManager.shared.currentUserName)")
-                
-            }
-            
-            
-            
-            
-            
-            
-            
-        }catch{
-            
-            fatalError("Failed to fetch data: \(error)")
-            
-        }
-    }
-    
-    func getUserPicture() {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        let request = NSFetchRequest(entityName: "FBUser")
-        
-        do {
-            
-            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
-            
-            for result in results {
-                
-                guard let  userPicture = result.pictureUrl
-                    else {
-                        print("error when getting current user's userName from core data")
-                        return
-                }
-                
-                self.currentUserPictureURL = userPicture
-                print("current user picture: \(CurrentUserManager.shared.currentUserPictureURL)")
-                
-            }
-            
-            
-            
-            
-            
-            
-            
-        }catch{
-            
-            fatalError("Failed to fetch data: \(error)")
-            
-        }
-    }
-    
-
-    
-    
-    
-    
-}
+//class CurrentUserManager {
+//    
+//    static let shared = CurrentUserManager()
+//
+//    private(set) var currentUserNode = String()
+//    private(set) var currentUserName = String()
+//    private(set) var currentUserPictureURL = String()
+//    
+//    func getUserID() {
+//        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        let managedContext = appDelegate.managedObjectContext
+//        
+//        let request = NSFetchRequest(entityName: "FBUser")
+//        
+//        do {
+//            
+//            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+//            
+//            for result in results {
+//                
+//                guard let  userNode = result.userNode
+//                    else {
+//                        print("error when getting current user's userNode from core data")
+//                        return
+//                }
+//                
+//                self.currentUserNode = userNode                
+//                print("current user node: \(CurrentUserManager.shared.currentUserNode)")
+//                
+//            }
+//            
+//            
+//            
+//            
+//        
+//            
+//            
+//        }catch{
+//            
+//            fatalError("Failed to fetch data: \(error)")
+//            
+//        }
+//    }
+//    
+//    func getUserName() {
+//        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        let managedContext = appDelegate.managedObjectContext
+//        
+//        let request = NSFetchRequest(entityName: "FBUser")
+//        
+//        do {
+//            
+//            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+//            
+//            for result in results {
+//                
+//                guard let  userName = result.name
+//                    else {
+//                        print("error when getting current user's userName from core data")
+//                        return
+//                }
+//                
+//                self.currentUserName = userName
+//                print("current user node: \(CurrentUserManager.shared.currentUserName)")
+//                
+//            }
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//        }catch{
+//            
+//            fatalError("Failed to fetch data: \(error)")
+//            
+//        }
+//    }
+//    
+//    func getUserPicture() {
+//        
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        let managedContext = appDelegate.managedObjectContext
+//        
+//        let request = NSFetchRequest(entityName: "FBUser")
+//        
+//        do {
+//            
+//            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+//            
+//            for result in results {
+//                
+//                guard let  userPicture = result.pictureUrl
+//                    else {
+//                        print("error when getting current user's userName from core data")
+//                        return
+//                }
+//                
+//                self.currentUserPictureURL = userPicture
+//                print("current user picture: \(CurrentUserManager.shared.currentUserPictureURL)")
+//                
+//            }
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//        }catch{
+//            
+//            fatalError("Failed to fetch data: \(error)")
+//            
+//        }
+//    }
+//    
+//
+//    
+//    
+//    
+//    
+//}
 
 
 

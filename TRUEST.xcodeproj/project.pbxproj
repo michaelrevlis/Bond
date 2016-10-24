@@ -10,6 +10,8 @@
 		6B0195B21DBCAAD100238405 /* CurrentUserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0195B11DBCAAD100238405 /* CurrentUserInfoManager.swift */; };
 		6B0195B41DBCE4BA00238405 /* UIColor_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0195B31DBCE4BA00238405 /* UIColor_Extension.swift */; };
 		6B0195B61DBDB5E800238405 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0195B51DBDB5E800238405 /* Extensions.swift */; };
+		6B0195BB1DBDE6CD00238405 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0195BA1DBDE6CD00238405 /* LoginManager.swift */; };
+		6B0195BD1DBE0CA600238405 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0195BC1DBE0CA600238405 /* SettingManager.swift */; };
 		6B1AF30A1DA238A5004B706A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1AF3091DA238A5004B706A /* Manager.swift */; };
 		6B1B79B01DB4B72E0048F311 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1B79AF1DB4B72E0048F311 /* TabBarController.swift */; };
 		6B1B79B21DB4D43B0048F311 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1B79B11DB4D43B0048F311 /* SettingViewController.swift */; };
@@ -28,7 +30,7 @@
 		6B84476B1DAF6CD900CA1FF5 /* ReceivedPostcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8447671DAF6CD900CA1FF5 /* ReceivedPostcard.swift */; };
 		6B84476E1DAF6E0400CA1FF5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B84476C1DAF6E0400CA1FF5 /* User+CoreDataProperties.swift */; };
 		6B84476F1DAF6E0400CA1FF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B84476D1DAF6E0400CA1FF5 /* User.swift */; };
-		6B8447711DAF907000CA1FF5 /* FriendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8447701DAF907000CA1FF5 /* FriendManager.swift */; };
+		6B8447711DAF907000CA1FF5 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8447701DAF907000CA1FF5 /* ContactsManager.swift */; };
 		6B88D6091DB5FE7700E0C8EA /* AddBondStage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B88D6081DB5FE7700E0C8EA /* AddBondStage2ViewController.swift */; };
 		6B94BBEB1DAD47C5004365F4 /* MailboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94BBEA1DAD47C5004365F4 /* MailboxTableViewCell.swift */; };
 		6B94BBED1DAD4937004365F4 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94BBEC1DAD4937004365F4 /* MailboxViewController.swift */; };
@@ -50,6 +52,8 @@
 		6B0195B11DBCAAD100238405 /* CurrentUserInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserInfoManager.swift; sourceTree = "<group>"; };
 		6B0195B31DBCE4BA00238405 /* UIColor_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor_Extension.swift; sourceTree = "<group>"; };
 		6B0195B51DBDB5E800238405 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6B0195BA1DBDE6CD00238405 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		6B0195BC1DBE0CA600238405 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
 		6B1AF3091DA238A5004B706A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		6B1B79AF1DB4B72E0048F311 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6B1B79B11DB4D43B0048F311 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +72,7 @@
 		6B8447671DAF6CD900CA1FF5 /* ReceivedPostcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPostcard.swift; sourceTree = "<group>"; };
 		6B84476C1DAF6E0400CA1FF5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6B84476D1DAF6E0400CA1FF5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		6B8447701DAF907000CA1FF5 /* FriendManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendManager.swift; sourceTree = "<group>"; };
+		6B8447701DAF907000CA1FF5 /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		6B88D6081DB5FE7700E0C8EA /* AddBondStage2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBondStage2ViewController.swift; sourceTree = "<group>"; };
 		6B94BBEA1DAD47C5004365F4 /* MailboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxTableViewCell.swift; sourceTree = "<group>"; };
 		6B94BBEC1DAD4937004365F4 /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,44 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6B0195B71DBDD9A500238405 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */,
+				6B334A471DA4DF6400FF47D6 /* DrawerTableViewCell.swift */,
+				6B94BBEA1DAD47C5004365F4 /* MailboxTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		6B0195B81DBDE61F00238405 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
+				6B1B79AF1DB4B72E0048F311 /* TabBarController.swift */,
+				6BF17C771DAE966200E60484 /* ContactsViewController.swift */,
+				6B334A451DA4D74F00FF47D6 /* DrawerViewController.swift */,
+				6B94BBEC1DAD4937004365F4 /* MailboxViewController.swift */,
+				6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */,
+				6B88D6081DB5FE7700E0C8EA /* AddBondStage2ViewController.swift */,
+				6B1B79B11DB4D43B0048F311 /* SettingViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		6B0195B91DBDE64B00238405 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6B8447701DAF907000CA1FF5 /* ContactsManager.swift */,
+				6B1B79B71DB5CD590048F311 /* MailboxManager.swift */,
+				6B0195BA1DBDE6CD00238405 /* LoginManager.swift */,
+				6B0195B11DBCAAD100238405 /* CurrentUserInfoManager.swift */,
+				6B0195BC1DBE0CA600238405 /* SettingManager.swift */,
+				6B1AF3091DA238A5004B706A /* Manager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		6B81D2B21D9FE6DA00D42BA8 /* supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,24 +200,12 @@
 				6B81D2B21D9FE6DA00D42BA8 /* supporting */,
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
-				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
-				6B1B79AF1DB4B72E0048F311 /* TabBarController.swift */,
-				6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */,
-				6BF17C771DAE966200E60484 /* ContactsViewController.swift */,
-				6B334A471DA4DF6400FF47D6 /* DrawerTableViewCell.swift */,
-				6B334A451DA4D74F00FF47D6 /* DrawerViewController.swift */,
-				6B94BBEA1DAD47C5004365F4 /* MailboxTableViewCell.swift */,
-				6B94BBEC1DAD4937004365F4 /* MailboxViewController.swift */,
-				6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */,
-				6B88D6081DB5FE7700E0C8EA /* AddBondStage2ViewController.swift */,
-				6B1B79B11DB4D43B0048F311 /* SettingViewController.swift */,
-				6B8447701DAF907000CA1FF5 /* FriendManager.swift */,
-				6B1B79B71DB5CD590048F311 /* MailboxManager.swift */,
-				6B1AF3091DA238A5004B706A /* Manager.swift */,
-				6BF8F3011DBA0F4F00E8AD9D /* CoreDataModel.swift */,
-				6B0195B11DBCAAD100238405 /* CurrentUserInfoManager.swift */,
-				6BF8F2FF1DBA0EE400E8AD9D /* SelfDefineDataStructure.swift */,
 				6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */,
+				6B0195B71DBDD9A500238405 /* Cells */,
+				6B0195B81DBDE61F00238405 /* ViewController */,
+				6B0195B91DBDE64B00238405 /* Manager */,
+				6BF8F3011DBA0F4F00E8AD9D /* CoreDataModel.swift */,
+				6BF8F2FF1DBA0EE400E8AD9D /* SelfDefineDataStructure.swift */,
 				6B0195B31DBCE4BA00238405 /* UIColor_Extension.swift */,
 				6B0195B51DBDB5E800238405 /* Extensions.swift */,
 			);
@@ -319,6 +349,7 @@
 				6B334A421DA3BABD00FF47D6 /* Postcard.swift in Sources */,
 				6B1AF30A1DA238A5004B706A /* Manager.swift in Sources */,
 				6BF8F3001DBA0EE400E8AD9D /* SelfDefineDataStructure.swift in Sources */,
+				6B0195BB1DBDE6CD00238405 /* LoginManager.swift in Sources */,
 				6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */,
 				6BF17C781DAE966200E60484 /* ContactsViewController.swift in Sources */,
 				6B0195B61DBDB5E800238405 /* Extensions.swift in Sources */,
@@ -330,6 +361,7 @@
 				6BF8F3021DBA0F4F00E8AD9D /* CoreDataModel.swift in Sources */,
 				6B334A461DA4D74F00FF47D6 /* DrawerViewController.swift in Sources */,
 				6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */,
+				6B0195BD1DBE0CA600238405 /* SettingManager.swift in Sources */,
 				6B334A441DA3BABD00FF47D6 /* FBUser.swift in Sources */,
 				6B1B79B01DB4B72E0048F311 /* TabBarController.swift in Sources */,
 				6B1B79B81DB5CD590048F311 /* MailboxManager.swift in Sources */,
@@ -339,7 +371,7 @@
 				6B334A481DA4DF6400FF47D6 /* DrawerTableViewCell.swift in Sources */,
 				6B1B79B21DB4D43B0048F311 /* SettingViewController.swift in Sources */,
 				6B84476E1DAF6E0400CA1FF5 /* User+CoreDataProperties.swift in Sources */,
-				6B8447711DAF907000CA1FF5 /* FriendManager.swift in Sources */,
+				6B8447711DAF907000CA1FF5 /* ContactsManager.swift in Sources */,
 				6B84476B1DAF6CD900CA1FF5 /* ReceivedPostcard.swift in Sources */,
 				6B0195B41DBCE4BA00238405 /* UIColor_Extension.swift in Sources */,
 				6B84476F1DAF6E0400CA1FF5 /* User.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  FriendManager.swift
+//  ContactsManager.swift
 //  TRUEST
 //
 //  Created by MichaelRevlis on 2016/10/13.
@@ -25,18 +25,18 @@ class existedFBUser {
 }
 
 
-protocol FriendManagerDelegate: class {
-    func manager(manager: FriendManager, didGetFriendList friendList: [existedFBUser])
+protocol ContactsManagerDelegate: class {
+    func manager(manager: ContactsManager, didGetFriendList friendList: [existedFBUser])
 }
 
 // TODO: save friends into core data
-class FriendManager {
+class ContactsManager {
     
-    static let shared = FriendManager()
+    static let shared = ContactsManager()
     
     private(set) var friendList = [existedFBUser]()
     
-    weak var delegate: FriendManagerDelegate?
+    weak var delegate: ContactsManagerDelegate?
     
     
     func myFriends(){
@@ -55,7 +55,7 @@ class FriendManager {
     
 }
 
-extension FriendManager {
+extension ContactsManager {
  
     typealias GetFriendListCompletion = (success: Bool, results: [NSDictionary]) -> Void
     

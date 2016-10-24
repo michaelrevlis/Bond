@@ -10,7 +10,7 @@ import Foundation
 
 
 struct PostcardInDrawer {
-    let sender: String! = CurrentUserManager.shared.currentUserNode
+    let sender: String! = CurrentUserInfoManager.shared.currentUserNode
     var receiver: String!
     var receiver_name: String!
     let created_time: NSDate!

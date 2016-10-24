@@ -243,7 +243,7 @@ extension AddBondStage2ViewController {
         
         
         /////////// save bond ///////////
-        let sendBond: [String: String] = [ "postcard": postcardSentUid, "receiver": currentPostcard[0].receiver, "sender": CurrentUserManager.shared.currentUserNode]
+        let sendBond: [String: String] = [ "postcard": postcardSentUid, "receiver": currentPostcard[0].receiver, "sender": CurrentUserInfoManager.shared.currentUserName ]
         
         let bondRef = FirebaseDatabaseRef.shared.child("bonds").childByAutoId()
         
