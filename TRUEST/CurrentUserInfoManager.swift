@@ -19,9 +19,9 @@ class CurrentUserInfoManager {
     private let userDefault = NSUserDefaults.standardUserDefaults()
     
     func currentUserInfoInit() {
+        
         self.currentUserNode = userDefault.stringForKey("user_userNode") as String!
         self.currentUserName = userDefault.stringForKey("user_name") as String!
         self.currentUserPictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
- 
     }
 }

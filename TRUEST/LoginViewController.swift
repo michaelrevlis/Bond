@@ -50,6 +50,25 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
     
 }
 
+
+
+extension LoginViewController {
+    
+    @IBAction func facebookPressed(sender: AnyObject) {
+        
+        FIRAnalytics.logEventWithName("loginWithFB", parameters: nil)
+        
+        loginWithFacebook()
+        
+        self.loadingSpinnerActive(true)
+        self.hideLoginButtons(true)
+        
+    }
+    
+}
+
+
+
 extension LoginViewController {
     
     private func hideLoginButtons(decision: Bool) {
@@ -105,19 +124,6 @@ extension LoginViewController {
     
 }
 
-
-extension LoginViewController {
-    
-    @IBAction func facebookPressed(sender: AnyObject) {
-        
-        loginWithFacebook()
-        
-        self.loadingSpinnerActive(true)
-        self.hideLoginButtons(true)
-        
-    }
-    
-}
 
 
 extension LoginViewController {

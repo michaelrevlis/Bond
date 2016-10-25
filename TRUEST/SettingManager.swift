@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import Firebase
 
 
 class SettingManager {
@@ -65,6 +66,61 @@ class SettingManager {
         
     }
 
+    
+    
+    func updateUserName(newName: String) {
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        
+        userDefault.setObject(newName, forKey: "user_Name")
+        
+        userDefault.synchronize()
+        
+        CurrentUserInfoManager.shared.currentUserInfoInit()
+        
+        FirebaseDatabaseRef.shared.child("users").child(CurrentUserInfoManager.shared.currentUserNode).updateChildValues(["name": newName])
+        
+        // TODO: showing user a block that displayname has been changed successfully
+        
+    }
+    
+    
+    
+    func updateUserPicture(newPicture: NSData) {
+        
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        FirebaseStorageRef.shared.child(CurrentUserInfoManager.shared.currentUserNode).putData(newPicture, metadata: metadata) { (metadata, error) in
+            
+            if let error = error {
+                print("Error upload user's profile picture: \(error)")
+                return
+            } else {
+                
+                let downloadUrl = metadata!.downloadURL()!.absoluteString
+                
+                FirebaseDatabaseRef.shared.child("users").child(CurrentUserInfoManager.shared.currentUserNode).updateChildValues(["pictureUrl": downloadUrl])
+                
+                print("update user's profile pictureURL")
+            }
+        }
+                
+        UserDefaultManager().downloadCurrentUserInfo()
+//        let userDefault = NSUserDefaults.standardUserDefaults()
+//        
+//        userDefault.setObject(newPicture, forKey: "user_pictureUrl")
+//        
+//        userDefault.synchronize()
+//        
+//        CurrentUserInfoManager.shared.currentUserInfoInit()
+//        
+//        FirebaseDatabaseRef.shared.child("users").child(CurrentUserInfoManager.shared.currentUserNode).updateChildValues(["pictureUrl": newPicture])
+        
+        
+        // TODO: showing user a block that displayname has been changed successfully
+        
+    }
 }
 
 

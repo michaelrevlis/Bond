@@ -27,6 +27,7 @@ class AddBondStage2ViewController: UIViewController,UITextFieldDelegate {
     var newPostcard: [PostcardInDrawer] = []
     private var dateFormatter = NSDateFormatter()
     private var delivered_date = NSDate()
+    private var deliverDateSelectedTimes: Int = 0
 
     
     override func viewDidLoad() {
@@ -40,10 +41,12 @@ class AddBondStage2ViewController: UIViewController,UITextFieldDelegate {
     /////// @IBActions ///////
     @IBAction func SavePressed(sender: AnyObject) {
         print("Save pressed")
+        FIRAnalytics.logEventWithName("bondSaved", parameters: nil)
         savePostcard(newPostcard)
     }
     @IBAction func SendPressed(sender: AnyObject) {
         print("Send pressed")
+        FIRAnalytics.logEventWithName("bondSent", parameters: nil)
         send(currentPostcard: newPostcard)
     }
 
@@ -145,6 +148,11 @@ extension AddBondStage2ViewController {
     
     
     @objc private func finishSelect(sender: AnyObject) {
+        
+        self.deliverDateSelectedTimes += 1
+        
+        FIRAnalytics.logEventWithName("selectDeliverDate", parameters: ["deliverDateSelectedTimes": self.deliverDateSelectedTimes])
+        
         delivered_date = dateFormatter.dateFromString(ConditionInputTextField.text!)!
         
         self.newPostcard[0].delivered_time = delivered_date

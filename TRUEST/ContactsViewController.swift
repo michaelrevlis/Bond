@@ -149,6 +149,8 @@ extension ContactsViewController: ContactsManagerDelegate {
                         print("\(addPostVC.receiverName)")
                     }
                     
+                    FIRAnalytics.logEventWithName("selectAFriendAsReceiver", parameters: nil)
+                    
                 }
                 
             // show a view with SendFromOutbox and ViewThread

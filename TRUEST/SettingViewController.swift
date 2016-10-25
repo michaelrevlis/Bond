@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 
-class SettingViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate{
+class SettingViewController: UITableViewController,UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     @IBOutlet weak var DisplayNameLabel: UILabel!
     @IBOutlet weak var DisplayNameField: UITextField!
@@ -29,8 +29,10 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     private var imageData = NSData()
     private var imageUrl = String()
     private let imagePicker = UIImagePickerController()
+    private let settingManager = SettingManager()
     
     @IBOutlet weak var testimg: UIImageView!
+    
     @IBAction func DisplayNameChangePressed(sender: AnyObject) {
         DisplayNameField.hidden = false
         DisplayNameLabel.hidden = true
@@ -50,16 +52,19 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         
         FBSDKAccessToken.setCurrentAccessToken(nil)
         
-        let a = SettingManager()
-        
-        a.cleanUpUserData()
+        settingManager.cleanUpUserData()
         
         self.dismissViewControllerAnimated(true, completion:{})
     }
    
     @IBAction func PictureChangePressed(sender: AnyObject) {
-        //todo//
+    
         print("Picture Change Pressed")
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
 
     func showErrorAlert(title: String, msg: String) {
@@ -84,8 +89,10 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         IDLabel.text = ""
         IDField.delegate = self
         DisplayNameField.delegate = self
+        imagePicker.delegate = self
         ProfilePicture.contentMode = .ScaleAspectFit
         ProfilePicture.image = UIImage(sourceWithString: imgUrl)
+        // 成功用自訂的extension讓UIImage吃String
 //        let url = NSURL(string: imgUrl)
 //        let data = NSData(contentsOfURL: url!)
 //        if data != nil {
@@ -108,6 +115,9 @@ extension SettingViewController{
         
         guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL else { fatalError() }
         imageUrl = url.absoluteString
+        
+        settingManager.updateUserPicture(imageData)
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -133,10 +143,20 @@ extension SettingViewController{
             IDLabel.text = textField.text
             IDLabel.hidden = false
             IDField.hidden = true
+            
+            
         case DisplayNameField:
             DisplayNameLabel.text = textField.text
             DisplayNameLabel.hidden = false
             DisplayNameField.hidden = true
+            
+            guard let newName = textField.text as String!
+                else {
+                    print("telling user it can't be empty")
+                    return
+            }
+            settingManager.updateUserName(newName)
+            
         default:
             break
         }

@@ -68,6 +68,7 @@ class MailboxManager {
                     guard let received_time = dateFormatter.dateFromString(delivered_time) else { fatalError() }
                     
                     guard let url = NSURL(string: imageUrl) else { fatalError() }
+                    
                     guard let image = NSData(contentsOfURL: url) else { fatalError() }
                     
                     // TODO: 未來要新增user last login date，並將該日期之後received的postcard下載存在core data

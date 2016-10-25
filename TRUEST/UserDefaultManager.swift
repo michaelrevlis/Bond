@@ -39,6 +39,8 @@ class UserDefaultManager {
                  userDefaults_currentUserInfo.setObject(userNode, forKey: "user_userNode")
                  userDefaults_currentUserInfo.setObject(pictureUrl, forKey: "user_pictureUrl")
                  userDefaults_currentUserInfo.setObject(authID, forKey: "user_authID")
+            
+            userDefaults_currentUserInfo.synchronize()
 
             CurrentUserInfoManager.shared.currentUserInfoInit()
             
