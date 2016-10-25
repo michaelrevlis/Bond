@@ -73,21 +73,25 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imgUrl = CurrentUserInfoManager.shared.currentUserPictureUrl
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        let imgUrl = userDefault.stringForKey("user_pictureUrl") as String!
         NavigationLogo.shared.setup()
         NavigationItem.titleView = NavigationLogo.shared.titleView
         DisplayNameField.hidden = true
         IDField.hidden = true
-        DisplayNameLabel.text = CurrentUserInfoManager.shared.currentUserName
+        DisplayNameLabel.text = userDefault.stringForKey("user_name")
         IDLabel.text = ""
         IDField.delegate = self
         DisplayNameField.delegate = self
-        let url = NSURL(string: imgUrl)
-        let data = NSData(contentsOfURL: url!)
-        if data != nil {
-            ProfilePicture.contentMode = .ScaleAspectFit
-            ProfilePicture.image = UIImage(data: data!)
-        }
+        ProfilePicture.contentMode = .ScaleAspectFit
+        ProfilePicture.image = UIImage(sourceWithString: imgUrl)
+//        let url = NSURL(string: imgUrl)
+//        let data = NSData(contentsOfURL: url!)
+//        if data != nil {
+//            ProfilePicture.contentMode = .ScaleAspectFit
+//            ProfilePicture.image = UIImage(data: data!)
+//        }
         print("hi I'm at ContactsViewController")
 
     }

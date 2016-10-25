@@ -39,7 +39,6 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
                 
                 LoginManager.shared.delegate = self
                 
-                
             } else {
                 
                 self.setup()
@@ -91,12 +90,14 @@ extension LoginViewController {
     func manager(manager: LoginManager, userDidLogin: Bool) {
         if userDidLogin == true {
             
-            CurrentUserInfoManager().downloadCurrentUserInfo()
+            UserDefaultManager().downloadCurrentUserInfo()
             print("download user info")
+            
             switchViewController(from: self, to: "TabBarController")
             
             self.hideLoginButtons(false)
             self.loadingSpinnerActive(false)
+            
         } else {
             print("user not login yet")
         }

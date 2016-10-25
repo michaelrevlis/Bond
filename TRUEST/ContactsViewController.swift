@@ -67,9 +67,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let theFriend = friendList[row]
         
-        let selectedUser = theFriend.name
-        let selectedUserID = theFriend.userNode
-        
         // TODO: dealing with picture "!" and the case of not having a picture. (later one consider as further feature)
         let pictureUrl = NSURL(string: theFriend.pictureUrl)
         let data = NSData(contentsOfURL: pictureUrl!)

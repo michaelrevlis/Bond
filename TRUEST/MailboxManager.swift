@@ -18,10 +18,11 @@ class MailboxManager {
     
     func downloadReceivedPostcards() {
         
-        cleanMailbox()
-        
         // use userNode to find related bond
-        FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(CurrentUserInfoManager.shared.currentUserNode).observeEventType(.ChildAdded, withBlock: { snapshot in
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        guard let userNode = userDefault.stringForKey("user_userNode") as String! else { fatalError() }
+        
+        FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userNode).observeEventType(.ChildAdded, withBlock: { snapshot in
             
             guard let  bond = snapshot.value as? NSDictionary,
                             postcard_id = bond["postcard"] as? String,
@@ -55,19 +56,12 @@ class MailboxManager {
                 
                 FirebaseDatabaseRef.shared.child("users").queryOrderedByKey().queryEqualToValue(sender_node).observeEventType(.ChildAdded, withBlock: { snapshot in
                     
-                    print("find users/sender_node")
-                    print(snapshot)
-                    
                     guard let  result = snapshot.value as? NSDictionary,
                                     sender_name = result["name"] as? String
                         else {
                             print("error in getting sender's name")
                             return
                     }
-                    
-                    print("find users/sender_node")
-                    print(sender_name)
-                    
                     
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"

@@ -7,55 +7,66 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 
 class SettingManager {
     
     func cleanUpUserData() {
      
-        let b = CurrentUserInfoManager.shared.currentUserName
-        print(b)
-        let c = NSUserDefaults.standardUserDefaults().stringForKey("user_name") as String!
-        print(c)
         NSUserDefaults.standardUserDefaults().removeObjectForKey("user_name")
-        let a = CurrentUserInfoManager.shared.currentUserName
-        print(a)
-        let d = NSUserDefaults.standardUserDefaults().stringForKey("user_name") as String!
-        print(d)
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_userNode")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_fbID")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_email")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_pictureUrl")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_authID")
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
+        let managedContext = appDelegate.managedObjectContext
         
+        let requestUser = NSFetchRequest(entityName: "User")
+        
+        let requestPostcard = NSFetchRequest(entityName: "Postcard")
+        
+        let requestReceivedPostcard = NSFetchRequest(entityName: "ReceivedPostcard")
+        
+        do {
+            
+            let resultsUser = try managedContext.executeFetchRequest(requestUser) as! [User]
+            
+            for result in resultsUser {
+                managedContext.deleteObject(result)
+            }
+            
+            let resultsPostcard = try managedContext.executeFetchRequest(requestPostcard) as! [Postcard]
+            
+            for result in resultsPostcard {
+                managedContext.deleteObject(result)
+            }
+            
+            let resultsReceivedPostcard = try managedContext.executeFetchRequest(requestReceivedPostcard) as! [ReceivedPostcard]
+            
+            for result in resultsReceivedPostcard {
+                managedContext.deleteObject(result)
+            }
+            
+        }catch {
+            print("Error in deleting core data")
+        }
+        
+        do {
+            try managedContext.save()
+            print("Core data has been deleted")
+        } catch {
+            print("Error in updating core data deletion")
+        }
         
     }
-    
+
 }
 
 
-//extension UIViewController {
-//    
-//    // delete all data in FBUser. because it is allowed only one user at the same time
-//    private func cleanUserInfo() {
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        
-//        let managedContext = appDelegate.managedObjectContext
-//        
-//        let request = NSFetchRequest(entityName: "FBUser")
-//        
-//        do {
-//            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
-//            
-//            for result in results {
-//                managedContext.deleteObject(result)
-//            }
-//        }catch {
-//            print("Error in deleting core data: FBUser")
-//        }
-//        
-//        do {
-//            try managedContext.save()
-//            print("deleting user info in core data")
-//        } catch {
-//            print("Error in updating FBUser deletion")
-//        }
-//    }
-//    
-//}
+
+
