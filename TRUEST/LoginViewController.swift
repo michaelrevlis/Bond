@@ -18,7 +18,6 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
     
     @IBOutlet weak var loginDescription: UILabel!
     @IBOutlet weak var button1: UIButton!
-    
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
@@ -27,9 +26,10 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         self.loadingSpinnerActive(false)
         self.hideLoginButtons(false)
+
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
             

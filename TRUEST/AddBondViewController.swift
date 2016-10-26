@@ -26,6 +26,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var SignatureTextField: UITextField!
     @IBOutlet weak var ContextTextField: UITextView!
     @IBOutlet weak var NavigationItem: UINavigationItem!
+
     var receiverName = String()
     var receiverNode  = String()
     private var pickedImage = UIImage()
@@ -42,9 +43,14 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NavigationLogo.shared.setup()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        let logoView = UIImageView()
+        logoView.frame = CGRectMake(0, 0, 50, 70)
+        logoView.contentMode = .ScaleAspectFit
+        logoView.image = UIImage(named: "navi_logo")
         
-        NavigationItem.titleView = NavigationLogo.shared.titleView
+        //if
+        self.NavigationItem.titleView = logoView
         setup()
         
         TitleTextField.delegate = self

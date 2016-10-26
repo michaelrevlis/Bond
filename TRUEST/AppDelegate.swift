@@ -38,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabbarVC = storyboard.instantiateViewControllerWithIdentifier("TabBarController") //指定storyboard中的VC
         self.window?.rootViewController = tabbarVC // 將該VC設為最底層
     }
+//    func switchToPasscodeViewControllers() {
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)   //喚醒storyboard
+//        let passcodeVC = storyboard.instantiateViewControllerWithIdentifier("PasscodeViewController") //指定storyboard中的VC
+//        self.window?.rootViewController = passcodeVC // 將該VC設為最底層
+//    }
+    
     
   
     

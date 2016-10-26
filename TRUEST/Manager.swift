@@ -182,6 +182,7 @@ class NavigationLogo: UIViewController{
         titleView.frame = CGRectMake(0, 0, 50, 70)
         titleView.contentMode = .ScaleAspectFit
         titleView.image = UIImage(named: "navi_logo")
-    
-    }
+        }
 }
+
+

@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 import CoreData
 import FBSDKCoreKit
-
-class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+import ABPadLockScreen
+class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,  ABPadLockScreenViewControllerDelegate {
     
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet weak var NavigationItem: UINavigationItem!
@@ -23,12 +23,45 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
             CollectionView.reloadData()
         }
     }
-
-    
+    private(set) var thePasscode: String?
+    private var foregroundNotification: NSObjectProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
+        thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
+        print(thePasscode)
+        if thePasscode == nil {
+        } else if self.thePasscode != nil {
+            let lockScreen = ABPadLockScreenViewController(delegate: self, complexPin: false)
+            lockScreen.setAllowedAttempts(3)
+            lockScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+            lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            presentViewController(lockScreen, animated: true, completion: nil)
+        } //第一次進來run一次lock//
         
+        
+        foregroundNotification = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
+            [unowned self] notification in
+            self.thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
+            if self.thePasscode == nil {
+            } else if self.thePasscode != nil {
+                let lockScreen = ABPadLockScreenViewController(delegate: self, complexPin: false)
+                lockScreen.setAllowedAttempts(3)
+                lockScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+                lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+                self.presentViewController(lockScreen, animated: true, completion: nil)
+            }
+        }//從桌面回來也跳lock//
         print("hi I'm at ContactsViewController")
+       
+        ABPadLockScreenView.appearance().backgroundColor = UIColor(hue:0.61, saturation:0.55, brightness:0.64, alpha:1)
+        
+        ABPadLockScreenView.appearance().labelColor = UIColor.whiteColor()
+        
+        let buttonLineColor = UIColor(red: 229/255, green: 180/255, blue: 46/255, alpha: 1)
+        ABPadButton.appearance().backgroundColor = UIColor.clearColor()
+        ABPadButton.appearance().borderColor = buttonLineColor
+        ABPadButton.appearance().selectedColor = buttonLineColor
+        ABPinSelectionView.appearance().selectedColor = buttonLineColor
         
         
         ContactsManager.shared.delegate = self
@@ -40,16 +73,22 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         CollectionView.dataSource = self
         
         CollectionView.backgroundColor = UIColor.whiteColor()
-        
-//        NavigationItem.titleView = NavigationLogo.shared.titleView
-        
+        let logoView = UIImageView()
+            logoView.frame = CGRectMake(0, 0, 50, 70)
+            logoView.contentMode = .ScaleAspectFit
+            logoView.image = UIImage(named: "navi_logo")
+       
+      
+      self.NavigationItem.titleView = logoView
+
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        NavigationItem.titleView = NavigationLogo.shared.titleView
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
 
     }
+    
     
     
     
@@ -118,6 +157,43 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         
     }
+    
+    //MARK: Lock Screen Setup Delegate
+//    func pinSet(pin: String!, padLockScreenSetupViewController padLockScreenViewController: ABPadLockScreenSetupViewController!) {
+//        thePin = pin
+//        dismissViewControllerAnimated(true, completion: nil)
+//    }
+    
+    func unlockWasCancelledForSetupViewController(padLockScreenViewController: ABPadLockScreenAbstractViewController!) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //MARK: Lock Screen Delegate
+    func padLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!, validatePin pin: String!) -> Bool {
+        print("Validating Pin \(pin)")
+        return thePasscode == pin
+    }
+    
+    func unlockWasSuccessfulForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
+        print("Unlock Successful!")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func unlockWasUnsuccessful(falsePin: String!, afterAttemptNumber attemptNumber: Int, padLockScreenViewController: ABPadLockScreenViewController!) {
+        print("Failed Attempt \(attemptNumber) with incorrect pin \(falsePin)")
+    }
+    
+    func unlockWasCancelledForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
+        print("Unlock Cancled")
+        
+        
+        
+    }
+
+
+
+    
+    
 }
 
 
@@ -147,6 +223,9 @@ extension ContactsViewController: ContactsManagerDelegate {
                         addPostVC.receiverName = friendList[indexPath.row].name
                         addPostVC.receiverNode = friendList[indexPath.row].userNode
                         print("\(addPostVC.receiverName)")
+                        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+                        //self.NavigationItem.title = friendList[indexPath.row].name
+                        
                     }
                     
                     FIRAnalytics.logEventWithName("selectAFriendAsReceiver", parameters: nil)

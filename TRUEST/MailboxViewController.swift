@@ -20,11 +20,18 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let logoView = UIImageView()
+        logoView.frame = CGRectMake(0, 0, 50, 70)
+        logoView.contentMode = .ScaleAspectFit
+        logoView.image = UIImage(named: "navi_logo")
         
+        
+        self.NavigationItem.titleView = logoView
         print("this is Mailbox")
-        NavigationLogo.shared.setup()
+       // NavigationLogo.shared.setup()
         
-        NavigationItem.titleView = NavigationLogo.shared.titleView
+      //  NavigationItem.titleView = NavigationLogo.shared.titleView
+       // self.navigationController!.navigationBar.topItem?.titleView = NavigationLogo.shared.titleView
         viewMailbox()
         
         MailboxTableView.delegate = self
@@ -76,7 +83,7 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
-    
+ 
 }
 
 
