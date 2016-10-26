@@ -62,7 +62,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         ABPadButton.appearance().borderColor = buttonLineColor
         ABPadButton.appearance().selectedColor = buttonLineColor
         ABPinSelectionView.appearance().selectedColor = buttonLineColor
-
+        
         
         FriendManager.shared.delegate = self
         
@@ -85,10 +85,8 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-     // self.NavigationItem.titleView = NavigationLogo.shared.titleView
-       // if thePasscode {
-      //       lockScreen()
-       // }
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+
     }
     
     
@@ -226,6 +224,9 @@ extension ContactsViewController: FriendManagerDelegate {
                         addPostVC.receiverName = friendList[indexPath.row].name
                         addPostVC.receiverNode = friendList[indexPath.row].userNode
                         print("\(addPostVC.receiverName)")
+                        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+                        //self.NavigationItem.title = friendList[indexPath.row].name
+                        
                     }
                     
                 }

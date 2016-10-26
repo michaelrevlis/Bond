@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         self.loadingSpinner.hidden = true
         
         self.hideLoginButtons(true)
