@@ -58,3 +58,14 @@ extension NSDate {
     }
 }
 
+
+
+//
+func showErrorAlert(viewController : UIViewController, title: String, msg: String) {
+    let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+    let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+    alert.addAction(action)
+    viewController.presentedViewController(alert, animated: true, completion: nil)
+}
+
+

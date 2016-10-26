@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseCrash
+import FirebaseAnalytics
 import FirebaseDatabase
 import CoreData
 import FBSDKCoreKit
@@ -106,7 +107,11 @@ extension AddBondViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         // iOS 8.0用UIImagePickerControllerReferenceURL，else用OriginalImage
-        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { fatalError() }
+        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            else {
+                FIRCrashMessage("Fail to select image from album")
+                
+        }
         PostcardImage.contentMode = .ScaleToFill
         PostcardImage.image = pickedImage
         self.pickedImage = pickedImage as UIImage

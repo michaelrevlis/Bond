@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCrash
 
 class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -45,13 +46,18 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 signature = result.signature,
                                 created_time = result.created_time,
                                 delivered_time = result.delivered_time,
-                                image = result.image else { fatalError() }
+                                image = result.image
+                    else {
+                        FIRCrashMessage("Fail to convert Postcard data type from core data")
+                        continue
+                }
                 
                 postcardsInDrawer.append(PostcardInDrawer(receiver: receiver, receiver_name: receiver_name, created_time: created_time, delivered_time: delivered_time, title: title, context: context, signature: signature, image: image))
             }
             
-        }catch{
-            fatalError("Failed to fetch data: \(error)")
+        } catch {
+            FIRCrashMessage("Fail to load Postcard from core data")
+            return
         }
         
         

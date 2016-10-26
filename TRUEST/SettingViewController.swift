@@ -188,12 +188,6 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     
     
     
-    func showErrorAlert(title: String, msg: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
     //MARK: Lock Screen Setup Delegate
     func pinSet(passcode: String!, padLockScreenSetupViewController padLockScreenViewController: ABPadLockScreenSetupViewController!) {
         thePasscode = passcode

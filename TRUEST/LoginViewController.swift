@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseCrash
+import FirebaseAnalytics
 import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -135,7 +136,7 @@ extension LoginViewController {
         fbLoginManager.logInWithReadPermissions(["public_profile", "email", "user_friends"], handler: { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
             
             if let error = error {
-                print("FB login error: \(error)")
+                FIRCrashMessage("FB login error: \(error)")
                 self.hideLoginButtons(false)
                 self.loadingSpinner.stopAnimating()
                 return
