@@ -64,6 +64,9 @@ class SettingManager {
             print("Error in updating core data deletion")
         }
         
+        
+        ContactsManager.shared.cleanupFriendlist()
+        
     }
 
     
@@ -107,16 +110,6 @@ class SettingManager {
         }
                 
         UserDefaultManager().downloadCurrentUserInfo()
-//        let userDefault = NSUserDefaults.standardUserDefaults()
-//        
-//        userDefault.setObject(newPicture, forKey: "user_pictureUrl")
-//        
-//        userDefault.synchronize()
-//        
-//        CurrentUserInfoManager.shared.currentUserInfoInit()
-//        
-//        FirebaseDatabaseRef.shared.child("users").child(CurrentUserInfoManager.shared.currentUserNode).updateChildValues(["pictureUrl": newPicture])
-        
         
         // TODO: showing user a block that displayname has been changed successfully
         

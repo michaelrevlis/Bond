@@ -50,7 +50,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
                 lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
                 self.presentViewController(lockScreen, animated: true, completion: nil)
             }
-        }//從桌面回來也跳lock//
+        }
         print("hi I'm at ContactsViewController")
        
         ABPadLockScreenView.appearance().backgroundColor = UIColor(hue:0.61, saturation:0.55, brightness:0.64, alpha:1)
@@ -73,12 +73,12 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         CollectionView.dataSource = self
         
         CollectionView.backgroundColor = UIColor.whiteColor()
+        
         let logoView = UIImageView()
             logoView.frame = CGRectMake(0, 0, 50, 70)
             logoView.contentMode = .ScaleAspectFit
             logoView.image = UIImage(named: "navi_logo")
        
-      
       self.NavigationItem.titleView = logoView
 
     }
@@ -224,7 +224,6 @@ extension ContactsViewController: ContactsManagerDelegate {
                         addPostVC.receiverNode = friendList[indexPath.row].userNode
                         print("\(addPostVC.receiverName)")
                         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-                        //self.NavigationItem.title = friendList[indexPath.row].name
                         
                     }
                     

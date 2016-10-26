@@ -20,18 +20,16 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)
         logoView.contentMode = .ScaleAspectFit
         logoView.image = UIImage(named: "navi_logo")
         
-        
         self.NavigationItem.titleView = logoView
-        print("this is Mailbox")
-       // NavigationLogo.shared.setup()
         
-      //  NavigationItem.titleView = NavigationLogo.shared.titleView
-       // self.navigationController!.navigationBar.topItem?.titleView = NavigationLogo.shared.titleView
+        print("this is Mailbox")
+
         viewMailbox()
         
         MailboxTableView.delegate = self
@@ -61,7 +59,7 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let thePostcard = postcardsInMailbox[indexPath.row]
         
-        cell.receivers.text = thePostcard.sender_name // should be receiver's name. add receiverName to coredata and request it while downloading it.
+        cell.receivers.text = thePostcard.sender_name
         cell.receivers.font = cell.receivers.font.fontWithSize(12)
         
         cell.title.text = thePostcard.title

@@ -11,11 +11,8 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
-
+// TODO: read/write from userDefault takes time, consider to adopt core data 
 class UserDefaultManager {
-    
-//    static let shared = CurrentUserInfoManager()
-    
     
     private let currentUserAuth = FIRAuth.auth()!.currentUser!.uid
     

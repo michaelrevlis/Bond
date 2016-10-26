@@ -53,7 +53,7 @@ extension MailboxTableViewCell {
         lastEditedLabel.textAlignment = .Right
         
         titleImage.frame = CGRectMake(95, 32.5, 25, 25)
-        titleImage.image = UIImage(named: "thread_title")!//.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        titleImage.image = UIImage(named: "thread_title")!
         titleImage.tintColor = UIColor.SD_ImageTintGray_979797()
         
         receiverImage.frame = CGRectMake(95, 65, 25, 25)
@@ -66,11 +66,8 @@ extension MailboxTableViewCell {
         
         let urgency = UIImage(named: "Exclamation")
         urgencyImage.frame = CGRect(center: CGPoint(x: 300, y: 60), size: CGSize(width: 50, height: 50))
-        //            CGRectMake(272, 35, 45, 45)
         urgencyImage.image = urgency
         urgencyImage.opaque = false
-        //        urgencyImage.backgroundColor = UIColor.clearColor()
-        
         
         self.ContentView.addSubview(cellBackground)
         self.ContentView.addSubview(title)

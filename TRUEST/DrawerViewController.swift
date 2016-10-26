@@ -18,16 +18,14 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // NavigationLogo.shared.setup()
-       //
-       // NavigationItem.titleView = NavigationLogo.shared.titleView
+
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)
         logoView.contentMode = .ScaleAspectFit
         logoView.image = UIImage(named: "navi_logo")
         
-        
         self.NavigationItem.titleView = logoView
+        
         print("this is Drawer")
         
         // request Postcard from core data
@@ -71,11 +69,7 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(animated: Bool) {
  
         super.viewDidAppear(true)
-      //  NavigationLogo.shared.setup()
-      //  NavigationItem.titleView = NavigationLogo.shared.titleView
-        
 
-        print ("rly")
     }
     
 

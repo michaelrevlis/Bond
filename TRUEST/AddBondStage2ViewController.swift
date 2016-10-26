@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreData
 
-class AddBondStage2ViewController: UIViewController,UITextFieldDelegate {
+class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var PostcardImage: UIImageView!
     @IBOutlet weak var ConditionImageView: UIImageView!
@@ -34,14 +34,15 @@ class AddBondStage2ViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)
         logoView.contentMode = .ScaleAspectFit
         logoView.image = UIImage(named: "navi_logo")
         
-        
         self.NavigationItem.titleView = logoView
+        
         setup()
         
     }
@@ -260,7 +261,7 @@ extension AddBondStage2ViewController {
         
         
         /////////// save bond ///////////
-        let sendBond: [String: String] = [ "postcard": postcardSentUid, "receiver": currentPostcard[0].receiver, "sender": CurrentUserInfoManager.shared.currentUserName ]
+        let sendBond: [String: String] = [ "postcard": postcardSentUid, "receiver": currentPostcard[0].receiver, "sender": CurrentUserInfoManager.shared.currentUserNode ]
         
         let bondRef = FirebaseDatabaseRef.shared.child("bonds").childByAutoId()
         

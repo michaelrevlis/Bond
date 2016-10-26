@@ -13,7 +13,7 @@ import CoreData
 import FBSDKCoreKit
 
 
-class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class AddBondViewController: UIViewController {
 
     @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var ContentView: UIView!
@@ -43,14 +43,15 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)
         logoView.contentMode = .ScaleAspectFit
         logoView.image = UIImage(named: "navi_logo")
         
-        //if
         self.NavigationItem.titleView = logoView
+        
         setup()
         
         TitleTextField.delegate = self
@@ -101,7 +102,7 @@ extension AddBondViewController {
 
 
 
-extension AddBondViewController{
+extension AddBondViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         // iOS 8.0用UIImagePickerControllerReferenceURL，else用OriginalImage
@@ -123,7 +124,10 @@ extension AddBondViewController{
         picker.dismissViewControllerAnimated(true, completion:nil)
     }
     
-    
+}
+
+
+extension AddBondViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -159,14 +163,23 @@ extension AddBondViewController{
         switch textField {
         case TitleTextField:
             currentTextOfTitle = textField.text
+            
         case SignatureTextField:
             currentTextOfSignature = textField.text
+            
         default:
             break
+            
         }
         ScrollView.setContentOffset(CGPointMake(0, -64), animated: true)
     }
     
+}
+
+
+
+extension AddBondViewController: UITextViewDelegate {
+
     func textViewDidBeginEditing(textView: UITextView) {
         ScrollView.setContentOffset(CGPointMake(0, 100), animated: true)
     }

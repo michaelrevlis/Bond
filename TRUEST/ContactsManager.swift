@@ -120,5 +120,10 @@ extension ContactsManager {
         }
     }
     
+    
+    func cleanupFriendlist() {
+        self.friendList = []
+    }
+    
 }
 

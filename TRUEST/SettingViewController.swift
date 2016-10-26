@@ -46,7 +46,6 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         DisplayNameField.hidden = false
         DisplayNameLabel.hidden = true
         DisplayNameField.text   = "Display Name Change Pressed"
-       //測試用 lockScreen()
     }
     
     @IBAction func PasscodeSwitchPressed(sender: UISwitch) {
@@ -59,58 +58,13 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
             NSUserDefaults.standardUserDefaults().setObject(PasscodeSwitch.on, forKey: "switchstatus")
         }
     }
-    func ActivatePasscode() {
-      
-        let lockSetupScreen = ABPadLockScreenSetupViewController(delegate: self, complexPin: false, subtitleLabelText: "Please Set Your Passcode")
-        lockSetupScreen.tapSoundEnabled = false
-        lockSetupScreen.errorVibrateEnabled = false
-        lockSetupScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-        lockSetupScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        
-        presentViewController(lockSetupScreen, animated: true, completion: nil)
-                //1.pop up ablockpad
-        //2.enter again
-        //3.save it to ??
-        //(4.call the pad elsewhere when thread/outbox/app is entered)
-        
-    }
-    func DeactivatePasscode() {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("currentPasscode")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        thePasscode = nil
-        //1.clean the passcode from save point
-        //2.do not call pad anywhere
-    }
-    
-    func lockScreen() {
-        
-        print(thePasscode)
-            let lockScreen = ABPadLockScreenViewController(delegate: self, complexPin: false)
-            lockScreen.setAllowedAttempts(3)
-            lockScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-            lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            
-            presentViewController(lockScreen, animated: true, completion: nil)
-        
-
-        
-        
-    
-    }
-    
-    
-    
-    
-    
-    
-    
     
     
     
     @IBAction func IDChangePressed(sender: AnyObject) {
-            IDField.hidden = false
-            IDLabel.hidden = true
-            IDField.text   = "ID Change Pressed"
+        IDField.hidden = false
+        IDLabel.hidden = true
+        IDField.text   = "ID Change Pressed"
     }
     
     @IBAction func LogoutPressed(sender: AnyObject) {
@@ -123,9 +77,9 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         
         self.dismissViewControllerAnimated(true, completion:{})
     }
-   
-    @IBAction func PictureChangePressed(sender: AnyObject) {
     
+    @IBAction func PictureChangePressed(sender: AnyObject) {
+        
         print("Picture Change Pressed")
         
         imagePicker.allowsEditing = false
@@ -133,56 +87,12 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         presentViewController(imagePicker, animated: true, completion: nil)
         
     }
+    
+    
 
-    
-    
-    
-    
-    
-    
-    func showErrorAlert(title: String, msg: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    //MARK: Lock Screen Setup Delegate
-    func pinSet(passcode: String!, padLockScreenSetupViewController padLockScreenViewController: ABPadLockScreenSetupViewController!) {
-        thePasscode = passcode
-        NSUserDefaults.standardUserDefaults().setObject(passcode, forKey: "currentPasscode")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func unlockWasCancelledForSetupViewController(padLockScreenViewController: ABPadLockScreenAbstractViewController!) {
-        PasscodeSwitch.on = false
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    //MARK: Lock Screen Delegate
-    func padLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!, validatePin pin: String!) -> Bool {
-        print("Validating Pin \(pin)")
-        return thePasscode == pin
-    }
-    
-    func unlockWasSuccessfulForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
-        print("Unlock Successful!")
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func unlockWasUnsuccessful(falsePin: String!, afterAttemptNumber attemptNumber: Int, padLockScreenViewController: ABPadLockScreenViewController!) {
-        print("Failed Attempt \(attemptNumber) with incorrect pin \(falsePin)")
-    }
-    
-    func unlockWasCancelledForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
-        print("Unlock Cancled")
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
         let userDefault = NSUserDefaults.standardUserDefaults()
         let imgUrl = userDefault.stringForKey("user_pictureUrl") as String!
@@ -230,24 +140,96 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         lockSetupScreen.errorVibrateEnabled = false
         lockSetupScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
         lockSetupScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-
+        
         imagePicker.delegate = self
         ProfilePicture.contentMode = .ScaleAspectFit
         ProfilePicture.image = UIImage(sourceWithString: imgUrl)
-        // 成功用自訂的extension讓UIImage吃String
-//        let url = NSURL(string: imgUrl)
-//        let data = NSData(contentsOfURL: url!)
-//        if data != nil {
-//            ProfilePicture.contentMode = .ScaleAspectFit
-//            ProfilePicture.image = UIImage(data: data!)
-//        }
+        
         print("hi I'm at ContactsViewController")
-
-
+        
+    }
+    
+    
+    
+    func ActivatePasscode() {
       
+        let lockSetupScreen = ABPadLockScreenSetupViewController(delegate: self, complexPin: false, subtitleLabelText: "Please Set Your Passcode")
+        lockSetupScreen.tapSoundEnabled = false
+        lockSetupScreen.errorVibrateEnabled = false
+        lockSetupScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        lockSetupScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        
+        presentViewController(lockSetupScreen, animated: true, completion: nil)
+                //1.pop up ablockpad
+        //2.enter again
+        //3.save it to ??
+        //(4.call the pad elsewhere when thread/outbox/app is entered)
+        
+    }
+    func DeactivatePasscode() {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("currentPasscode")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        thePasscode = nil
+        //1.clean the passcode from save point
+        //2.do not call pad anywhere
+    }
+    
+    
+    func lockScreen() {
+        
+        print(thePasscode)
+            let lockScreen = ABPadLockScreenViewController(delegate: self, complexPin: false)
+            lockScreen.setAllowedAttempts(3)
+            lockScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+            lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            
+            presentViewController(lockScreen, animated: true, completion: nil)
+    }
+    
+    
+    
+    func showErrorAlert(title: String, msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    //MARK: Lock Screen Setup Delegate
+    func pinSet(passcode: String!, padLockScreenSetupViewController padLockScreenViewController: ABPadLockScreenSetupViewController!) {
+        thePasscode = passcode
+        NSUserDefaults.standardUserDefaults().setObject(passcode, forKey: "currentPasscode")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func unlockWasCancelledForSetupViewController(padLockScreenViewController: ABPadLockScreenAbstractViewController!) {
+        PasscodeSwitch.on = false
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //MARK: Lock Screen Delegate
+    func padLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!, validatePin pin: String!) -> Bool {
+        print("Validating Pin \(pin)")
+        return thePasscode == pin
+    }
+    
+    func unlockWasSuccessfulForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
+        print("Unlock Successful!")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func unlockWasUnsuccessful(falsePin: String!, afterAttemptNumber attemptNumber: Int, padLockScreenViewController: ABPadLockScreenViewController!) {
+        print("Failed Attempt \(attemptNumber) with incorrect pin \(falsePin)")
+    }
+    
+    func unlockWasCancelledForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
+        print("Unlock Cancled")
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
+
+
 extension SettingViewController{
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
