@@ -38,6 +38,8 @@
 		6BF17C781DAE966200E60484 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF17C771DAE966200E60484 /* ContactsViewController.swift */; };
 		6BF17C7A1DAE978E00E60484 /* ContactsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */; };
 		6BF8F2FE1DB9FDEE00E8AD9D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF8F2FD1DB9FDEE00E8AD9D /* GoogleService-Info.plist */; };
+		DF500B671DBDFAE0005D9D7C /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF500B661DBDFAE0005D9D7C /* NavigationTitle.swift */; };
+		DF7168041DBF0FAB00214303 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7168031DBF0FAB00214303 /* PasscodeViewController.swift */; };
 		E93D9D8AF76F8BABD253199D /* Pods_TRUEST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6BF8F2FD1DB9FDEE00E8AD9D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF29872BA91A898FE8E06FB7 /* Pods-TRUEST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRUEST.release.xcconfig"; path = "Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST.release.xcconfig"; sourceTree = "<group>"; };
+		DF500B661DBDFAE0005D9D7C /* NavigationTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTitle.swift; sourceTree = "<group>"; };
+		DF7168031DBF0FAB00214303 /* PasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRUEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -150,6 +154,7 @@
 				6B81D2B21D9FE6DA00D42BA8 /* supporting */,
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
+				DF7168031DBF0FAB00214303 /* PasscodeViewController.swift */,
 				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
 				6B1B79AF1DB4B72E0048F311 /* TabBarController.swift */,
 				6BF17C791DAE978E00E60484 /* ContactsCollectionViewCell.swift */,
@@ -163,6 +168,7 @@
 				6B1B79B11DB4D43B0048F311 /* SettingViewController.swift */,
 				6B8447701DAF907000CA1FF5 /* FriendManager.swift */,
 				6B1B79B71DB5CD590048F311 /* MailboxManager.swift */,
+				DF500B661DBDFAE0005D9D7C /* NavigationTitle.swift */,
 				6B1AF3091DA238A5004B706A /* Manager.swift */,
 				6B0468AB1D9E3C0200AD3005 /* UIColors.swift */,
 				6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */,
@@ -277,7 +283,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E8CDEE6436D4B272BF57ED45 /* [CP] Embed Pods Frameworks */ = {
@@ -315,6 +321,7 @@
 				6BF17C7A1DAE978E00E60484 /* ContactsCollectionViewCell.swift in Sources */,
 				6B334A461DA4D74F00FF47D6 /* DrawerViewController.swift in Sources */,
 				6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */,
+				DF7168041DBF0FAB00214303 /* PasscodeViewController.swift in Sources */,
 				6B334A441DA3BABD00FF47D6 /* FBUser.swift in Sources */,
 				6B1B79B01DB4B72E0048F311 /* TabBarController.swift in Sources */,
 				6B1B79B81DB5CD590048F311 /* MailboxManager.swift in Sources */,
@@ -326,6 +333,7 @@
 				6B84476E1DAF6E0400CA1FF5 /* User+CoreDataProperties.swift in Sources */,
 				6B8447711DAF907000CA1FF5 /* FriendManager.swift in Sources */,
 				6B84476B1DAF6CD900CA1FF5 /* ReceivedPostcard.swift in Sources */,
+				DF500B671DBDFAE0005D9D7C /* NavigationTitle.swift in Sources */,
 				6B84476F1DAF6E0400CA1FF5 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

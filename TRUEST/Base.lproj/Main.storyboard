@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -128,6 +128,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-869" y="745"/>
+        </scene>
+        <!--Passcode View Controller-->
+        <scene sceneID="8eD-KL-ev0">
+            <objects>
+                <viewController storyboardIdentifier="PasscodeView" id="nA2-wH-QeQ" customClass="PasscodeViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2mE-vR-Xqj"/>
+                        <viewControllerLayoutGuide type="bottom" id="D72-ND-C3g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ybY-bf-0Q5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YeN-sU-eaP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebS-3g-pvv">
+                                <rect key="frame" x="266" y="152" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="setPinSelected:" destination="nA2-wH-QeQ" eventType="touchUpInside" id="Oza-FW-29l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Grf-EI-c1I">
+                                <rect key="frame" x="342" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="lockAppSelected:" destination="nA2-wH-QeQ" eventType="touchUpInside" id="VGa-lN-Quq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Grf-EI-c1I" firstAttribute="centerY" secondItem="ybY-bf-0Q5" secondAttribute="centerY" id="9hm-ZY-OIn"/>
+                            <constraint firstItem="ebS-3g-pvv" firstAttribute="centerY" secondItem="ybY-bf-0Q5" secondAttribute="centerY" id="Plb-zv-rk1"/>
+                            <constraint firstItem="ebS-3g-pvv" firstAttribute="centerX" secondItem="ybY-bf-0Q5" secondAttribute="centerX" id="mh4-ha-v8I"/>
+                            <constraint firstItem="Grf-EI-c1I" firstAttribute="top" secondItem="2mE-vR-Xqj" secondAttribute="bottom" constant="213" id="zA0-Xu-bA4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lockAppButton" destination="Grf-EI-c1I" id="iBP-g8-T2t"/>
+                        <outlet property="setPinButton" destination="ebS-3g-pvv" id="ck5-Mq-HJW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqw-Wg-7Zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-798" y="1414"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="quj-VP-kzE">
@@ -273,7 +321,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pi-1X-OS5" userLabel="Next">
                                                 <rect key="frame" x="534" y="466" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.090196078431372548" green="0.44705882352941173" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="NextPressed:" destination="XnR-Ui-pT9" eventType="touchUpInside" id="yj4-Uz-tBY"/>
                                                     <segue destination="AEX-j7-u8D" kind="show" identifier="nextPage" id="0hs-zN-Z1e"/>
@@ -358,14 +408,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="9Ch-PU-mfy"/>
+                    <navigationItem key="navigationItem" id="2m5-Da-poL"/>
                     <connections>
                         <outlet property="AddPhotoDescription" destination="mwu-Rm-HpF" id="icJ-c9-lHk"/>
                         <outlet property="AddPhotoPress" destination="Z01-gH-fm7" id="Xyo-CI-A6E"/>
                         <outlet property="ContentView" destination="FS8-ei-Jxa" id="hH9-V1-sMU"/>
                         <outlet property="ContextTextField" destination="6QO-mC-WPb" id="Qdw-A0-O2S"/>
                         <outlet property="LabelForShadow" destination="OhU-WY-wI1" id="obC-11-84j"/>
-                        <outlet property="NavigationItem" destination="9Ch-PU-mfy" id="dEG-LS-c13"/>
+                        <outlet property="NavigationItem" destination="2m5-Da-poL" id="LD1-KJ-KhJ"/>
                         <outlet property="Next" destination="9pi-1X-OS5" id="MwG-9o-Ugv"/>
                         <outlet property="PostcardImage" destination="biF-Gi-GMY" id="ovN-ZY-Z7h"/>
                         <outlet property="ScrollView" destination="Rdg-Of-nOg" id="IQi-ue-lFG"/>
@@ -430,7 +480,7 @@
                     <navigationItem key="navigationItem" id="2uf-0q-jLH"/>
                     <connections>
                         <outlet property="DrawerTableView" destination="hhJ-Oi-TnN" id="CoH-Gj-E1j"/>
-                        <outlet property="NavigationItem" destination="2uf-0q-jLH" id="OM8-mc-EJc"/>
+                        <outlet property="NavigationItem" destination="2uf-0q-jLH" id="ig8-qT-cvv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4K-n5-cwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,7 +577,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="EQe-3a-YcR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="CollectionView" destination="avi-Vo-ejJ" id="mac-cV-gY2"/>
@@ -538,10 +590,10 @@
             </objects>
             <point key="canvasLocation" x="1313" y="-692"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Title-->
         <scene sceneID="yUr-38-byg">
             <objects>
-                <navigationController storyboardIdentifier="Intimates" id="Jvh-vB-opI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Intimates" id="Jvh-vB-opI" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Intimates" id="NIo-hr-82i">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -704,11 +756,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="Kij-9W-hmG"/>
                     <connections>
                         <outlet property="ConditionImageView" destination="YIh-E6-dKu" id="X5j-iE-Q1n"/>
                         <outlet property="ConditionInputBackground" destination="7H4-YZ-cxA" id="Zce-7E-dYQ"/>
                         <outlet property="ConditionInputTextField" destination="GtB-Cj-8t9" id="k7h-ei-7fs"/>
                         <outlet property="LabelForShadow" destination="zC0-JH-95Y" id="TYT-ZS-O4P"/>
+                        <outlet property="NavigationItem" destination="Kij-9W-hmG" id="mBk-qN-ykn"/>
                         <outlet property="PostcardImage" destination="Y75-sH-Xf9" id="ccv-N3-Bjt"/>
                         <outlet property="ReceiverImageView" destination="ycK-lg-unV" id="Lm5-Fa-ssd"/>
                         <outlet property="ReceiverLabel" destination="apW-Rf-TWR" id="KBE-8f-Eoy"/>
@@ -780,10 +834,10 @@
             </objects>
             <point key="canvasLocation" x="1313" y="22"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Title-->
         <scene sceneID="6FR-eF-szh">
             <objects>
-                <navigationController storyboardIdentifier="Post" id="i7f-rN-N8t" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Post" id="i7f-rN-N8t" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Post Button(main page)" id="kP7-dl-Wrw">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
@@ -797,13 +851,14 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXv-rO-ekq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Title" id="pSR-la-NZq"/>
             </objects>
             <point key="canvasLocation" x="615" y="740"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Title-->
         <scene sceneID="VER-wR-vid">
             <objects>
-                <navigationController storyboardIdentifier="Outbox" id="TbO-BG-uHl" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Outbox" id="TbO-BG-uHl" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Outbox" id="5JW-ae-j66">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -820,10 +875,10 @@
             </objects>
             <point key="canvasLocation" x="615" y="1446"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Title-->
         <scene sceneID="ygq-za-fOb">
             <objects>
-                <navigationController storyboardIdentifier="Threads" id="ugx-3u-Xdg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Threads" id="ugx-3u-Xdg" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Threads" id="z2M-Xo-Zad">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -841,10 +896,10 @@
             </objects>
             <point key="canvasLocation" x="615" y="22"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Title-->
         <scene sceneID="Bne-Rd-jOf">
             <objects>
-                <navigationController storyboardIdentifier="Settings" id="OmZ-gP-WfC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Settings" id="OmZ-gP-WfC" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Settings" id="A2w-KX-AFq">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -871,7 +926,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IAY-zO-nGJ">
-                            <rect key="frame" x="0.0" y="378" width="600" height="213"/>
+                            <rect key="frame" x="0.0" y="394" width="600" height="213"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <sections>
@@ -1017,17 +1072,49 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="LOGOUT" id="Acg-Co-cxy">
+                            <tableViewSection headerTitle="Securities" id="Acg-Co-cxy">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="AzQ-wW-Cql">
-                                        <rect key="frame" x="0.0" y="233" width="600" height="127"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kmt-A9-xf8">
+                                        <rect key="frame" x="0.0" y="233" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AzQ-wW-Cql" id="qJh-oc-Haz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="126"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kmt-A9-xf8" id="gaY-47-OLd">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3V-CG-Ep0">
+                                                    <rect key="frame" x="27" y="11" width="75" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Egt-a4-TQh">
+                                                    <rect key="frame" x="536" y="8" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="PasscodeSwitchPressed:" destination="Jyz-go-lfj" eventType="touchUpInside" id="51a-aO-Ho0"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Egt-a4-TQh" secondAttribute="trailing" constant="20" id="EhP-1C-ZWt"/>
+                                                <constraint firstItem="Egt-a4-TQh" firstAttribute="centerY" secondItem="gaY-47-OLd" secondAttribute="centerY" id="HJc-9e-So1"/>
+                                                <constraint firstItem="J3V-CG-Ep0" firstAttribute="centerY" secondItem="gaY-47-OLd" secondAttribute="centerY" id="l8h-51-Qem"/>
+                                                <constraint firstItem="J3V-CG-Ep0" firstAttribute="leading" secondItem="gaY-47-OLd" secondAttribute="leading" constant="32" id="ljC-zX-i9Q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="LOGOUT" id="1WY-Kj-yB1">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="1hI-yV-UJs">
+                                        <rect key="frame" x="0.0" y="328" width="600" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hI-yV-UJs" id="4mH-DJ-Sds">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-1w-dhk">
-                                                    <rect key="frame" x="23" y="5" width="62" height="30"/>
+                                                    <rect key="frame" x="20" y="13" width="62" height="30"/>
                                                     <state key="normal" title="Logout"/>
                                                     <connections>
                                                         <action selector="LogoutPressed:" destination="Jyz-go-lfj" eventType="touchUpInside" id="XxL-VL-Ddj"/>
@@ -1056,6 +1143,7 @@
                         <outlet property="IDLabel" destination="Son-dN-zNl" id="5Gt-yE-vuk"/>
                         <outlet property="LogoutButton" destination="cCD-1w-dhk" id="Ne9-Gk-P4e"/>
                         <outlet property="NavigationItem" destination="Pv6-VP-Eag" id="Cod-pO-sTy"/>
+                        <outlet property="PasscodeSwitch" destination="Egt-a4-TQh" id="hBE-cT-1gY"/>
                         <outlet property="ProfilePicture" destination="MAl-uE-cCY" id="qfW-Vq-ybo"/>
                         <outlet property="ProfilePictureChange" destination="9d7-cZ-atr" id="fCz-bU-8UO"/>
                         <outlet property="testimg" destination="IAY-zO-nGJ" id="5xR-nv-UOM"/>
@@ -1081,6 +1169,6 @@
         <image name="tweet login" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ivp-Us-y1h"/>
+        <segue reference="jHh-Wt-ugE"/>
     </inferredMetricsTieBreakers>
 </document>

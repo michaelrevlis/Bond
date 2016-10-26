@@ -21,6 +21,8 @@ class AddBondStage2ViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var SaveButton: UIButton!
     @IBOutlet weak var SendButton: UIButton!
     @IBOutlet weak var ConditionInputTextField: UITextField!
+    @IBOutlet weak var NavigationItem: UINavigationItem!
+    
     //    @IBOutlet weak var FinishDateSelectButton: UIButton!
     
     var receiverName = String()
@@ -31,7 +33,14 @@ class AddBondStage2ViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        let logoView = UIImageView()
+        logoView.frame = CGRectMake(0, 0, 50, 70)
+        logoView.contentMode = .ScaleAspectFit
+        logoView.image = UIImage(named: "navi_logo")
         
+        
+        self.NavigationItem.titleView = logoView
         setup()
         
     }

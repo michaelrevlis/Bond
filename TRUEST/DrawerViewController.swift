@@ -11,15 +11,23 @@ import CoreData
 
 class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+   
     @IBOutlet weak var NavigationItem: UINavigationItem!
     @IBOutlet weak var DrawerTableView: UITableView!
     var postcardsInDrawer = [PostcardInDrawer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NavigationLogo.shared.setup()
+       // NavigationLogo.shared.setup()
+       //
+       // NavigationItem.titleView = NavigationLogo.shared.titleView
+        let logoView = UIImageView()
+        logoView.frame = CGRectMake(0, 0, 50, 70)
+        logoView.contentMode = .ScaleAspectFit
+        logoView.image = UIImage(named: "navi_logo")
         
-        NavigationItem.titleView = NavigationLogo.shared.titleView
+        
+        self.NavigationItem.titleView = logoView
         print("this is Drawer")
         
         // request Postcard from core data
@@ -60,8 +68,15 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
      }
     
-    
-    
+    override func viewDidAppear(animated: Bool) {
+ 
+        super.viewDidAppear(true)
+      //  NavigationLogo.shared.setup()
+      //  NavigationItem.titleView = NavigationLogo.shared.titleView
+        
+
+        print ("rly")
+    }
     
 
     
