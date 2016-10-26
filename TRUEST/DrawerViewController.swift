@@ -42,7 +42,7 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for result in results {
                 guard let  title = result.title,
                                 receiver = result.receivers as? String!,
-                                receiver_name = result.receiver_name as? String!,
+                                receiver_name = result.receiver_name as String!,
                                 context = result.context,
                                 signature = result.signature,
                                 created_time = result.created_time,

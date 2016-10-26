@@ -9,8 +9,12 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
+
 import ABPadLockScreen
-class SettingViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate ,ABPadLockScreenSetupViewControllerDelegate, ABPadLockScreenViewControllerDelegate {
+class SettingViewController: UITableViewController,UITextFieldDelegate, UIImagePickerControllerDelegate ,ABPadLockScreenSetupViewControllerDelegate, ABPadLockScreenViewControllerDelegate,UINavigationControllerDelegate {
+
+
+
     
     @IBOutlet weak var DisplayNameLabel: UILabel!
     @IBOutlet weak var DisplayNameField: UITextField!
@@ -32,7 +36,12 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     private let imagePicker = UIImagePickerController()
     private(set) var thePasscode: String?
     private(set) var switchStatus: Bool?
+
+    private let settingManager = SettingManager()
+    
+
     @IBOutlet weak var testimg: UIImageView!
+    
     @IBAction func DisplayNameChangePressed(sender: AnyObject) {
         DisplayNameField.hidden = false
         DisplayNameLabel.hidden = true
@@ -105,14 +114,24 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     }
     
     @IBAction func LogoutPressed(sender: AnyObject) {
+        
         try! FIRAuth.auth()!.signOut()
+        
         FBSDKAccessToken.setCurrentAccessToken(nil)
-        self.dismissViewControllerAnimated(true, completion:{}) //避免使用switch時造成tabbar仍然存在
+        
+        settingManager.cleanUpUserData()
+        
+        self.dismissViewControllerAnimated(true, completion:{})
     }
    
     @IBAction func PictureChangePressed(sender: AnyObject) {
-        //todo//
+    
         print("Picture Change Pressed")
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
 
     
@@ -136,6 +155,7 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     }
     
     func unlockWasCancelledForSetupViewController(padLockScreenViewController: ABPadLockScreenAbstractViewController!) {
+        PasscodeSwitch.on = false
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -162,13 +182,13 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
-        let imgUrl = CurrentUserManager.shared.currentUserPictureURL
-       // NavigationLogo.shared.setup()
-      //  NavigationItem.titleView = NavigationLogo.shared.titleView
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        let imgUrl = userDefault.stringForKey("user_pictureUrl") as String!
         DisplayNameField.hidden = true
         IDField.hidden = true
-        DisplayNameLabel.text = CurrentUserManager.shared.currentUserName
+        DisplayNameLabel.text = userDefault.stringForKey("user_name")
         IDLabel.text = ""
         IDField.delegate = self
         DisplayNameField.delegate = self
@@ -211,6 +231,19 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         lockSetupScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
         lockSetupScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
 
+        imagePicker.delegate = self
+        ProfilePicture.contentMode = .ScaleAspectFit
+        ProfilePicture.image = UIImage(sourceWithString: imgUrl)
+        // 成功用自訂的extension讓UIImage吃String
+//        let url = NSURL(string: imgUrl)
+//        let data = NSData(contentsOfURL: url!)
+//        if data != nil {
+//            ProfilePicture.contentMode = .ScaleAspectFit
+//            ProfilePicture.image = UIImage(data: data!)
+//        }
+        print("hi I'm at ContactsViewController")
+
+
       
     }
     
@@ -227,6 +260,9 @@ extension SettingViewController{
         
         guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL else { fatalError() }
         imageUrl = url.absoluteString
+        
+        settingManager.updateUserPicture(imageData)
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -252,10 +288,20 @@ extension SettingViewController{
             IDLabel.text = textField.text
             IDLabel.hidden = false
             IDField.hidden = true
+            
+            
         case DisplayNameField:
             DisplayNameLabel.text = textField.text
             DisplayNameLabel.hidden = false
             DisplayNameField.hidden = true
+            
+            guard let newName = textField.text as String!
+                else {
+                    print("telling user it can't be empty")
+                    return
+            }
+            settingManager.updateUserName(newName)
+            
         default:
             break
         }

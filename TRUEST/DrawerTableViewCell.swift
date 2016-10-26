@@ -33,10 +33,10 @@ class DrawerTableViewCell: UITableViewCell {
 extension DrawerTableViewCell {
     private func setup() {
         
-        ContentView.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        ContentView.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
         
-        cellBackground.backgroundColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-        cellBackground.layer.borderColor = UIColor(red: 96/255, green: 171/255, blue: 129/255, alpha: 1).CGColor
+        cellBackground.backgroundColor = UIColor.SD_CellBackgroudGray_D8D8D8()
+        cellBackground.layer.borderColor = UIColor.SD_CellBorderGreen_60AB81().CGColor
         cellBackground.layer.borderWidth = 5.0
         cellBackground.layer.cornerRadius = cellBackground.frame.height / 2
         cellBackground.clipsToBounds = true
@@ -53,14 +53,14 @@ extension DrawerTableViewCell {
         
         titleImage.frame = CGRectMake(95, 32.5, 25, 25)
         titleImage.image = UIImage(named: "thread_title")!//.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        titleImage.tintColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1)
+        titleImage.tintColor = UIColor.SD_ImageTintGray_979797()
         
         receiverImage.frame = CGRectMake(95, 65, 25, 25)
         receiverImage.image = UIImage(named: "circle(group)")
         
         conditionImage.frame = CGRectMake(222, 35, 50, 50)
         conditionImage.image = UIImage(named: "time condition")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        conditionImage.tintColor = UIColor(red: 96/255, green: 171/255, blue: 129/255, alpha: 1)
+        conditionImage.tintColor = UIColor.SD_CellBorderGreen_60AB81()
         
         let urgency = UIImage(named: "Exclamation")
         urgencyImage.frame = CGRect(center: CGPoint(x: 300, y: 60), size: CGSize(width: 50, height: 50))

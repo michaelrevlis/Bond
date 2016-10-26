@@ -64,16 +64,15 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         ABPinSelectionView.appearance().selectedColor = buttonLineColor
         
         
-        FriendManager.shared.delegate = self
+        ContactsManager.shared.delegate = self
         
-        FriendManager.shared.myFriends()
+        ContactsManager.shared.myFriends()
 
         CollectionView.delegate = self
         
         CollectionView.dataSource = self
         
         CollectionView.backgroundColor = UIColor.whiteColor()
-        
         let logoView = UIImageView()
             logoView.frame = CGRectMake(0, 0, 50, 70)
             logoView.contentMode = .ScaleAspectFit
@@ -81,6 +80,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
        
       
       self.NavigationItem.titleView = logoView
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -105,9 +105,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         let row = indexPath.row
         
         let theFriend = friendList[row]
-        
-        let selectedUser = theFriend.name
-        let selectedUserID = theFriend.userNode
         
         // TODO: dealing with picture "!" and the case of not having a picture. (later one consider as further feature)
         let pictureUrl = NSURL(string: theFriend.pictureUrl)
@@ -188,7 +185,9 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func unlockWasCancelledForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
         print("Unlock Cancled")
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        
+        
     }
 
 
@@ -199,9 +198,9 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 
 
-extension ContactsViewController: FriendManagerDelegate {
+extension ContactsViewController: ContactsManagerDelegate {
     
-    func manager(manager: FriendManager, didGetFriendList friendList: [existedFBUser]) {
+    func manager(manager: ContactsManager, didGetFriendList friendList: [existedFBUser]) {
         self.friendList = friendList
         
         self.CollectionView.reloadData()
@@ -228,6 +227,8 @@ extension ContactsViewController: FriendManagerDelegate {
                         //self.NavigationItem.title = friendList[indexPath.row].name
                         
                     }
+                    
+                    FIRAnalytics.logEventWithName("selectAFriendAsReceiver", parameters: nil)
                     
                 }
                 

@@ -38,6 +38,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     private var currentTextOfTitle: String! = "Edit title here"
     private var currentTextOfSignature: String! = "Sign up your name here"
     private var currentTextOfContext: String! = "What I want to say is..."
+    private var imageSelectedTimes: Int = 0
     
     
     override func viewDidLoad() {
@@ -63,6 +64,8 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     //// all @IBAction are here ////
    ///////////////////////////////////////////////
     @IBAction func SelectImage(sender: AnyObject) {
+        self.imageSelectedTimes += 1
+        FIRAnalytics.logEventWithName("selectAnImage", parameters: ["selectTimes": self.imageSelectedTimes])
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
@@ -70,6 +73,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     @IBAction func NextPressed(sender: AnyObject) {
         print("Next pressed")
+        FIRAnalytics.logEventWithName("addBondNextPressed", parameters: nil)
         next()
     }
 

@@ -18,10 +18,11 @@ class MailboxManager {
     
     func downloadReceivedPostcards() {
         
-        cleanMailbox()
-        
         // use userNode to find related bond
-        FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(CurrentUserManager.shared.currentUserNode).observeEventType(.ChildAdded, withBlock: { snapshot in
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        guard let userNode = userDefault.stringForKey("user_userNode") as String! else { fatalError() }
+        
+        FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userNode).observeEventType(.ChildAdded, withBlock: { snapshot in
             
             guard let  bond = snapshot.value as? NSDictionary,
                             postcard_id = bond["postcard"] as? String,
@@ -55,9 +56,6 @@ class MailboxManager {
                 
                 FirebaseDatabaseRef.shared.child("users").queryOrderedByKey().queryEqualToValue(sender_node).observeEventType(.ChildAdded, withBlock: { snapshot in
                     
-                    print("find users/sender_node")
-                    print(snapshot)
-                    
                     guard let  result = snapshot.value as? NSDictionary,
                                     sender_name = result["name"] as? String
                         else {
@@ -65,19 +63,16 @@ class MailboxManager {
                             return
                     }
                     
-                    print("find users/sender_node")
-                    print(sender_name)
-                    
-                    
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
                     guard let received_time = dateFormatter.dateFromString(delivered_time) else { fatalError() }
                     
                     guard let url = NSURL(string: imageUrl) else { fatalError() }
+                    
                     guard let image = NSData(contentsOfURL: url) else { fatalError() }
                     
                     // TODO: 未來要新增user last login date，並將該日期之後received的postcard下載存在core data
-                    let receivedPostcards: [String: AnyObject] = ["sender": sender, "sender_name": sender_name, "receiver": CurrentUserManager.shared.currentUserNode, "received_time": received_time, "title": title, "context": context, "signature": signature, "image": image]
+                    let receivedPostcards: [String: AnyObject] = ["sender": sender, "sender_name": sender_name, "receiver": CurrentUserInfoManager.shared.currentUserNode, "received_time": received_time, "title": title, "context": context, "signature": signature, "image": image]
                     
                     // TODO: 將save to core data寫成func，只需輸入指定的參數即可
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
