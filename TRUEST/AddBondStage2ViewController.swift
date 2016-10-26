@@ -7,7 +7,10 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAnalytics
+import FirebaseCrash
+import FirebaseDatabase
+import FirebaseStorage
 import CoreData
 
 class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
@@ -194,9 +197,10 @@ extension AddBondStage2ViewController {
         
         do {
             try managedContext.save()
-            print("edited postcard has been saved")
+
         } catch {
-            print("Error in saving newPostcard into core data")
+            FIRCrashMessage("Error in saving newPostcard into core data")
+            return
         }
     }
     
@@ -244,7 +248,7 @@ extension AddBondStage2ViewController {
         FirebaseStorageRef.shared.child(imagePath).putData(newPostcard[0].image, metadata: metadata) { (metadata, error) in
             
             if let error = error {
-                print("Error upload image: \(error)")
+                FIRCrashMessage("Error in upload image: \(error)")
                 return
             } else {
                 

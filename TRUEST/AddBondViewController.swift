@@ -110,14 +110,19 @@ extension AddBondViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             else {
                 FIRCrashMessage("Fail to select image from album")
-                
+                showErrorAlert(self, title: "Notice", msg: "Due to some technique problem, this image can not be selected. Please select another.")
+                return
         }
         PostcardImage.contentMode = .ScaleToFill
         PostcardImage.image = pickedImage
         self.pickedImage = pickedImage as UIImage
         imageData = UIImageJPEGRepresentation(pickedImage, 1.0)! //將所選取的image轉型成NSData，不壓縮
         
-        guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL else { fatalError() }
+        guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL
+            else {
+                FIRCrashMessage("Fail to convert selected image into url")
+                return
+        }
         imageUrl = url.absoluteString
         
         AddPhotoDescription.hidden = true

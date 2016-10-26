@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseCrash
 import FBSDKCoreKit
 
 import ABPadLockScreen
@@ -143,7 +144,8 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         
         imagePicker.delegate = self
         ProfilePicture.contentMode = .ScaleAspectFit
-        ProfilePicture.image = UIImage(sourceWithString: imgUrl)
+        let imageData = stringToNSData(imgUrl)
+        ProfilePicture.image = UIImage(data: imageData)
         
         print("hi I'm at ContactsViewController")
         
@@ -228,13 +230,22 @@ extension SettingViewController{
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         // iOS 8.0用UIImagePickerControllerReferenceURL，else用OriginalImage
-        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { fatalError() }
+        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            else {
+                FIRCrashMessage("Fail to select image")
+                showErrorAlert(self, title: "Notice", msg: "Due to some technique problem, this image can not be selected. Please select another one")
+                return
+        }
         ProfilePicture.contentMode = .ScaleToFill
         ProfilePicture.image = pickedImage
         self.pickedImage = pickedImage as UIImage
         imageData = UIImageJPEGRepresentation(pickedImage, 1.0)! //將所選取的image轉型成NSData，不壓縮
         
-        guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL else { fatalError() }
+        guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL
+            else {
+                FIRCrashMessage("Fail to convert selected image into url")
+                return
+        }
         imageUrl = url.absoluteString
         
         settingManager.updateUserPicture(imageData)

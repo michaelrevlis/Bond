@@ -136,11 +136,11 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             let itemWidth = 110
             let itemHeight = itemWidth
-            let edgeSpacing = (view.bounds.width - 334) / 2
+            let edgeSpacing = (view.bounds.width - 332) / 2
             layout.sectionInset = UIEdgeInsets(top: 10, left: edgeSpacing, bottom: 15, right: edgeSpacing)
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-            layout.minimumLineSpacing = 2
-            layout.minimumInteritemSpacing = 2
+            layout.minimumLineSpacing = 1
+            layout.minimumInteritemSpacing = 1
             layout.invalidateLayout()
         }
     }

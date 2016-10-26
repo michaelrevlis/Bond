@@ -6,19 +6,9 @@
 //  Copyright © 2016年 MichaelRevlis. All rights reserved.
 //
 
+
 import Foundation
 import UIKit
-
-
-// 讓UIImage可以直接吃String的網址
-extension UIImage {
-    
-    convenience init(sourceWithString: String) {
-        guard let url = NSURL(string: sourceWithString) else { fatalError() }
-        guard let data = NSData(contentsOfURL: url) else { fatalError() }
-        self.init(data: data)!
-    }
-}
 
 
 // 讓宣告CGRect時能以圖案的中心為基準，而非左上角
@@ -28,19 +18,6 @@ extension CGRect {
         let originY = center.y - (size.height / 2)
         self.init(origin: CGPoint(x: originX, y: originY), size: size)
     }
-}
-
-
-// 嘗試將開啟新UIViewController做成一個func
-func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
-    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    
-    let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
-    
-    destinationViewController.modalPresentationStyle = .CurrentContext
-    destinationViewController.modalTransitionStyle = .CoverVertical
-    
-    originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
 }
 
 
@@ -59,13 +36,37 @@ extension NSDate {
 }
 
 
-
-//
-func showErrorAlert(viewController : UIViewController, title: String, msg: String) {
-    let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-    let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-    alert.addAction(action)
-    viewController.presentedViewController(alert, animated: true, completion: nil)
+// String -> NSData
+func stringToNSData(sourceString: String) -> NSData{
+    
+    if let url = NSURL(string: sourceString) {
+        if let data = NSData(contentsOfURL: url) {
+            return data
+        }
+    }
+    return NSData()
 }
 
+
+// 嘗試將開啟新UIViewController做成一個func
+func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
+    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
+    
+    destinationViewController.modalPresentationStyle = .CurrentContext
+    destinationViewController.modalTransitionStyle = .CoverVertical
+    
+    originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
+}
+
+
+
+// 無需動作的警告視窗
+func showErrorAlert(viewController: UIViewController, title: String, msg: String) {
+    let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+    let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+    alert.addAction(action)
+    viewController.presentViewController(alert, animated: true, completion: nil)
+}
 

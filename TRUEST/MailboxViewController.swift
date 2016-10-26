@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Firebase
+import FirebaseCrash
 
 
 class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -106,7 +106,11 @@ extension MailboxViewController {
                                 context = result.context,
                                 signature = result.signature,
                                 received_time = result.received_time,
-                                image = result.image else { fatalError() }
+                                image = result.image
+                    else {
+                        FIRCrashMessage("Fail to convert data type from core data ReceivedPostcard")
+                        continue
+                }
                 
                 let currentTime = NSDate()
                 
@@ -117,8 +121,9 @@ extension MailboxViewController {
                 }
             }
             
-        }catch{
-            fatalError("Failed to fetch data: \(error)")
+        } catch {
+            FIRCrashMessage("Failed to fetch data: \(error)")
+            return
         }
     }
     

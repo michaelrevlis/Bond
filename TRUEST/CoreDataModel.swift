@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import FirebaseCrash
 
 
 class CoreDataModel {
@@ -29,15 +30,16 @@ class CoreDataModel {
             }
             
         } catch {
-            print("Error in deleting core data: FBUser")
+            FIRCrashMessage("Error in deleting core data: FBUser")
+            return
         }
         
         do {
             try managedContext.save()
-            print("deleting FBUser in core data")
             
         } catch {
-            print("Error in updating deletion of FBUser")
+            FIRCrashMessage("Error in saving the deletion of FBUser")
+            return
         }
 
         
