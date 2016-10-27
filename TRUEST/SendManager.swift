@@ -12,11 +12,17 @@ import FirebaseStorage
 import FirebaseCrash
 import FirebaseAnalytics
 
+protocol SendManagerDelegate: class {
+    func manager(manager: SendManager, postcardDidSent: Bool)
+}
+
 
 class SendManager {
     
+    weak var delegate: SendManagerDelegate?
+    
     // sent postcard to server
-    private func send(currentPostcard currentPostcard: [PostcardInDrawer]) {
+    func send(currentPostcard currentPostcard: [PostcardInDrawer]) {
         // 在data base 並產生postcard's uid
         let postcardSentRef = FirebaseDatabaseRef.shared.child("postcards").childByAutoId()
         
@@ -27,6 +33,8 @@ class SendManager {
         
         // 將NSDate轉成String
         let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let created_time = dateFormatter.stringFromDate(currentPostcard[0].created_time)
         let delivered_time = dateFormatter.stringFromDate(currentPostcard[0].delivered_time)
         
@@ -73,19 +81,11 @@ class SendManager {
         
         bondRef.setValue(sendBond)
         
+        self.delegate?.manager(self, postcardDidSent: true)
+        
         FIRAnalytics.logEventWithName("Postcard sent", parameters: nil)
     }
     
 }
 
 
-extension SendManager: SaveManagerDelegate {
-    
-    func manager(manager: SaveManager, postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool) {
-        
-        if newPostcardDidSave == true {
-            send(currentPostcard: postcardToSave)
-        }
-    }
-    
-}

@@ -43,6 +43,7 @@ class AddBondViewController: UIViewController {
     private let contextPlaceHolder = "Write down your feelings here."
     private let titlePlaceHolder = "Edit title here."
     private let signaturePlaceHolder = "Sign your name here."
+    private let sendManager = SendManager()
     
     
     override func viewDidLoad() {
@@ -62,19 +63,17 @@ class AddBondViewController: UIViewController {
         ContextTextField.delegate = self
         SignatureTextField.delegate = self
         imagePicker.delegate = self
-        
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        
+        sendManager.delegate = self
+
         ContextTextField.text = contextPlaceHolder
         ContextTextField.textColor = UIColor.lightGrayColor()
         TitleTextField.text = titlePlaceHolder
         TitleTextField.textColor = UIColor.lightGrayColor()
         SignatureTextField.text = signaturePlaceHolder
         SignatureTextField.textColor = UIColor.lightGrayColor()
+        SignatureTextField.font = UIFont(name: "Zapfino", size: 12)
     }
+    
     
     
     ///////////////////////////////////////////////
@@ -273,12 +272,13 @@ extension AddBondViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(textView: UITextView) {
         
-        currentTextOfContext = textView.text
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         
         if ContextTextField.text == "" {
             ContextTextField.text = contextPlaceHolder
             ContextTextField.textColor = UIColor.lightGrayColor()
+        } else {
+            currentTextOfContext = textView.text
         }
     }
     
@@ -291,9 +291,18 @@ extension AddBondViewController {
     func next() {
         
         let created_time = NSDate()
-        print("postcard created time: \(created_time)")
         
-        self.newPostcard.append(PostcardInDrawer(receiver: self.receiverNode,receiver_name: self.receiverName, created_time: created_time, delivered_time: created_time, title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, image: imageData))
+        if newPostcard.count == 0 {
+        
+            self.newPostcard.append(PostcardInDrawer(receiver: self.receiverNode,receiver_name: self.receiverName, created_time: created_time, delivered_time: created_time, title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, image: imageData))
+            
+        } else {
+            
+            self.newPostcard[0].title = currentTextOfTitle
+            self.newPostcard[0].context = currentTextOfContext
+            self.newPostcard[0].signature = currentTextOfSignature
+            self.newPostcard[0].image = imageData
+        }
         
     }
     
@@ -307,6 +316,16 @@ extension AddBondViewController {
         destinationVC.newPostcard = self.newPostcard
     }
     
+}
+
+
+extension AddBondViewController: SendManagerDelegate {
+    
+    func manager(manager: SendManager, postcardDidSent: Bool) {
+        if postcardDidSent == true {
+            self.newPostcard = []
+        }
+    }
 }
 
 

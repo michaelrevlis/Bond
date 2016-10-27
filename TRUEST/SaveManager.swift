@@ -30,6 +30,8 @@ class SaveManager {
                 
                 self.savePostcard(postcardToSave)
                 
+                print(postcardToSave[0].created_time)
+                
                 self.delegate?.manager(self, postcardToSave: postcardToSave, newPostcardDidSave: true)
                 
             }
@@ -48,7 +50,7 @@ extension SaveManager {
         
         let postcard = postcardToSave[0]
         
-        if postcard.delivered_time == NSDate() {
+        if postcard.delivered_time == postcard.created_time {
                 FIRAnalytics.logEventWithName("Missing delivered_time before postcard been saved", parameters: nil)
                 showErrorAlert(viewController, title: "", msg: "Please select deliver date of this message.")
                 completion(result: false)

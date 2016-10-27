@@ -29,6 +29,9 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
     private var dateFormatter = NSDateFormatter()
     private var delivered_date = NSDate()
     private var deliverDateSelectedTimes: Int = 0
+    private let sendManager = SendManager()
+    private let saveManager = SaveManager()
+
 
     
     override func viewDidLoad() {
@@ -41,6 +44,13 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
         logoView.image = UIImage(named: "navi_logo")
         
         self.NavigationItem.titleView = logoView
+        
+        saveManager.delegate = self
+        sendManager.delegate = self
+        
+        //將日期轉換成文字
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         setup()
         
@@ -55,9 +65,8 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
 //    }
     
     @IBAction func SendPressed(sender: AnyObject) {
-        print("Send pressed")
-        let saveAndSend = SaveManager()
-        saveAndSend.savePressed(self, postcardToSave: newPostcard)
+        print("Save & Send pressed")
+        saveManager.savePressed(self, postcardToSave: newPostcard)
     }
 
     
@@ -116,8 +125,13 @@ extension AddBondStage2ViewController {
         ConditionImageView.image = conditionImage
         
         // ConditionInputTextField
-        ConditionInputTextField.text = "Select deliver time here"
         ConditionInputTextField.textColor = UIColor.lightGrayColor()
+        if newPostcard[0].delivered_time == newPostcard[0].created_time {
+            ConditionInputTextField.text = "Select deliver time here"
+        } else {
+            let deliveredTime = dateFormatter.stringFromDate(newPostcard[0].delivered_time)
+            ConditionInputTextField.text = deliveredTime
+        }
 
         // LabelForShadow
         LabelForShadow.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -146,10 +160,6 @@ extension AddBondStage2ViewController {
     
     
     @objc private func datePickerValueChanged(sender: UIDatePicker) {
-        //將日期轉換成文字
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         ConditionInputTextField.text = dateFormatter.stringFromDate(sender.date)
         // 可以選擇的最早日期時間
@@ -164,7 +174,20 @@ extension AddBondStage2ViewController {
         
         FIRAnalytics.logEventWithName("selectDeliverDate", parameters: ["deliverDateSelectedTimes": self.deliverDateSelectedTimes])
         
-        delivered_date = dateFormatter.dateFromString(ConditionInputTextField.text!)!
+        guard let deliverTime = ConditionInputTextField.text as String!
+            else {
+                FIRAnalytics.logEventWithName("User click date picker but didn't choose one.", parameters: nil)
+                return
+        }
+        
+        guard dateFormatter.dateFromString(deliverTime) != nil
+            else {
+                showErrorAlert(self, title: "", msg: "Please determine when this message been delivered to receiver.")
+                FIRAnalytics.logEventWithName("User click date picker but didn't choose one.", parameters: nil)
+                return
+        }
+        
+        delivered_date = dateFormatter.dateFromString(deliverTime)!
         
         self.newPostcard[0].delivered_time = delivered_date
         
@@ -186,9 +209,43 @@ extension AddBondStage2ViewController {
     func textFieldDidEndEditing(textField: UITextField) {
         
     }
-
     
 }
 
+
+
+extension AddBondStage2ViewController: SaveManagerDelegate {
+    func manager(manager: SaveManager, postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool) {
+        
+        if newPostcardDidSave == true {
+            sendManager.send(currentPostcard: postcardToSave)
+        }
+    }
+}
+
+
+extension AddBondStage2ViewController: SendManagerDelegate {
+    func manager(manager: SendManager, postcardDidSent: Bool) {
+        
+        let alert = UIAlertController(title: "Success!", message: "This message will be delivered to receiver by the time you wishes.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let action = UIAlertAction(title: "Thanks!", style: UIAlertActionStyle.Default, handler: { action in
+            
+            self.tabBarController?.selectedIndex = 3
+            
+            let allViewController: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+            
+            for aviewcontroller in allViewController {
+                if aviewcontroller.isKindOfClass(ContactsViewController) {
+                    self.navigationController?.popToViewController(aviewcontroller, animated: true)
+                }
+            }
+        })
+        
+        alert.addAction(action)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+}
 
 
