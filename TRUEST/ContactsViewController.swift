@@ -222,7 +222,7 @@ extension ContactsViewController: ContactsManagerDelegate {
                         
                         addPostVC.receiverName = friendList[indexPath.row].name
                         addPostVC.receiverNode = friendList[indexPath.row].userNode
-                        print("\(addPostVC.receiverName)")
+    
                         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
                         
                     }

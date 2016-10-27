@@ -36,10 +36,13 @@ class AddBondViewController: UIViewController {
     private let imagePicker = UIImagePickerController()
     private var newPostcard: [PostcardInDrawer] = []
     // TODO: 先設計成"!"，之後再改成?並在儲存時判斷是否為nil，若為nil則塞預設值給它
-    private var currentTextOfTitle: String! = "Edit title here"
-    private var currentTextOfSignature: String! = "Sign up your name here"
-    private var currentTextOfContext: String! = "What I want to say is..."
+    private var currentTextOfTitle: String! = ""
+    private var currentTextOfSignature: String! = ""
+    private var currentTextOfContext: String! = ""
     private var imageSelectedTimes: Int = 0
+    private let contextPlaceHolder = "Write down your feelings here."
+    private let titlePlaceHolder = "Edit title here."
+    private let signaturePlaceHolder = "Sign your name here."
     
     
     override func viewDidLoad() {
@@ -61,6 +64,18 @@ class AddBondViewController: UIViewController {
         imagePicker.delegate = self
         
     }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        ContextTextField.text = contextPlaceHolder
+        ContextTextField.textColor = UIColor.lightGrayColor()
+        TitleTextField.text = titlePlaceHolder
+        TitleTextField.textColor = UIColor.lightGrayColor()
+        SignatureTextField.text = signaturePlaceHolder
+        SignatureTextField.textColor = UIColor.lightGrayColor()
+    }
+    
     
     ///////////////////////////////////////////////
     //// all @IBAction are here ////
@@ -126,7 +141,7 @@ extension AddBondViewController: UIImagePickerControllerDelegate, UINavigationCo
         imageUrl = url.absoluteString
         
         AddPhotoDescription.hidden = true
-        ScrollView.setContentOffset(CGPointMake(0, -64), animated: true)
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -159,29 +174,77 @@ extension AddBondViewController: UITextFieldDelegate {
     //        }
     //    }
     
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        
+        textField.textColor = UIColor.blackColor()
+
+        if textField.text == titlePlaceHolder {
+            textField.text = ""
+        }
+        
+        if textField.text == signaturePlaceHolder {
+            textField.text = ""
+        }
+        
+        return true
+    }
+    
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         switch textField {
+            
         case TitleTextField:
-            ScrollView.setContentOffset(CGPointMake(0, -64), animated: true)
+            
+            ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+            
+            if textField.text == titlePlaceHolder {
+                textField.text = ""
+            }
+            
         case SignatureTextField:
-            ScrollView.setContentOffset(CGPointMake(0, 100), animated: true)
+            
+            ScrollView.setContentOffset(CGPointMake(0, 160), animated: true)
+            
+            if textField.text == signaturePlaceHolder {
+                textField.text = ""
+            }
+            
         default: break
         }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         switch textField {
+            
         case TitleTextField:
-            currentTextOfTitle = textField.text
+            
+            if textField.text == "" {
+                
+                textField.text = titlePlaceHolder
+                textField.textColor = UIColor.lightGrayColor()
+                
+            } else {
+                
+                currentTextOfTitle = textField.text
+            }
             
         case SignatureTextField:
-            currentTextOfSignature = textField.text
+            
+            if textField.text == "" {
+                
+                textField.text = signaturePlaceHolder
+                textField.textColor = UIColor.lightGrayColor()
+                
+            } else {
+                
+                currentTextOfSignature = textField.text
+            }
             
         default:
             break
             
         }
-        ScrollView.setContentOffset(CGPointMake(0, -64), animated: true)
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
     
 }
@@ -189,15 +252,36 @@ extension AddBondViewController: UITextFieldDelegate {
 
 
 extension AddBondViewController: UITextViewDelegate {
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        
+        ContextTextField.textColor = UIColor.blackColor()
+        
+        if ContextTextField.text == contextPlaceHolder {
+            ContextTextField.text = ""
+        }
+        
+        return true
+    }
 
+    
     func textViewDidBeginEditing(textView: UITextView) {
+        
         ScrollView.setContentOffset(CGPointMake(0, 100), animated: true)
     }
     
+    
     func textViewDidEndEditing(textView: UITextView) {
+        
         currentTextOfContext = textView.text
-        ScrollView.setContentOffset(CGPointMake(0, -64), animated: true)
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
+        if ContextTextField.text == "" {
+            ContextTextField.text = contextPlaceHolder
+            ContextTextField.textColor = UIColor.lightGrayColor()
+        }
     }
+    
 }
 
 
@@ -221,8 +305,6 @@ extension AddBondViewController {
         let destinationVC = segue.destinationViewController as! AddBondStage2ViewController
         
         destinationVC.newPostcard = self.newPostcard
-        destinationVC.receiverName = self.receiverName
-        
     }
     
 }

@@ -8,9 +8,6 @@
 
 import UIKit
 import FirebaseAnalytics
-import FirebaseCrash
-import FirebaseDatabase
-import FirebaseStorage
 import CoreData
 
 class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
@@ -28,7 +25,6 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
     
     //    @IBOutlet weak var FinishDateSelectButton: UIButton!
     
-    var receiverName = String()
     var newPostcard: [PostcardInDrawer] = []
     private var dateFormatter = NSDateFormatter()
     private var delivered_date = NSDate()
@@ -52,15 +48,16 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
     
     
     /////// @IBActions ///////
-    @IBAction func SavePressed(sender: AnyObject) {
-        print("Save pressed")
-        FIRAnalytics.logEventWithName("bondSaved", parameters: nil)
-        savePostcard(newPostcard)
-    }
+//    @IBAction func SavePressed(sender: AnyObject) {
+//        print("Save pressed")
+//        let saveManager = SaveManager()
+//        saveManager.savePressed(self, postcardToSave: newPostcard)
+//    }
+    
     @IBAction func SendPressed(sender: AnyObject) {
         print("Send pressed")
-        FIRAnalytics.logEventWithName("bondSent", parameters: nil)
-        send(currentPostcard: newPostcard)
+        let saveAndSend = SaveManager()
+        saveAndSend.savePressed(self, postcardToSave: newPostcard)
     }
 
     
@@ -129,8 +126,9 @@ extension AddBondStage2ViewController {
         LabelForShadow.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
 
         // Save & Send Button
-        SaveButton.setTitle("Save", forState: .Normal)
-        SendButton.setTitle("Send", forState: .Normal)
+//        SaveButton.setTitle("Save", forState: .Normal)
+        SaveButton.hidden = true
+        SendButton.setTitle("Save & Send", forState: .Normal)
         
         // PostcardImage
         PostcardImage.contentMode = .ScaleToFill
@@ -138,7 +136,7 @@ extension AddBondStage2ViewController {
         PostcardImage.image = UIImage(data: data)
         
         // ReceiverLabel
-        ReceiverLabel.text = receiverName
+        ReceiverLabel.text = newPostcard[0].receiver_name
         ReceiverLabel.textAlignment = .Center
         
         // ReceiverImageView
@@ -171,107 +169,6 @@ extension AddBondStage2ViewController {
         self.newPostcard[0].delivered_time = delivered_date
         
         ConditionInputTextField.resignFirstResponder()
-    }
-
-    
-    
-    func savePostcard(postcardToSave: [PostcardInDrawer]) {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        let entity = NSEntityDescription.entityForName("Postcard", inManagedObjectContext: managedContext)
-        
-        let newPostcard = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        newPostcard.setValue(postcardToSave[0].sender, forKey: "sender")
-        newPostcard.setValue(postcardToSave[0].receiver, forKey: "receivers")
-        newPostcard.setValue(postcardToSave[0].receiver_name, forKey: "receiver_name")
-        newPostcard.setValue(postcardToSave[0].created_time, forKey: "created_time")
-        newPostcard.setValue(postcardToSave[0].title, forKey: "title")
-        newPostcard.setValue(postcardToSave[0].context, forKey: "context")
-        newPostcard.setValue(postcardToSave[0].signature, forKey: "signature")
-        newPostcard.setValue(postcardToSave[0].image, forKey: "image")
-        newPostcard.setValue(postcardToSave[0].delivered_time, forKey: "delivered_time")
-        
-        do {
-            try managedContext.save()
-
-        } catch {
-            FIRCrashMessage("Error in saving newPostcard into core data")
-            return
-        }
-    }
-    
-    
-    
-    // sent postcard to server
-    func send(currentPostcard currentPostcard: [PostcardInDrawer]) {
-        // 在data base 並產生postcard's uid
-        let postcardSentRef = FirebaseDatabaseRef.shared.child("postcards").childByAutoId()
-        
-        let postcardSentUid = postcardSentRef.key
-        
-        print("UID: \(postcardSentUid)")
-        
-        // 該圖片存在firebase storage上的名稱
-        let imagePath = postcardSentUid
-        
-        // 將NSDate轉成String
-        let created_time = dateFormatter.stringFromDate(currentPostcard[0].created_time)
-        let delivered_time = dateFormatter.stringFromDate(currentPostcard[0].delivered_time)
-        
-        let sendAPostcard: [String: AnyObject] =
-              [ "sender": currentPostcard[0].sender,
-                "created_time": created_time,
-                "title": currentPostcard[0].title,
-                "context": currentPostcard[0].context,
-                "signature": currentPostcard[0].signature,
-                "image": imagePath,
-                "delivered_time": delivered_time]
-        
-        /////////// 將postcard的資料新增進firebase database ///////////
-        postcardSentRef.setValue(sendAPostcard)
-        print("postcard sent")
-        
-        
-        /////////// saving image into firebase storage ///////////
-        // 指定storage要存的相關資訊，在儲存到firebase storage前記得要去更改rule讓read,write = if true
-        FirebaseStorageRef.shared.child(imagePath)
-        
-        // 定義上傳資料的metadata，以便日後去判斷此筆資料是image/audio/video，並呼叫對應的方始來開啟該檔案
-        let metadata = FIRStorageMetadata()
-        metadata.contentType = "image/jpg"
-        
-        //將照片存入storage中
-        FirebaseStorageRef.shared.child(imagePath).putData(newPostcard[0].image, metadata: metadata) { (metadata, error) in
-            
-            if let error = error {
-                FIRCrashMessage("Error in upload image: \(error)")
-                return
-            } else {
-                
-                // get downloadURL
-                let downloadUrl = metadata!.downloadURL()!.absoluteString
-                
-                // update postcard's image as its downloadURL
-                FirebaseDatabaseRef.shared.child("postcards").child(postcardSentUid).updateChildValues(["image": downloadUrl])
-                
-                print("update image downloadURL")
-            }
-        }
-        print("image stored")
-        
-        
-        /////////// save bond ///////////
-        let sendBond: [String: String] = [ "postcard": postcardSentUid, "receiver": currentPostcard[0].receiver, "sender": CurrentUserInfoManager.shared.currentUserNode ]
-        
-        let bondRef = FirebaseDatabaseRef.shared.child("bonds").childByAutoId()
-        
-        bondRef.setValue(sendBond)
-        print("bond added")
-        
     }
 
     
