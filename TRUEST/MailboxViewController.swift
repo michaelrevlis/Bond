@@ -59,8 +59,8 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let thePostcard = postcardsInMailbox[indexPath.row]
         
-        cell.receivers.text = thePostcard.sender_name
-        cell.receivers.font = cell.receivers.font.fontWithSize(12)
+        cell.receivers.text = thePostcard.signature
+        cell.receivers.font = UIFont(name: "Zapfino", size: 12)
         
         cell.title.text = thePostcard.title
         cell.title.font = UIFont(name: "Avenir Next", size: 12)
