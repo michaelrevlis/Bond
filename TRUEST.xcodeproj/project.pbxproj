@@ -29,6 +29,8 @@
 		6B537FDA1DC192EB00466A2F /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B537FD91DC192EB00466A2F /* SaveManager.swift */; };
 		6B537FDC1DC192F400466A2F /* SendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B537FDB1DC192F400466A2F /* SendManager.swift */; };
 		6B537FDE1DC2FAE800466A2F /* SinglePostcardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B537FDD1DC2FAE800466A2F /* SinglePostcardController.swift */; };
+		6B53B1A91DC3757800BEA873 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */; };
+		6B53B1AB1DC375B700BEA873 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */; };
 		6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */; };
 		6B84476A1DAF6CD900CA1FF5 /* ReceivedPostcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8447661DAF6CD900CA1FF5 /* ReceivedPostcard+CoreDataProperties.swift */; };
 		6B84476B1DAF6CD900CA1FF5 /* ReceivedPostcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8447671DAF6CD900CA1FF5 /* ReceivedPostcard.swift */; };
@@ -38,7 +40,6 @@
 		6B88D6091DB5FE7700E0C8EA /* AddBondStage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B88D6081DB5FE7700E0C8EA /* AddBondStage2ViewController.swift */; };
 		6B94BBEB1DAD47C5004365F4 /* MailboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94BBEA1DAD47C5004365F4 /* MailboxTableViewCell.swift */; };
 		6B94BBED1DAD4937004365F4 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B94BBEC1DAD4937004365F4 /* MailboxViewController.swift */; };
-		6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */; };
 		6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */; };
 		6BE1D18B1D9904AD001B19E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D1891D9904AD001B19E0 /* Main.storyboard */; };
 		6BE1D18E1D9904AD001B19E0 /* TRUEST.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */; };
@@ -300,6 +301,7 @@
 			files = (
 				6BE1D1931D9904AD001B19E0 /* LaunchScreen.storyboard in Resources */,
 				6BE1D18B1D9904AD001B19E0 /* Main.storyboard in Resources */,
+				6B53B1AB1DC375B700BEA873 /* Assets.xcassets in Resources */,
 				6BF8F2FE1DB9FDEE00E8AD9D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +373,7 @@
 				6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */,
 				6BF17C781DAE966200E60484 /* ContactsViewController.swift in Sources */,
 				6B0195B61DBDB5E800238405 /* Extensions.swift in Sources */,
+				6B53B1A91DC3757800BEA873 /* AppDelegate.swift in Sources */,
 				6B94BBED1DAD4937004365F4 /* MailboxViewController.swift in Sources */,
 				6B94BBEB1DAD47C5004365F4 /* MailboxTableViewCell.swift in Sources */,
 				6B537FDA1DC192EB00466A2F /* SaveManager.swift in Sources */,
@@ -387,7 +390,6 @@
 				6B1B79B81DB5CD590048F311 /* MailboxManager.swift in Sources */,
 				6B334A411DA3BABD00FF47D6 /* Postcard+CoreDataProperties.swift in Sources */,
 				6B334A431DA3BABD00FF47D6 /* FBUser+CoreDataProperties.swift in Sources */,
-				6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */,
 				6B334A481DA4DF6400FF47D6 /* DrawerTableViewCell.swift in Sources */,
 				6B1B79B21DB4D43B0048F311 /* SettingViewController.swift in Sources */,
 				6B84476E1DAF6E0400CA1FF5 /* User+CoreDataProperties.swift in Sources */,
