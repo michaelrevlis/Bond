@@ -43,7 +43,6 @@ class AddBondViewController: UIViewController {
     private let contextPlaceHolder = "Write down your feelings here."
     private let titlePlaceHolder = "Edit title here."
     private let signaturePlaceHolder = "Sign your name here."
-    private let sendManager = SendManager()
     
     
     override func viewDidLoad() {
@@ -63,7 +62,6 @@ class AddBondViewController: UIViewController {
         ContextTextField.delegate = self
         SignatureTextField.delegate = self
         imagePicker.delegate = self
-        sendManager.delegate = self
 
         ContextTextField.text = contextPlaceHolder
         ContextTextField.textColor = UIColor.lightGrayColor()
@@ -316,16 +314,6 @@ extension AddBondViewController {
         destinationVC.newPostcard = self.newPostcard
     }
     
-}
-
-
-extension AddBondViewController: SendManagerDelegate {
-    
-    func manager(manager: SendManager, postcardDidSent: Bool) {
-        if postcardDidSent == true {
-            self.newPostcard = []
-        }
-    }
 }
 
 
