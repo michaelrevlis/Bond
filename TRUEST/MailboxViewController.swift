@@ -122,7 +122,7 @@ extension MailboxViewController {
             }
             
         } catch {
-            FIRCrashMessage("Failed to fetch data: \(error)")
+            FIRCrashMessage("Fail to fetch data: \(error)")
             return
         }
     }
@@ -130,3 +130,25 @@ extension MailboxViewController {
     
 }
 
+
+extension MailboxViewController {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let destinationVC = segue.destinationViewController as! SinglePostcardController
+        
+        guard let indexPath = self.MailboxTableView.indexPathForCell(sender as! UITableViewCell)
+        else {
+            FIRCrashMessage("Fail to detect indexPath at mailbox")
+            return
+        }
+        
+        let postcard = postcardsInMailbox[indexPath.row]
+        destinationVC.theImage = postcard.image
+        destinationVC.theTitle = postcard.title
+        destinationVC.theContext = postcard.context
+        destinationVC.theSignature = postcard.signature
+        destinationVC.theDeliverTime = postcard.received_time
+    }
+    
+}
