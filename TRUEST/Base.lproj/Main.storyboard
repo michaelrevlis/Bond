@@ -583,7 +583,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="EQe-3a-YcR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1364,7 +1364,7 @@
         <image name="tweet login" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ivp-Us-y1h"/>
         <segue reference="qeD-Vs-eUH"/>
-        <segue reference="jHh-Wt-ugE"/>
     </inferredMetricsTieBreakers>
 </document>

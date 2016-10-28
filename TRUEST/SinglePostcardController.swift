@@ -38,8 +38,6 @@ extension SinglePostcardController {
     
     private func setup() {
         
-        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
-        
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)

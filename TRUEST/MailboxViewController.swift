@@ -28,8 +28,6 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.NavigationItem.titleView = logoView
         
-        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
-        
         print("this is Mailbox")
 
         viewMailbox()

@@ -72,7 +72,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         CollectionView.dataSource = self
         
-        CollectionView.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
+        CollectionView.backgroundColor = UIColor.whiteColor()
         
         let logoView = UIImageView()
             logoView.frame = CGRectMake(0, 0, 50, 70)

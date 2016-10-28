@@ -27,8 +27,6 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.NavigationItem.titleView = logoView
         
-        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
-        
         print("this is Drawer")
         
         // request Postcard from core data

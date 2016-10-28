@@ -114,7 +114,6 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
 extension AddBondStage2ViewController {
 
     func setup() {
-        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
         
         // ConditionInputBackground
         ConditionInputBackground.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)

@@ -40,7 +40,7 @@ class ContactsCollectionViewCell: UICollectionViewCell {
         
         contactName.frame = CGRectMake(5, 80, 100, 30)
         contactName.textAlignment = .Center
-
+        
         self.ContentView.addSubview(imageShadow)
         self.ContentView.addSubview(imageInSmall)
         self.ContentView.addSubview(contactName)
