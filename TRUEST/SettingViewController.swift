@@ -94,6 +94,8 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
+        
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
         let userDefault = NSUserDefaults.standardUserDefaults()
         let imgUrl = userDefault.stringForKey("user_pictureUrl") as String!

@@ -27,6 +27,8 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.NavigationItem.titleView = logoView
         
+        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
+        
         print("this is Drawer")
         
         // request Postcard from core data
@@ -120,3 +122,28 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 }
+
+
+
+extension DrawerViewController {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let destinationVC = segue.destinationViewController as! SinglePostcardController
+        
+        guard let indexPath = self.DrawerTableView.indexPathForCell(sender as! UITableViewCell)
+            else {
+                FIRCrashMessage("Fail to detect indexPath at drawer")
+                return
+        }
+        
+        let postcard = postcardsInDrawer[indexPath.row]
+        destinationVC.theImage = postcard.image
+        destinationVC.theTitle = postcard.title
+        destinationVC.theContext = postcard.context
+        destinationVC.theSignature = postcard.signature
+        destinationVC.theDeliverTime = postcard.delivered_time
+    }
+
+}
+

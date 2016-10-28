@@ -11,6 +11,7 @@ import UIKit
 class SinglePostcardController: UIViewController {
 
     @IBOutlet weak var postcardImageView: UIImageView!
+    @IBOutlet weak var titleImageView: UIImageView!
     @IBOutlet weak var imageShadow: UILabel!
     @IBOutlet weak var postcardTitle: UILabel!
     @IBOutlet weak var postcardContext: UILabel!
@@ -37,6 +38,8 @@ extension SinglePostcardController {
     
     private func setup() {
         
+        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
+        
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)
@@ -52,6 +55,9 @@ extension SinglePostcardController {
         
         postcardImageView.image = UIImage(data: theImage)
         
+        titleImageView.image = UIImage(named: "thread_title")
+        titleImageView.contentMode = .ScaleAspectFit
+        
         postcardTitle.text = theTitle
         postcardTitle.font = UIFont(name: "Avenir Next", size: 14)
         
@@ -59,7 +65,7 @@ extension SinglePostcardController {
         postcardContext.font = UIFont(name: "Avenir Next", size: 14)
         
         postcardSignature.text = theSignature
-        postcardSignature.font = UIFont(name: "Zapfino", size: 14)
+        postcardSignature.font = UIFont(name: "Zapfino", size: 12)
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle

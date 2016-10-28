@@ -101,6 +101,8 @@ extension AddBondViewController {
         self.view.addSubview(ScrollView)
         ScrollView.addSubview(ContentView)
         
+        self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
+        
         // LabelForShadow
         LabelForShadow.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         LabelForShadow.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).CGColor
