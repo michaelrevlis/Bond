@@ -27,6 +27,11 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        button1.hidden = true
+        button3.hidden = true
+        button4.hidden = true
+        
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         self.loadingSpinnerActive(false)
         self.hideLoginButtons(false)
@@ -73,11 +78,11 @@ extension LoginViewController {
     private func hideLoginButtons(decision: Bool) {
         
           loginDescription.hidden = decision
-          button1.hidden = decision
+//          button1.hidden = decision
           facebookButton.hidden = decision
     
-          button3.hidden = decision
-          button4.hidden = decision
+//          button3.hidden = decision
+//          button4.hidden = decision
      }
     
     
