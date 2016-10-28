@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAnalytics
+import FirebaseCrash
 import CoreData
 
 class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
@@ -177,14 +178,14 @@ extension AddBondStage2ViewController {
         
         guard let deliverTime = ConditionInputTextField.text as String!
             else {
-                FIRAnalytics.logEventWithName("User click date picker but didn't choose one.", parameters: nil)
+                FIRCrashMessage("User click date picker but didn't choose one.")
                 return
         }
         
         guard dateFormatter.dateFromString(deliverTime) != nil
             else {
                 showErrorAlert(self, title: "", msg: "Please determine when this message been delivered to receiver.")
-                FIRAnalytics.logEventWithName("User click date picker but didn't choose one.", parameters: nil)
+                FIRCrashMessage("User click date picker but didn't choose one.")
                 return
         }
         

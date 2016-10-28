@@ -8,6 +8,7 @@
 
 import Foundation
 import FBSDKCoreKit
+import FirebaseCrash
 
 
 class existedFBUser {
@@ -68,24 +69,32 @@ extension ContactsManager {
         request.startWithCompletionHandler{ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) in
                 
                 if let error = error {
-                    print("Error in access FB user friend list data: \(error)")
+                    FIRCrashMessage("Error in access FB user friend list data: \(error)")
                     return
                 }
                 
                 guard let  result = result as? NSDictionary,
                                 totalData = result["data"] as? NSArray
-                    else { fatalError() }
+                    else {
+                        FIRCrashMessage("Fail to open friendlist data from FB")
+                        return
+            }
 
                     for item in totalData {
                         guard let  item = item as? NSDictionary,
                                         id = item["id"] as? String // co-friend's FB ID
-                            else { fatalError() }
-                        
-                        print("my friend's fb id is: \(id)")
+                            else {
+                                FIRCrashMessage("Fail to extract friend's FB ID")
+                                return
+                        }
                         
                         FirebaseDatabaseRef.shared.child("users").queryOrderedByChild("fbID").queryEqualToValue(id).observeEventType(.ChildAdded, withBlock: { snapshot in
                             
-                            guard let  user = snapshot.value as? NSDictionary else { fatalError() }
+                            guard let  user = snapshot.value as? NSDictionary
+                                else {
+                                    FIRCrashMessage("Fail to open friend's user data from firebase")
+                                    return
+                            }
                             
                             // download co-friend's user info from firebase
                             friendlist.append(user)
@@ -111,7 +120,7 @@ extension ContactsManager {
                             name = user["name"] as? String,
                             pictureUrl = user["pictureUrl"] as? String
                 else {
-                    print("error in matching user's info with their fb id")
+                    FIRCrashMessage("error in matching user's info with their fb id")
                     break
             }
             

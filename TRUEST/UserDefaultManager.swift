@@ -8,8 +8,9 @@
 
 import UIKit
 import Foundation
-import Firebase
+import FirebaseDatabase
 import FirebaseAuth
+import FirebaseCrash
 
 // TODO: read/write from userDefault takes time, consider to adopt core data 
 class UserDefaultManager {
@@ -27,7 +28,10 @@ class UserDefaultManager {
                             pictureUrl = result["pictureUrl"] as? String,
                             authID = result["authID"] as? String,
                             userNode = result["userNode"] as? String
-                else { fatalError() }
+                else {
+                    FIRCrashMessage("Fail to convert current user data got from server")
+                    return
+            }
             
             let userDefaults_currentUserInfo = NSUserDefaults.standardUserDefaults()
                  userDefaults_currentUserInfo.setObject(name, forKey: "user_name")

@@ -10,6 +10,7 @@ import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseAuth
+import FirebaseCrash
 
 protocol LoginManagerDelegate: class {
     func manager(manager: LoginManager, userDidLogin: Bool)
@@ -101,7 +102,12 @@ extension LoginManager {
             
             if snapshot.exists() {
                 
-                guard let  result = snapshot.value as? NSDictionary else { fatalError() }
+                guard let  result = snapshot.value as? NSDictionary
+                    else {
+                        FIRCrashMessage("Fail to open data from server")
+                        return
+                }
+                
                 let resultKey = result.allKeys
                 existedUser_node = resultKey[0] as! String
                 

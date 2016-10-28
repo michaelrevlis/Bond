@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
+import FirebaseCrash
+import FirebaseAnalytics
 import CoreData
 
 
@@ -20,7 +22,11 @@ class MailboxManager {
         
         // use userNode to find related bond
         let userDefault = NSUserDefaults.standardUserDefaults()
-        guard let userNode = userDefault.stringForKey("user_userNode") as String! else { fatalError() }
+        guard let userNode = userDefault.stringForKey("user_userNode") as String!
+            else {
+                FIRCrashMessage("Fail to unwrap userNode from user default")
+                return
+        }
         
         FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userNode).observeEventType(.ChildAdded, withBlock: { snapshot in
             
@@ -28,12 +34,9 @@ class MailboxManager {
                             postcard_id = bond["postcard"] as? String,
                             sender_node = bond["sender"] as? String
                 else {
-                    print("No one has sent a postcard to this user or error in getting bond")
+                    FIRCrashMessage("No one has sent a postcard to this user or error in getting bond")
                     return
             }
-            
-            print("postcard ID")
-            print(postcard_id)
             
             // use postcardID to find postcard
             FirebaseDatabaseRef.shared.child("postcards").queryOrderedByKey().queryEqualToValue(postcard_id).observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -50,7 +53,7 @@ class MailboxManager {
                                 signature = postcard["signature"] as? String,
                                 title = postcard["title"] as? String
                     else {
-                        print("error in getting postcard")
+                        FIRCrashMessage("Fail to convert data type when getting received postcard")
                         return
                 }
                 
@@ -59,17 +62,19 @@ class MailboxManager {
                     guard let  result = snapshot.value as? NSDictionary,
                                     sender_name = result["name"] as? String
                         else {
-                            print("error in getting sender's name")
+                            FIRCrashMessage("Fail in getting sender's name with sender_node")
                             return
                     }
                     
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-                    guard let received_time = dateFormatter.dateFromString(delivered_time) else { fatalError() }
+                    guard let received_time = dateFormatter.dateFromString(delivered_time)
+                        else {
+                            FIRCrashMessage("Fail to convert received_time from string to date")
+                            return
+                    }
                     
-                    guard let url = NSURL(string: imageUrl) else { fatalError() }
-                    
-                    guard let image = NSData(contentsOfURL: url) else { fatalError() }
+                    let image = stringToNSData(imageUrl)
                     
                     // TODO: 未來要新增user last login date，並將該日期之後received的postcard下載存在core data
                     let receivedPostcards: [String: AnyObject] = ["sender": sender, "sender_name": sender_name, "receiver": CurrentUserInfoManager.shared.currentUserNode, "received_time": received_time, "title": title, "context": context, "signature": signature, "image": image]
@@ -88,9 +93,9 @@ class MailboxManager {
                     
                     do {
                         try managedContext.save()
-                        print("saving received postcards in core data")
+                        FIRAnalytics.logEventWithName("saving received postcards in core data", parameters: nil)
                     } catch {
-                        print("Error in saving received postcards into core data")
+                        FIRCrashMessage("Error in saving received postcards into core data")
                     }
 
                     
@@ -121,14 +126,14 @@ extension MailboxManager {
                 managedContext.deleteObject(result)
             }
         }catch {
-            print("Error in deleting core data: ReceivedPostcard")
+            FIRCrashMessage("Error in deleting core data: ReceivedPostcard")
         }
         
         do {
             try managedContext.save()
-            print("deleting ReceivedPostcard in core data")
+            FIRAnalytics.logEventWithName("deleting ReceivedPostcard in core data", parameters: nil)
         } catch {
-            print("Error in updating ReceivedPostcard deletion")
+            FIRCrashMessage("Error in updating ReceivedPostcard deletion")
         }
     }
 

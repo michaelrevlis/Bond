@@ -54,14 +54,14 @@ class SettingManager {
             }
             
         }catch {
-            print("Error in deleting core data")
+            FIRCrashMessage("Error in deleting core data")
         }
         
         do {
             try managedContext.save()
-            print("Core data has been deleted")
+            FIRAnalytics.logEventWithName("Core data has been deleted", parameters: nil)
         } catch {
-            print("Error in updating core data deletion")
+            FIRCrashMessage("Error in updating core data deletion")
         }
         
         
@@ -97,7 +97,7 @@ class SettingManager {
         FirebaseStorageRef.shared.child(CurrentUserInfoManager.shared.currentUserNode).putData(newPicture, metadata: metadata) { (metadata, error) in
             
             if let error = error {
-                print("Error upload user's profile picture: \(error)")
+                FIRCrashMessage("Error upload user's profile picture: \(error)")
                 return
             } else {
                 
@@ -105,7 +105,6 @@ class SettingManager {
                 
                 FirebaseDatabaseRef.shared.child("users").child(CurrentUserInfoManager.shared.currentUserNode).updateChildValues(["pictureUrl": downloadUrl])
                 
-                print("update user's profile pictureURL")
             }
         }
                 

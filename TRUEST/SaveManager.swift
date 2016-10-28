@@ -51,33 +51,33 @@ extension SaveManager {
         let postcard = postcardToSave[0]
         
         if postcard.delivered_time == postcard.created_time {
-                FIRAnalytics.logEventWithName("Missing delivered_time before postcard been saved", parameters: nil)
-                showErrorAlert(viewController, title: "", msg: "Please select deliver date of this message.")
-                completion(result: false)
+            FIRAnalytics.logEventWithName("Missing delivered_time before postcard been saved", parameters: nil)
+            showErrorAlert(viewController, title: "", msg: "Please select deliver date of this message.")
+            completion(result: false)
         }
         
         else if postcard.title == "" {
-                FIRAnalytics.logEventWithName("Missing title before postcard been saved", parameters: nil)
-                showErrorAlert(viewController, title: "", msg: "Please edit message title.")
-                completion(result: false)
+            FIRAnalytics.logEventWithName("Missing title before postcard been saved", parameters: nil)
+            showErrorAlert(viewController, title: "", msg: "Please edit message title.")
+            completion(result: false)
         }
         
         else if postcard.context == "" {
-                FIRAnalytics.logEventWithName("Missing context before postcard been saved", parameters: nil)
-                showErrorAlert(viewController, title: "", msg: "Please edit context of this message.")
-                completion(result: false)
+            FIRAnalytics.logEventWithName("Missing context before postcard been saved", parameters: nil)
+            showErrorAlert(viewController, title: "", msg: "Please edit context of this message.")
+            completion(result: false)
         }
         
         else if postcard.signature == "" {
-                FIRAnalytics.logEventWithName("Missing signature before postcard been saved", parameters: nil)
-                showErrorAlert(viewController, title: "", msg: "Please sign up your name at the bottom of this message.")
-                completion(result: false)
+            FIRAnalytics.logEventWithName("Missing signature before postcard been saved", parameters: nil)
+            showErrorAlert(viewController, title: "", msg: "Please sign up your name at the bottom of this message.")
+            completion(result: false)
         }
         
         else if postcard.image == NSData() {
-                FIRAnalytics.logEventWithName("Missing image before postcard been saved", parameters: nil)
-                showErrorAlert(viewController, title: "Please Select An Image", msg: "An image in harmony with your emotion is worth a thousand words.")
-                completion(result: false)
+            FIRAnalytics.logEventWithName("Missing image before postcard been saved", parameters: nil)
+            showErrorAlert(viewController, title: "Please Select An Image", msg: "An image in harmony with your emotion is worth a thousand words.")
+            completion(result: false)
         }
         
         else {
