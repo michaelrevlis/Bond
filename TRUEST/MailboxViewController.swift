@@ -60,10 +60,8 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         let thePostcard = postcardsInMailbox[indexPath.row]
         
         cell.receivers.text = thePostcard.signature
-        cell.receivers.font = UIFont(name: "Zapfino", size: 12)
         
         cell.title.text = thePostcard.title
-        cell.title.font = UIFont(name: "Avenir Next", size: 12)
         
         cell.imageInSmall.frame = CGRectMake(35, 35, 50, 50)
         cell.imageInSmall.layer.cornerRadius = cell.imageInSmall.frame.height / 2
@@ -75,7 +73,6 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         cell.lastEditedLabel.text = dateFormatter.stringFromDate(thePostcard.received_time)
         cell.lastEditedLabel.textColor = UIColor.grayColor()
-        cell.lastEditedLabel.font = UIFont(name: "Avenir Next", size: 12)
         
         cell.ContentView.addSubview(cell.imageInSmall)
         

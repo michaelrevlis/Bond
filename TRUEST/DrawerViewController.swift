@@ -98,7 +98,6 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        cell.cellBackground.frame = CGRectMake(20, 20, self.view.frame.width - 40 , 80)  //之後改成依device的大小自動變化
         
         cell.title.text = thePostcard.title
-        cell.title.font = UIFont(name: "Avenir Next", size: 12)
 
         cell.imageInSmall.frame = CGRectMake(35, 35, 50, 50)
         cell.imageInSmall.layer.cornerRadius = cell.imageInSmall.frame.height / 2
@@ -110,7 +109,6 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         cell.lastEditedLabel.text = dateFormatter.stringFromDate(thePostcard.created_time)
         cell.lastEditedLabel.textColor = UIColor.grayColor()
-        cell.lastEditedLabel.font = UIFont(name: "Avenir Next", size: 12)
         
         cell.receivers.text = thePostcard.receiver_name
 

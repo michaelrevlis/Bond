@@ -44,13 +44,16 @@ extension MailboxTableViewCell {
         
         title.frame = CGRectMake(122, 30, 100, 30)
         title.backgroundColor = UIColor.clearColor()
+        title.font = UIFont(name: "Avenir Next", size: 14)
         
         receivers.frame = CGRectMake(122, 65, 100, 30)
         receivers.backgroundColor = UIColor.clearColor()
+        receivers.font = UIFont(name: "Zapfino", size: 12)
         
         lastEditedLabel.frame = CGRectMake(20, 100, 320, 20)
         lastEditedLabel.backgroundColor = UIColor.clearColor()
         lastEditedLabel.textAlignment = .Right
+        lastEditedLabel.font = UIFont(name: "Avenir Next", size: 12)
         
         titleImage.frame = CGRectMake(95, 32.5, 25, 25)
         titleImage.image = UIImage(named: "thread_title")!
