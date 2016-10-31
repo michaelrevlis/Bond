@@ -6,6 +6,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - FBSDKCoreKit (4.17.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.17.0):
@@ -87,6 +90,8 @@ PODS:
 
 DEPENDENCIES:
   - ABPadLockScreen
+  - Crashlytics
+  - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -102,6 +107,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ABPadLockScreen: 4185a25c40291946071aa12908c0d0ad242bc420
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
   FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
   FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
@@ -120,6 +127,6 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
 
-PODFILE CHECKSUM: 8a255ff71ee35dd6071190aaf5b5c32be0fa659e
+PODFILE CHECKSUM: 4f1002dcc07fbfee179145e109c69e1a9ed29822
 
 COCOAPODS: 1.0.1

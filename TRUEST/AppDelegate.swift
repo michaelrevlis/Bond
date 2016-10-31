@@ -12,6 +12,8 @@ import Firebase
 import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,11 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
         FIRApp.configure()
+        
+        Fabric.with([Crashlytics.self])
+        // TODO: Move this to where you establish a user session
+        self.logUser()
+
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        Crashlytics.sharedInstance().setUserIdentifier(CurrentUserInfoManager.shared.currentUserNode)
+    }
+
     
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

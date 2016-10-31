@@ -258,6 +258,7 @@
 				6BE1D1801D9904AD001B19E0 /* Resources */,
 				E8CDEE6436D4B272BF57ED45 /* [CP] Embed Pods Frameworks */,
 				2DD2AA44380FB37A35401809 /* [CP] Copy Pods Resources */,
+				6BC6C99C1DC7B814001B7B19 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -331,6 +332,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BOND/Pods-BOND-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6BC6C99C1DC7B814001B7B19 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a4daf8824527fd81b8555e0d2d629bee0dee8d2d e83406964c29b8c6a1458608a54b02762339dba797fe35c9179469aed4b250e2";
 		};
 		75E6EC0A88572C3C4C107155 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -522,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

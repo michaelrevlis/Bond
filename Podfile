@@ -18,6 +18,8 @@ pod 'Firebase/RemoteConfig'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
-pod ‘ABPadLockScreen’
+pod 'ABPadLockScreen'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end
