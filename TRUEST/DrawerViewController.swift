@@ -101,7 +101,7 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         cell.imageInSmall.frame = CGRectMake(35, 35, 50, 50)
         cell.imageInSmall.layer.cornerRadius = cell.imageInSmall.frame.height / 2
-        cell.imageInSmall.contentMode = .ScaleAspectFit
+        cell.imageInSmall.contentMode = .ScaleAspectFill
         cell.imageInSmall.image = UIImage(data: thePostcard.image)
         cell.imageInSmall.clipsToBounds = true
         
