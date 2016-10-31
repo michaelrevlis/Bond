@@ -13,14 +13,19 @@ import FirebaseCrash
 import FirebaseAnalytics
 
 
-protocol SaveManagerDelegate: class {
+protocol SendAfterSaveDelegate: class {
     func manager(manager: SaveManager, postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool)
+}
+
+protocol SaveManagerDelegate: class {
+    func manager(manager: SaveManager, postcardSaved: [PostcardInDrawer], newPostcardDidSave: Bool)
 }
 
 
 class SaveManager {
     
-    weak var delegate: SaveManagerDelegate?
+    weak var delegate: SendAfterSaveDelegate?
+    weak var saveDelegate: SaveManagerDelegate?
     
     func savePressed(viewController: UIViewController, postcardToSave: [PostcardInDrawer]) {
         
@@ -33,6 +38,8 @@ class SaveManager {
                 print(postcardToSave[0].created_time)
                 
                 self.delegate?.manager(self, postcardToSave: postcardToSave, newPostcardDidSave: true)
+                
+                self.saveDelegate?.manager(self, postcardSaved: postcardToSave, newPostcardDidSave: true)
                 
             }
             

@@ -216,7 +216,7 @@ extension AddBondStage2ViewController {
 
 
 
-extension AddBondStage2ViewController: SaveManagerDelegate {
+extension AddBondStage2ViewController: SendAfterSaveDelegate {
     func manager(manager: SaveManager, postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool) {
         
         if newPostcardDidSave == true {

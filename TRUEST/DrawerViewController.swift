@@ -143,3 +143,21 @@ extension DrawerViewController {
 
 }
 
+
+
+extension DrawerViewController: SaveManagerDelegate {
+    
+    func manager(manager: SaveManager, postcardSaved: [PostcardInDrawer], newPostcardDidSave: Bool) {
+        
+        if newPostcardDidSave == true {
+            
+            self.postcardsInDrawer.append(postcardSaved[0])
+            
+            self.DrawerTableView.reloadData()
+        }
+    }
+    
+}
+
+
+
