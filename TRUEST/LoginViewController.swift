@@ -14,7 +14,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import CoreData
 
-class LoginViewController: UIViewController, LoginManagerDelegate {
+class LoginViewController: UIViewController {
 
     
     @IBOutlet weak var loginDescription: UILabel!
@@ -42,6 +42,7 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
             if user != nil {
                 
                 LoginManager.shared.delegate = self
+                switchViewController(from: self, to: "TabBarController")
                 
             } else {
                 
@@ -109,6 +110,10 @@ extension LoginViewController {
        facebookButton.layer.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).CGColor
     }
     
+}
+
+
+extension LoginViewController: LoginManagerDelegate {
     
     func manager(manager: LoginManager, userDidLogin: Bool) {
         if userDidLogin == true {
@@ -121,11 +126,8 @@ extension LoginViewController {
             self.hideLoginButtons(false)
             self.loadingSpinnerActive(false)
             
-        } else {
-            print("user not login yet")
         }
     }
-    
 }
 
 
