@@ -521,7 +521,7 @@
 				);
 				INFOPLIST_FILE = TRUEST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.Bond;
+				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.TRUEST;
 				PRODUCT_NAME = BOND;
 				PROVISIONING_PROFILE = "";
 			};
@@ -541,7 +541,7 @@
 				);
 				INFOPLIST_FILE = TRUEST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.Bond;
+				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.TRUEST;
 				PRODUCT_NAME = BOND;
 				PROVISIONING_PROFILE = "";
 			};
