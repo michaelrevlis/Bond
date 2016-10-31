@@ -86,7 +86,7 @@
 		6B88D6081DB5FE7700E0C8EA /* AddBondStage2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBondStage2ViewController.swift; sourceTree = "<group>"; };
 		6B94BBEA1DAD47C5004365F4 /* MailboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxTableViewCell.swift; sourceTree = "<group>"; };
 		6B94BBEC1DAD4937004365F4 /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
-		6BE1D1821D9904AD001B19E0 /* TRUEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRUEST.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BE1D1821D9904AD001B19E0 /* BOND.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BOND.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6BE1D18A1D9904AD001B19E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		6BE1D1831D9904AD001B19E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6BE1D1821D9904AD001B19E0 /* TRUEST.app */,
+				6BE1D1821D9904AD001B19E0 /* BOND.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,9 +240,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6BE1D1811D9904AD001B19E0 /* TRUEST */ = {
+		6BE1D1811D9904AD001B19E0 /* BOND */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6BE1D1971D9904AD001B19E0 /* Build configuration list for PBXNativeTarget "TRUEST" */;
+			buildConfigurationList = 6BE1D1971D9904AD001B19E0 /* Build configuration list for PBXNativeTarget "BOND" */;
 			buildPhases = (
 				75E6EC0A88572C3C4C107155 /* [CP] Check Pods Manifest.lock */,
 				6BE1D17E1D9904AD001B19E0 /* Sources */,
@@ -255,9 +255,9 @@
 			);
 			dependencies = (
 			);
-			name = TRUEST;
+			name = BOND;
 			productName = TRUEST;
-			productReference = 6BE1D1821D9904AD001B19E0 /* TRUEST.app */;
+			productReference = 6BE1D1821D9904AD001B19E0 /* BOND.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6BE1D17D1D9904AD001B19E0 /* Build configuration list for PBXProject "TRUEST" */;
+			buildConfigurationList = 6BE1D17D1D9904AD001B19E0 /* Build configuration list for PBXProject "BOND" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -289,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6BE1D1811D9904AD001B19E0 /* TRUEST */,
+				6BE1D1811D9904AD001B19E0 /* BOND */,
 			);
 		};
 /* End PBXProject section */
@@ -521,8 +521,8 @@
 				);
 				INFOPLIST_FILE = TRUEST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.TRUEST;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.Bond;
+				PRODUCT_NAME = BOND;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -541,8 +541,8 @@
 				);
 				INFOPLIST_FILE = TRUEST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.TRUEST;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.Bond;
+				PRODUCT_NAME = BOND;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -550,7 +550,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6BE1D17D1D9904AD001B19E0 /* Build configuration list for PBXProject "TRUEST" */ = {
+		6BE1D17D1D9904AD001B19E0 /* Build configuration list for PBXProject "BOND" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6BE1D1951D9904AD001B19E0 /* Debug */,
@@ -559,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6BE1D1971D9904AD001B19E0 /* Build configuration list for PBXNativeTarget "TRUEST" */ = {
+		6BE1D1971D9904AD001B19E0 /* Build configuration list for PBXNativeTarget "BOND" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6BE1D1981D9904AD001B19E0 /* Debug */,
