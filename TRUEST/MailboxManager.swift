@@ -79,6 +79,7 @@ class MailboxManager {
                     // TODO: 未來要新增user last login date，並將該日期之後received的postcard下載存在core data
                     let receivedPostcards: [String: AnyObject] = ["sender": sender, "sender_name": sender_name, "receiver": CurrentUserInfoManager.shared.currentUserNode, "received_time": received_time, "title": title, "context": context, "signature": signature, "image": image]
                     
+                    
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     
                     let managedContext = appDelegate.managedObjectContext
@@ -93,7 +94,7 @@ class MailboxManager {
                     
                     do {
                         try managedContext.save()
-                        FIRAnalytics.logEventWithName("saving received postcards in core data", parameters: nil)
+                        FIRAnalytics.logEventWithName("saving received postcard in Core", parameters: nil)
                     } catch {
                         FIRCrashMessage("Error in saving received postcards into core data")
                     }

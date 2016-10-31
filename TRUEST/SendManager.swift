@@ -62,6 +62,7 @@ class SendManager {
         FirebaseStorageRef.shared.child(imagePath).putData(currentPostcard[0].image, metadata: metadata) { (metadata, error) in
             
             if let error = error {
+                print(error)
                 FIRCrashMessage("Error in upload image: \(error)")
                 return
             } else {

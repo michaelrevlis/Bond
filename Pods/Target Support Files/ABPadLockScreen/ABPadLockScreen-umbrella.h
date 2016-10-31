@@ -1,6 +1,4 @@
-#ifdef __OBJC__
 #import <UIKit/UIKit.h>
-#endif
 
 #import "ABPadButton.h"
 #import "ABPadLockScreen.h"
