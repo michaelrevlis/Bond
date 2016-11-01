@@ -131,9 +131,9 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         print("hi I'm at setting")
         ABPadLockScreenView.appearance().backgroundColor = UIColor(hue:0.61, saturation:0.55, brightness:0.64, alpha:1)
         
-        ABPadLockScreenView.appearance().labelColor = UIColor.whiteColor()
+        ABPadLockScreenView.appearance().labelColor = UIColor(red: 23/255, green: 114/255, blue: 133/255, alpha: 1)
         
-        let buttonLineColor = UIColor(red: 229/255, green: 180/255, blue: 46/255, alpha: 1)
+        let buttonLineColor = UIColor(red: 23/255, green: 114/255, blue: 133/255, alpha: 1)
         ABPadButton.appearance().backgroundColor = UIColor.clearColor()
         ABPadButton.appearance().borderColor = buttonLineColor
         ABPadButton.appearance().selectedColor = buttonLineColor
