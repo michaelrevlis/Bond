@@ -69,14 +69,7 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     }
     
     @IBAction func LogoutPressed(sender: AnyObject) {
-        
-        try! FIRAuth.auth()!.signOut()
-        
-        FBSDKAccessToken.setCurrentAccessToken(nil)
-        
-        settingManager.cleanUpUserData()
-        
-        self.dismissViewControllerAnimated(true, completion:{})
+        logout()
     }
     
     @IBAction func PictureChangePressed(sender: AnyObject) {
@@ -98,7 +91,34 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
         let userDefault = NSUserDefaults.standardUserDefaults()
-        let imgUrl = userDefault.stringForKey("user_pictureUrl") as String!
+        
+        guard let imgUrl = userDefault.stringForKey("user_pictureUrl")
+            else {
+                let alert = UIAlertController(title: "Error!",
+                                                            message: "Please log out and re-log in again.",
+                                                            preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let action = UIAlertAction(title: "Log out!",
+                                                        style: UIAlertActionStyle.Default,
+                                                        handler: { action in
+                                                        self.logout()
+                })
+                
+                alert.addAction(action)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return
+        }
+        
+        let url = NSURL(string: imgUrl)
+        if let data = NSData(contentsOfURL: url!) {
+            ProfilePicture.contentMode = .ScaleAspectFit
+            ProfilePicture.image = UIImage(data: data)
+            let imageData = stringToNSData(imgUrl)
+            ProfilePicture.image = UIImage(data: imageData)
+        }
+        
         DisplayNameField.hidden = true
         IDField.hidden = true
         DisplayNameLabel.text = userDefault.stringForKey("user_name")
@@ -115,12 +135,6 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
             PasscodeSwitch.on = true
         }
         
-        let url = NSURL(string: imgUrl)
-        let data = NSData(contentsOfURL: url!)
-        if data != nil {
-            ProfilePicture.contentMode = .ScaleAspectFit
-            ProfilePicture.image = UIImage(data: data!)
-        }
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)
         logoView.contentMode = .ScaleAspectFit
@@ -146,13 +160,21 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         
         imagePicker.delegate = self
         ProfilePicture.contentMode = .ScaleAspectFit
-        let imageData = stringToNSData(imgUrl)
-        ProfilePicture.image = UIImage(data: imageData)
         
         print("hi I'm at ContactsViewController")
         
     }
     
+    
+    func logout() {
+        try! FIRAuth.auth()!.signOut()
+        
+        FBSDKAccessToken.setCurrentAccessToken(nil)
+        
+        settingManager.cleanUpUserData()
+        
+        self.dismissViewControllerAnimated(true, completion:{})
+    }
     
     
     func ActivatePasscode() {
