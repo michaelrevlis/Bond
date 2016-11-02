@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -132,7 +132,7 @@
         <!--Passcode View Controller-->
         <scene sceneID="8eD-KL-ev0">
             <objects>
-                <viewController storyboardIdentifier="PasscodeView" id="nA2-wH-QeQ" customClass="PasscodeViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasscodeView" id="nA2-wH-QeQ" customClass="PasscodeViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2mE-vR-Xqj"/>
                         <viewControllerLayoutGuide type="bottom" id="D72-ND-C3g"/>
@@ -185,7 +185,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="quj-VP-kzE">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="5aO-LY-Tiv" customClass="TabBarController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="5aO-LY-Tiv" customClass="TabBarController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" backgroundImage="tabbar-bg" id="3vA-X9-eM1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -211,7 +211,7 @@
         <!--Add Bond View Controller-->
         <scene sceneID="eMs-6h-WBm">
             <objects>
-                <viewController storyboardIdentifier="AddBondViewController" id="XnR-Ui-pT9" customClass="AddBondViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddBondViewController" id="XnR-Ui-pT9" customClass="AddBondViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Jq-sj-ggV"/>
                         <viewControllerLayoutGuide type="bottom" id="TYy-zU-am2"/>
@@ -434,7 +434,7 @@
         <!--Drawer View Controller-->
         <scene sceneID="BTM-lE-sm1">
             <objects>
-                <viewController storyboardIdentifier="DrawerViewController" id="88y-Ng-J2q" customClass="DrawerViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrawerViewController" id="88y-Ng-J2q" customClass="DrawerViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VyK-wQ-doe"/>
                         <viewControllerLayoutGuide type="bottom" id="7vX-vE-buk"/>
@@ -447,7 +447,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawerCell" id="Cd3-U8-ifj" customClass="DrawerTableViewCell" customModule="TRUEST" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawerCell" id="Cd3-U8-ifj" customClass="DrawerTableViewCell" customModule="BOND" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cd3-U8-ifj" id="pq5-02-vyi">
@@ -495,7 +495,7 @@
         <!--Contacts View Controller-->
         <scene sceneID="a3r-fb-gJZ">
             <objects>
-                <viewController storyboardIdentifier="ContactsViewController" title="Contacts View Controller" id="Xvs-3q-dMG" customClass="ContactsViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsViewController" title="Contacts View Controller" id="Xvs-3q-dMG" customClass="ContactsViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6X2-XT-Klb"/>
                         <viewControllerLayoutGuide type="bottom" id="6Yk-jq-r6F"/>
@@ -513,7 +513,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContactsCell" id="5Tk-E1-LPy" customClass="ContactsCollectionViewCell" customModule="TRUEST" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContactsCell" id="5Tk-E1-LPy" customClass="ContactsCollectionViewCell" customModule="BOND" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -583,7 +583,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="EQe-3a-YcR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc">
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="AddFriendPressed:" destination="Xvs-3q-dMG" id="3HC-j7-bCJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -598,7 +601,7 @@
         <!--Navigation Title-->
         <scene sceneID="yUr-38-byg">
             <objects>
-                <navigationController storyboardIdentifier="Intimates" id="Jvh-vB-opI" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Intimates" id="Jvh-vB-opI" customClass="NavigationTitle" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Intimates" id="NIo-hr-82i">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -618,7 +621,7 @@
         <!--Add Bond Stage2 View Controller-->
         <scene sceneID="RNT-bj-Ygh">
             <objects>
-                <viewController storyboardIdentifier="DeliverConditionViewController" id="AEX-j7-u8D" customClass="AddBondStage2ViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeliverConditionViewController" id="AEX-j7-u8D" customClass="AddBondStage2ViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k9V-HM-BUS"/>
                         <viewControllerLayoutGuide type="bottom" id="lh4-Pd-zYQ"/>
@@ -786,7 +789,7 @@
         <!--Mailbox View Controller-->
         <scene sceneID="tfR-wA-H1V">
             <objects>
-                <viewController storyboardIdentifier="MailboxViewController" id="Cic-u3-3m6" customClass="MailboxViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MailboxViewController" id="Cic-u3-3m6" customClass="MailboxViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PV1-sw-H0A"/>
                         <viewControllerLayoutGuide type="bottom" id="Jk0-Qu-KZC"/>
@@ -799,7 +802,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MailboxCell" id="5x4-1w-ZrO" customClass="MailboxTableViewCell" customModule="TRUEST" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MailboxCell" id="5x4-1w-ZrO" customClass="MailboxTableViewCell" customModule="BOND" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5x4-1w-ZrO" id="hgL-NA-mBi">
@@ -847,7 +850,7 @@
         <!--Navigation Title-->
         <scene sceneID="6FR-eF-szh">
             <objects>
-                <navigationController storyboardIdentifier="Post" id="i7f-rN-N8t" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Post" id="i7f-rN-N8t" customClass="NavigationTitle" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Post Button(main page)" id="kP7-dl-Wrw">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
@@ -868,7 +871,7 @@
         <!--Navigation Title-->
         <scene sceneID="VER-wR-vid">
             <objects>
-                <navigationController storyboardIdentifier="Outbox" id="TbO-BG-uHl" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Outbox" id="TbO-BG-uHl" customClass="NavigationTitle" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Outbox" id="5JW-ae-j66">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -888,7 +891,7 @@
         <!--Navigation Title-->
         <scene sceneID="ygq-za-fOb">
             <objects>
-                <navigationController storyboardIdentifier="Threads" id="ugx-3u-Xdg" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Threads" id="ugx-3u-Xdg" customClass="NavigationTitle" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Threads" id="z2M-Xo-Zad">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -909,7 +912,7 @@
         <!--Navigation Title-->
         <scene sceneID="Bne-Rd-jOf">
             <objects>
-                <navigationController storyboardIdentifier="Settings" id="OmZ-gP-WfC" customClass="NavigationTitle" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Settings" id="OmZ-gP-WfC" customClass="NavigationTitle" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Settings" id="A2w-KX-AFq">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -930,7 +933,7 @@
         <!--Setting View Controller-->
         <scene sceneID="8lS-sY-kYA">
             <objects>
-                <tableViewController id="Jyz-go-lfj" customClass="SettingViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Jyz-go-lfj" customClass="SettingViewController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="SD9-Cs-B0T">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1180,7 +1183,7 @@
         <!--Single Postcard Controller-->
         <scene sceneID="Yod-pl-b9Z">
             <objects>
-                <viewController storyboardIdentifier="SinglePostcard" id="VBL-Y6-0Pv" customClass="SinglePostcardController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SinglePostcard" id="VBL-Y6-0Pv" customClass="SinglePostcardController" customModule="BOND" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fhb-vp-s0V"/>
                         <viewControllerLayoutGuide type="bottom" id="K0J-hr-c7k"/>

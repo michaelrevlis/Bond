@@ -10,12 +10,23 @@ import UIKit
 import Firebase
 import CoreData
 import FBSDKCoreKit
+import FBSDKShareKit
 import ABPadLockScreen
 
 class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,  ABPadLockScreenViewControllerDelegate {
     
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet weak var NavigationItem: UINavigationItem!
+    @IBAction func AddFriendPressed(sender: AnyObject) {
+        
+        let content = FBSDKAppInviteContent()
+        let inviteURL = "https://www.facebook.com/BOND-communication-tool-145977405872589/?fref=ts"
+        content.appLinkURL = NSURL(string: inviteURL)
+        let inviteImageURL = "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/14956574_145977942539202_5014903996623382975_n.png?oh=1dfa7bf394c24b93c7f0372b38259715&oe=58977BED"
+        content.appInvitePreviewImageURL = NSURL(string: inviteImageURL)
+        FBSDKAppInviteDialog.showFromViewController(self, withContent: content, delegate: self)
+        
+    }
     
     var friendList: [existedFBUser] = []
     var createNew: Bool = true // should be false, change to true for testing, it should be that pressed + and change it into true
@@ -26,6 +37,8 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     private(set) var thePasscode: String?
     private var foregroundNotification: NSObjectProtocol!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
@@ -243,3 +256,16 @@ extension ContactsViewController: ContactsManagerDelegate {
         }
     }
 }
+
+
+extension ContactsViewController: FBSDKAppInviteDialogDelegate {
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        print("invite a friend")
+    }
+    
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+        print("cannot invite a friend: \(error)")
+    }
+    
+}
+
