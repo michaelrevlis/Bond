@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         self.loadingSpinnerActive(false)
         self.hideLoginButtons(false)
-
+        
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
             

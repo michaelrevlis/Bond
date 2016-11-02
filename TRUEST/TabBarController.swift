@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FBSDKLoginKit
 
 class TabBarController: UITabBarController {
 
-
-    
-    
     override func viewWillAppear(animated: Bool) {
-     
+
     }
 }

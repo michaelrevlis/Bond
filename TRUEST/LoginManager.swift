@@ -29,8 +29,6 @@ class LoginManager {
          
             self.checkIfUserExist(id, completion: { (exist, user_node) in
                 
-                print("user login")
-                
                 if exist == false {
                     
                     self.uploadUserInfoToFirebase(result)

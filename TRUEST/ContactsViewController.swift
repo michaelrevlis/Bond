@@ -41,6 +41,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
         print(thePasscode)
         if thePasscode == nil {
