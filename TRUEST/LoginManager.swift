@@ -35,11 +35,13 @@ class LoginManager {
                     
                 } else {
                     
-                    dispatch_async(dispatch_get_main_queue(), {
-                        
-                        self.delegate?.manager(self, userDidLogin: true)
-                        
-                    })
+                    return
+//
+//                    dispatch_async(dispatch_get_main_queue(), {
+//                        
+//                        self.delegate?.manager(self, userDidLogin: true)
+//                        
+//                    })
                 }
                 
             })
@@ -61,7 +63,8 @@ extension LoginManager {
             FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler({ (connection, result, error) -> Void in
                 
                 if let error = error {
-                    print("FB user data access error: \(error)")
+                    FIRCrashMessage("FB user data access error: \(error)")
+                    showErrorAlert(LoginViewController(), title: "Connect Error", msg: "Please make sure you've connected to the Internet before using this app.")
                     return
                 }
                 
@@ -75,7 +78,7 @@ extension LoginManager {
                     url = data["url"] as? String
                     else {
                         let error = error
-                        print("Error: \(error)")
+                        FIRCrashMessage("Error: \(error)")
                         return
                 }
                 

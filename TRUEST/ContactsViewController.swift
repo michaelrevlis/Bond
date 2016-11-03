@@ -12,11 +12,13 @@ import CoreData
 import FBSDKCoreKit
 import FBSDKShareKit
 import ABPadLockScreen
+import QuartzCore
 
 class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,  ABPadLockScreenViewControllerDelegate {
     
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet weak var NavigationItem: UINavigationItem!
+    @IBOutlet weak var Hint: UILabel!
     @IBAction func AddFriendPressed(sender: AnyObject) {
         
         let content = FBSDKAppInviteContent()
@@ -94,6 +96,16 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
             logoView.contentMode = .ScaleAspectFit
             logoView.image = UIImage(named: "navi_logo")
        
+//        Hint.text = "Tap an intimate to create a bond."
+//        Hint.textColor = UIColor.lightGrayColor()
+//        Hint.layer.borderWidth = 1
+//        let dotborder =  CAShapeLayer()
+//        dotborder.strokeColor = UIColor.grayColor().CGColor
+//        dotborder.fillColor = nil
+//        dotborder.lineDashPattern = [4, 4]
+//        dotborder.path = UIBezierPath(rect: self.).CGPath
+        
+        
       self.NavigationItem.titleView = logoView
 
     }

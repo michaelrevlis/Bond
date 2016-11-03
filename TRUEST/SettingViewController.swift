@@ -186,7 +186,7 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         lockSetupScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         
         presentViewController(lockSetupScreen, animated: true, completion: nil)
-                //1.pop up ablockpad
+        //1.pop up ablockpad
         //2.enter again
         //3.save it to ??
         //(4.call the pad elsewhere when thread/outbox/app is entered)

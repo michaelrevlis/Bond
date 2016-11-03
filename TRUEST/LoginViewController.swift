@@ -23,10 +23,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+//    var loginTime: Int = 0
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var loginTime: Int = 0
         
         button1.hidden = true
         button3.hidden = true
@@ -41,8 +44,11 @@ class LoginViewController: UIViewController {
             
             if user != nil {
                 
-                LoginManager.shared.delegate = self
-                switchViewController(from: self, to: "TabBarController")
+//                LoginManager.shared.delegate = self
+                if loginTime == 0 {
+                    self.manager(LoginManager(), userDidLogin: true)
+                    loginTime += 1
+                }
                 
             } else {
                 
@@ -119,12 +125,11 @@ extension LoginViewController: LoginManagerDelegate {
         if userDidLogin == true {
             
             UserDefaultManager().downloadCurrentUserInfo()
-            print("download user info")
-            
-            switchViewController(from: self, to: "TabBarController")
             
             self.hideLoginButtons(false)
             self.loadingSpinnerActive(false)
+            
+            switchViewController(from: self, to: "TabBarController")
             
         }
     }

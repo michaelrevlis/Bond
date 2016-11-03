@@ -39,6 +39,7 @@ class AddBondViewController: UIViewController {
     private var currentTextOfTitle: String! = ""
     private var currentTextOfSignature: String! = ""
     private var currentTextOfContext: String! = ""
+    private var sender: String! = ""
     private var imageSelectedTimes: Int = 0
     private let contextPlaceHolder = "Write down your feelings here."
     private let titlePlaceHolder = "Edit title here."
@@ -47,7 +48,7 @@ class AddBondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         let logoView = UIImageView()
         logoView.frame = CGRectMake(0, 0, 50, 70)

@@ -22,6 +22,9 @@ class SettingManager {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("user_email")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("user_pictureUrl")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("user_authID")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("currentPasscode")
+        
+        NSUserDefaults.standardUserDefaults().synchronize()
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         

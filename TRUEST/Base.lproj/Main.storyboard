@@ -504,8 +504,8 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiT-eZ-xlG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiT-eZ-xlG">
+                                <rect key="frame" x="279" y="426" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -573,7 +573,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6Yk-jq-r6F" firstAttribute="top" secondItem="KiT-eZ-xlG" secondAttribute="bottom" constant="40" id="DXS-MJ-giq"/>
                             <constraint firstItem="6Yk-jq-r6F" firstAttribute="top" secondItem="avi-Vo-ejJ" secondAttribute="bottom" id="Jf3-fd-jKj"/>
+                            <constraint firstItem="KiT-eZ-xlG" firstAttribute="centerX" secondItem="K6O-vd-TgI" secondAttribute="centerX" id="SCg-Fx-7bH"/>
                             <constraint firstItem="avi-Vo-ejJ" firstAttribute="top" secondItem="6X2-XT-Klb" secondAttribute="bottom" constant="-44" id="Tu2-zG-F61"/>
                             <constraint firstAttribute="trailing" secondItem="avi-Vo-ejJ" secondAttribute="trailing" id="aX9-Gf-EsY"/>
                             <constraint firstItem="avi-Vo-ejJ" firstAttribute="leading" secondItem="K6O-vd-TgI" secondAttribute="leading" id="eTr-gD-SaN"/>
@@ -589,7 +591,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="EQe-3a-YcR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="AddFriendPressed:" destination="Xvs-3q-dMG" id="3HC-j7-bCJ"/>
                             </connections>
@@ -597,6 +599,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="CollectionView" destination="avi-Vo-ejJ" id="mac-cV-gY2"/>
+                        <outlet property="Hint" destination="KiT-eZ-xlG" id="L82-pz-yRI"/>
                         <outlet property="NavigationItem" destination="EQe-3a-YcR" id="Z5H-gk-DZ7"/>
                     </connections>
                 </viewController>

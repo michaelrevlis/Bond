@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import FirebaseCrash
+import FirebaseAnalytics
 
 
 class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -41,7 +42,9 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.MailboxTableView.reloadData()
         }
         
+        
     }
+    
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -149,3 +152,6 @@ extension MailboxViewController {
     }
     
 }
+
+
+

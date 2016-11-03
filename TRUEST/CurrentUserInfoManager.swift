@@ -24,4 +24,11 @@ class CurrentUserInfoManager {
         self.currentUserName = userDefault.stringForKey("user_name") as String!
         self.currentUserPictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
     }
+    
+//    init(currentUserNode: String, currentUserName: String, currentUserPictureUrl: String) {
+//        self.currentUserNode = userDefault.str
+//    }
+    
+    
+    
 }
