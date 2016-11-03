@@ -39,7 +39,6 @@ class ContactsManager {
     
     weak var delegate: ContactsManagerDelegate?
     
-    
     func myFriends(){
         
         getFriendList { (success, results) in
@@ -112,6 +111,19 @@ extension ContactsManager {
     
     
     private func getFriendInfo(friendlist friendlist: [NSDictionary]) {
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        guard
+        let email = userDefault.stringForKey("user_email") as String!,
+             node = userDefault.stringForKey("user_userNode") as String!,
+             pictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
+            else {
+                FIRCrashMessage("Fail to convert current user self info as friend")
+                return
+        }
+        self.friendList.append(existedFBUser(userNode: node, name: "ME", email: email, pictureUrl: pictureUrl))
+        
+        
         
         for user in friendlist {
 
