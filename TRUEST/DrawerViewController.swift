@@ -150,10 +150,9 @@ extension DrawerViewController: SaveManagerDelegate {
     func manager(manager: SaveManager, postcardSaved: [PostcardInDrawer], newPostcardDidSave: Bool) {
         
         if newPostcardDidSave == true {
-//            print("postcard in drawer count before")
-//            print(postcardsInDrawer.count)
+            
             self.postcardsInDrawer.append(postcardSaved[0])
-//            print(postcardsInDrawer.count)
+
             self.DrawerTableView.reloadData()
         }
     }
