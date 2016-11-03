@@ -35,8 +35,6 @@ class SaveManager {
                 
                 self.savePostcard(postcardToSave)
                 
-                print(postcardToSave[0].created_time)
-                
                 self.delegate?.manager(self, postcardToSave: postcardToSave, newPostcardDidSave: true)
                 
                 self.saveDelegate?.manager(self, postcardSaved: postcardToSave, newPostcardDidSave: true)
