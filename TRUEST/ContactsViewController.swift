@@ -17,6 +17,7 @@ import FirebaseCrash
 
 class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,  ABPadLockScreenViewControllerDelegate {
     
+    @IBOutlet weak var LoadingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet weak var NavigationItem: UINavigationItem!
     @IBOutlet weak var Hint: UILabel!
@@ -44,6 +45,9 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        LoadingSpinner.color = UIColor.SD_CellBorderGreen_60AB81()
+        LoadingSpinner.startAnimating()
         
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
         print(thePasscode)
@@ -236,6 +240,9 @@ extension ContactsViewController: ContactsManagerDelegate {
         self.friendList = friendList
         
         self.CollectionView.reloadData()
+        
+        LoadingSpinner.stopAnimating()
+        LoadingSpinner.hidden = true
     }
     
     

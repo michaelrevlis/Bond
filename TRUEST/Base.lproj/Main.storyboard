@@ -574,6 +574,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="n3N-rA-gJt">
+                                <rect key="frame" x="281" y="225" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -583,8 +587,10 @@
                             <constraint firstAttribute="trailing" secondItem="avi-Vo-ejJ" secondAttribute="trailing" id="aX9-Gf-EsY"/>
                             <constraint firstItem="avi-Vo-ejJ" firstAttribute="leading" secondItem="K6O-vd-TgI" secondAttribute="leading" id="eTr-gD-SaN"/>
                             <constraint firstItem="avi-Vo-ejJ" firstAttribute="top" secondItem="K6O-vd-TgI" secondAttribute="top" id="nAv-HC-XE9"/>
+                            <constraint firstItem="n3N-rA-gJt" firstAttribute="centerY" secondItem="K6O-vd-TgI" secondAttribute="centerY" id="vvJ-J1-pGU"/>
                             <constraint firstItem="KiT-eZ-xlG" firstAttribute="centerX" secondItem="K6O-vd-TgI" secondAttribute="centerX" id="wAU-LY-zrS"/>
                             <constraint firstAttribute="bottomMargin" secondItem="avi-Vo-ejJ" secondAttribute="bottom" constant="39" id="x0C-vw-ykd"/>
+                            <constraint firstItem="n3N-rA-gJt" firstAttribute="centerX" secondItem="K6O-vd-TgI" secondAttribute="centerX" id="zJv-xK-x9T"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -604,6 +610,7 @@
                     <connections>
                         <outlet property="CollectionView" destination="avi-Vo-ejJ" id="mac-cV-gY2"/>
                         <outlet property="Hint" destination="KiT-eZ-xlG" id="L82-pz-yRI"/>
+                        <outlet property="LoadingSpinner" destination="n3N-rA-gJt" id="xC8-Ed-tI3"/>
                         <outlet property="NavigationItem" destination="EQe-3a-YcR" id="Z5H-gk-DZ7"/>
                     </connections>
                 </viewController>
