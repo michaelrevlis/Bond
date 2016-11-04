@@ -31,7 +31,6 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
     private var delivered_date = NSDate()
     private var deliverDateSelectedTimes: Int = 0
     private let sendManager = SendManager()
-    private let saveManager = SaveManager()
 
 
     
@@ -46,7 +45,7 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
         
         self.NavigationItem.titleView = logoView
         
-        saveManager.delegate = self
+        SaveManager.shared.delegate = self
         sendManager.delegate = self
         
         //將日期轉換成文字
@@ -67,7 +66,7 @@ class AddBondStage2ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func SendPressed(sender: AnyObject) {
         print("Save & Send pressed")
-        saveManager.savePressed(self, postcardToSave: newPostcard)
+        SaveManager.shared.savePressed(self, postcardToSave: newPostcard)
     }
 
     
@@ -217,7 +216,7 @@ extension AddBondStage2ViewController {
 
 
 extension AddBondStage2ViewController: SendAfterSaveDelegate {
-    func manager(manager: SaveManager, postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool) {
+    func manager(manager: SaveManager, postcardToSend postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool) {
         
         if newPostcardDidSave == true {
             sendManager.send(currentPostcard: postcardToSave)

@@ -14,7 +14,7 @@ import FirebaseAnalytics
 
 
 protocol SendAfterSaveDelegate: class {
-    func manager(manager: SaveManager, postcardToSave: [PostcardInDrawer], newPostcardDidSave: Bool)
+    func manager(manager: SaveManager, postcardToSend: [PostcardInDrawer], newPostcardDidSave: Bool)
 }
 
 protocol SaveManagerDelegate: class {
@@ -23,6 +23,8 @@ protocol SaveManagerDelegate: class {
 
 
 class SaveManager {
+
+    static let shared = SaveManager()
     
     weak var delegate: SendAfterSaveDelegate?
     weak var saveDelegate: SaveManagerDelegate?
@@ -35,7 +37,7 @@ class SaveManager {
                 
                 self.savePostcard(postcardToSave)
                 
-                self.delegate?.manager(self, postcardToSave: postcardToSave, newPostcardDidSave: true)
+                self.delegate?.manager(self, postcardToSend: postcardToSave, newPostcardDidSave: true)
                 
                 self.saveDelegate?.manager(self, postcardSaved: postcardToSave, newPostcardDidSave: true)
                 

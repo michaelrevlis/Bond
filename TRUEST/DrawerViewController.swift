@@ -16,6 +16,7 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var NavigationItem: UINavigationItem!
     @IBOutlet weak var DrawerTableView: UITableView!
     var postcardsInDrawer = [PostcardInDrawer]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,8 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         DrawerTableView.delegate = self
         DrawerTableView.dataSource = self
         
+        SaveManager.shared.saveDelegate = self
+        
         self.DrawerTableView.rowHeight = 120
 
         if self.DrawerTableView != nil {
@@ -71,12 +74,6 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
      }
-    
-    override func viewDidAppear(animated: Bool) {
- 
-        super.viewDidAppear(true)
-
-    }
     
 
     
