@@ -42,7 +42,7 @@ extension MailboxTableViewCell {
         cellBackground.layer.cornerRadius = cellBackground.frame.height / 2
         cellBackground.clipsToBounds = true
         
-        title.frame = CGRectMake(122, 30, 100, 30)
+        title.frame = CGRectMake(122, 30, 180, 30)
         title.backgroundColor = UIColor.clearColor()
         title.font = UIFont(name: "Avenir Next", size: 14)
         
@@ -78,8 +78,8 @@ extension MailboxTableViewCell {
         self.ContentView.addSubview(lastEditedLabel)
         self.ContentView.addSubview(titleImage)
         self.ContentView.addSubview(receiverImage)
-        self.ContentView.addSubview(conditionImage)
-        self.ContentView.addSubview(urgencyImage)
+//        self.ContentView.addSubview(conditionImage)
+//        self.ContentView.addSubview(urgencyImage)
         self.ContentView.addSubview(receivers)
     }
 
