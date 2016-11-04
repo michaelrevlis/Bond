@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
-//    var loginTime: Int = 0
 
     
     override func viewDidLoad() {
@@ -44,11 +43,13 @@ class LoginViewController: UIViewController {
             
             if user != nil {
                 
-//                LoginManager.shared.delegate = self
-                if loginTime == 0 {
+                LoginManager.shared.delegate = self
+                
+                if loginTime == 1 {
                     self.manager(LoginManager(), userDidLogin: true)
-                    loginTime += 1
                 }
+                
+                loginTime += 1
                 
             } else {
                 

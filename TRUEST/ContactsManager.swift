@@ -47,8 +47,6 @@ class ContactsManager {
                 
                 self.getFriendInfo(friendlist: results)
                 
-                self.delegate?.manager(self, didGetFriendList: self.friendList)
-                
             }
         }
     }
@@ -121,9 +119,8 @@ extension ContactsManager {
                 FIRCrashMessage("Fail to convert current user self info as friend")
                 return
         }
+        
         self.friendList.append(existedFBUser(userNode: node, name: "ME", email: email, pictureUrl: pictureUrl))
-        
-        
         
         for user in friendlist {
 
@@ -139,6 +136,9 @@ extension ContactsManager {
             self.friendList.append(existedFBUser(userNode: userNode, name: name, email: email, pictureUrl: pictureUrl))
             
         }
+        
+        self.delegate?.manager(self, didGetFriendList: self.friendList)
+        
     }
     
     

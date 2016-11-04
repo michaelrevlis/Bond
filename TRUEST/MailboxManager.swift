@@ -20,30 +20,30 @@ class MailboxManager {
     
     func downloadReceivedPostcards() {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        let requestReceivedPostcard = NSFetchRequest(entityName: "ReceivedPostcard")
-        
-        do {
-            
-            let resultsReceivedPostcard = try managedContext.executeFetchRequest(requestReceivedPostcard) as! [ReceivedPostcard]
-            
-            for result in resultsReceivedPostcard {
-                managedContext.deleteObject(result)
-            }
-            
-        }catch {
-            FIRCrashMessage("Error in cleaning Mailbox")
-        }
-        
-        do {
-            try managedContext.save()
-            FIRAnalytics.logEventWithName("Mailbox has been deleted", parameters: nil)
-        } catch {
-            FIRCrashMessage("Error in updating Mailbox deletion")
-        }
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        let managedContext = appDelegate.managedObjectContext
+//        
+//        let requestReceivedPostcard = NSFetchRequest(entityName: "ReceivedPostcard")
+//        
+//        do {
+//            
+//            let resultsReceivedPostcard = try managedContext.executeFetchRequest(requestReceivedPostcard) as! [ReceivedPostcard]
+//            
+//            for result in resultsReceivedPostcard {
+//                managedContext.deleteObject(result)
+//            }
+//            
+//        }catch {
+//            FIRCrashMessage("Error in cleaning Mailbox")
+//        }
+//        
+//        do {
+//            try managedContext.save()
+//            FIRAnalytics.logEventWithName("Mailbox has been deleted", parameters: nil)
+//        } catch {
+//            FIRCrashMessage("Error in updating Mailbox deletion")
+//        }
         
         
         

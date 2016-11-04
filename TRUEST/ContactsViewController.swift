@@ -13,6 +13,7 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import ABPadLockScreen
 import QuartzCore
+import FirebaseCrash
 
 class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,  ABPadLockScreenViewControllerDelegate {
     
@@ -58,15 +59,17 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         foregroundNotification = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
             [unowned self] notification in
-            self.thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
-            if self.thePasscode == nil {
-            } else if self.thePasscode != nil {
-                let lockScreen = ABPadLockScreenViewController(delegate: self, complexPin: false)
-                lockScreen.setAllowedAttempts(3)
-                lockScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-                lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-                self.presentViewController(lockScreen, animated: true, completion: nil)
+            guard let currentPasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode") as String!
+                else {
+                    FIRCrashMessage("no currentPasscode at ContactsVC")
+                    return
             }
+            self.thePasscode = currentPasscode
+            let lockScreen = ABPadLockScreenViewController(delegate: self, complexPin: false)
+            lockScreen.setAllowedAttempts(3)
+            lockScreen.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+            lockScreen.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            self.presentViewController(lockScreen, animated: true, completion: nil)
         }
         print("hi I'm at ContactsViewController")
        

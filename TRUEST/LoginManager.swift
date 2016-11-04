@@ -35,13 +35,13 @@ class LoginManager {
                     
                 } else {
                     
-                    return
-//
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        
-//                        self.delegate?.manager(self, userDidLogin: true)
-//                        
-//                    })
+//                    return
+
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        self.delegate?.manager(self, userDidLogin: true)
+                        
+                    })
                 }
                 
             })
