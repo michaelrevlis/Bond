@@ -46,7 +46,7 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     @IBAction func DisplayNameChangePressed(sender: AnyObject) {
         DisplayNameField.hidden = false
         DisplayNameLabel.hidden = true
-        DisplayNameField.text   = "Display Name Change Pressed"
+        DisplayNameField.placeholder = "Display Name Change Pressed"
     }
     
     @IBAction func PasscodeSwitchPressed(sender: UISwitch) {
@@ -63,9 +63,9 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     
     
     @IBAction func IDChangePressed(sender: AnyObject) {
-        IDField.hidden = false
-        IDLabel.hidden = true
-        IDField.text   = "ID Change Pressed"
+//        IDField.hidden = false
+//        IDLabel.hidden = true
+//        IDField.placeholder = "ID Change Pressed"
     }
     
     @IBAction func LogoutPressed(sender: AnyObject) {
@@ -88,6 +88,8 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.SD_BackgroudWhite_EEEEEE()
+        
+        IDChange.hidden = true
         
         thePasscode = NSUserDefaults.standardUserDefaults().stringForKey("currentPasscode")
         let userDefault = NSUserDefaults.standardUserDefaults()
@@ -160,8 +162,6 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
         
         imagePicker.delegate = self
         ProfilePicture.contentMode = .ScaleAspectFit
-        
-        print("hi I'm at ContactsViewController")
         
     }
     
@@ -308,7 +308,7 @@ extension SettingViewController{
             
             guard let newName = textField.text as String!
                 else {
-                    print("telling user it can't be empty")
+                    showErrorAlert(self, title: "Error", msg: "Display name can't be empty.")
                     return
             }
             settingManager.updateUserName(newName)
