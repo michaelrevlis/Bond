@@ -14,6 +14,13 @@ BOND is the ultimate app to cherish your memories with your intimates.
     iii. Or unlock your app with TouchID (coming soon)
 
 
+# Library
+* FBSDK
+* Firebase
+* Crashlytics
+* ABPadLockScreen
+
+
 # ScreenShot
 ![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_intimates.png)
 ![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_thread.png)
