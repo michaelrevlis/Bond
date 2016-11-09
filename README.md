@@ -15,9 +15,9 @@ BOND is the ultimate app to cherish your memories with your intimates.
 
 
 # ScreenShot
-![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_intimates.jpg)
+![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_intimates.png)
 ![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_thread.png)
 ![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_singlebond.png)
-![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_screenlock.jpg)
-![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_edit1.jpg)
-![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_edit2.jpg)
+![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_screenlock.png)
+![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_edit1.png)
+![](https://github.com/michaelrevlis/Bond/blob/master/screenshot/Bond_edit2.png)
