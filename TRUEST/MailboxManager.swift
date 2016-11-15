@@ -57,14 +57,19 @@ class MailboxManager {
         }
         
         FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userNode).observeEventType(.ChildAdded, withBlock: { snapshot in
+        
+            let bondRef = snapshot.ref
             
             guard let  bond = snapshot.value as? NSDictionary,
                             postcard_id = bond["postcard"] as? String,
-                            sender_node = bond["sender"] as? String
+                            sender_node = bond["sender"] as? String,
+                            download = bond["download"] as? String
                 else {
                     FIRCrashMessage("No one has sent a postcard to this user or error in getting bond")
                     return
             }
+            
+            guard download == "0" else { return } // 0表示此postcard尚未被下載到user手機上
             
             // use postcardID to find postcard
             FirebaseDatabaseRef.shared.child("postcards").queryOrderedByKey().queryEqualToValue(postcard_id).observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -128,6 +133,8 @@ class MailboxManager {
                     }
 
                     
+                    // update download status to firebase
+                    bondRef.updateChildValues(["download": "1"])
                 })
                 
             })

@@ -51,6 +51,11 @@ class ContactsManager {
         }
     }
     
+    
+    func meMyself(){
+        
+    }
+    
 }
 
 extension ContactsManager {

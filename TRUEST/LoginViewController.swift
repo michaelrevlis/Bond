@@ -32,7 +32,11 @@ class LoginViewController: UIViewController {
         
         button1.hidden = true
         button3.hidden = true
-        button4.hidden = true
+//        button4.hidden = true
+        let guestImage = UIImage(named: "arrow button")
+        button4.setImage(guestImage, forState: .Normal)
+        
+        
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         self.loadingSpinnerActive(false)
@@ -90,7 +94,7 @@ extension LoginViewController {
           facebookButton.hidden = decision
     
 //          button3.hidden = decision
-//          button4.hidden = decision
+          button4.hidden = decision
      }
     
     
