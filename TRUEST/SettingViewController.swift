@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseCrash
+import FirebaseDatabase
 import FBSDKCoreKit
 
 import ABPadLockScreen
@@ -167,11 +168,14 @@ class SettingViewController: UITableViewController,UITextFieldDelegate, UIImageP
     
     
     func logout() {
+
+        self.cleanupPostcardDownloadFlagOnServer()
+        
+        settingManager.cleanUpUserData()
+        
         try! FIRAuth.auth()!.signOut()
         
         FBSDKAccessToken.setCurrentAccessToken(nil)
-        
-        settingManager.cleanUpUserData()
         
         self.dismissViewControllerAnimated(true, completion:{})
     }
@@ -319,4 +323,18 @@ extension SettingViewController{
         
     }
     
+    
+    func cleanupPostcardDownloadFlagOnServer() {
+        
+        let userNode = CurrentUserInfoManager.shared.currentUserNode
+        
+        FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userNode).observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+            let bondRef = snapshot.ref
+            print(bondRef)
+            
+            bondRef.updateChildValues(["download": "0"])
+            
+        })
+    }
 }

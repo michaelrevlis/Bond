@@ -116,7 +116,7 @@ extension MailboxViewController {
                 
                 if received_time.isLessThanDate(currentTime) {
                     
-                    print("postcard is delivered")
+                    print("a postcard meets its deliver time")
                     postcardsInMailbox.append(PostcardInMailbox(sender: sender, sender_name: sender_name, receiver: receiver, received_time: received_time, title: title, context: context, signature: signature, image: image))
                 }
             }
