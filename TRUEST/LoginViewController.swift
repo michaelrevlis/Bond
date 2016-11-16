@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         button1.hidden = true
         button3.hidden = true
 //        button4.hidden = true
-        let guestImage = UIImage(named: "arrow button")
+        let guestImage = UIImage(named: "anonymous login")
         button4.setImage(guestImage, forState: .Normal)
         
         
@@ -79,6 +79,17 @@ extension LoginViewController {
         self.loadingSpinnerActive(true)
         self.hideLoginButtons(true)
         
+    }
+    
+    @IBAction func anonymousPressed(sender: AnyObject) {
+        
+        FIRAnalytics.logEventWithName("loginWithAnonymous", parameters: nil)
+        
+        loginWithAnonymous()
+        
+        self.loadingSpinnerActive(true)
+        self.hideLoginButtons(true)
+
     }
     
 }
@@ -163,6 +174,7 @@ extension LoginViewController {
                 print("Cancle button pressed")
                 self.hideLoginButtons(false)
                 self.loadingSpinner.stopAnimating()
+                
             } else {
                 
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
@@ -177,6 +189,27 @@ extension LoginViewController {
             }
         })
         
+    }
+    
+    
+    private func loginWithAnonymous() {
+        
+        FIRAuth.auth()?.signInAnonymouslyWithCompletion({ (anonymousUser, error) in
+            
+            if error != nil {
+                FIRAnalytics.logEventWithName("anonymous login error: \(error)", parameters: nil)
+                showErrorAlert(self, title: "Error", msg: "Something goes wrong. Please reload app again.")
+                return
+            }
+            
+            _ = anonymousUser!.anonymous // true
+            let anonymousUid = anonymousUser!.uid
+            print(anonymousUid)
+
+            LoginManager.shared.anonymousLogin()
+            
+        })
+
     }
 }
 

@@ -16,6 +16,10 @@ protocol LoginManagerDelegate: class {
     func manager(manager: LoginManager, userDidLogin: Bool)
 }
 
+enum loginType: Int {
+    case FB, Anonymous
+}
+
 
 class LoginManager {
     
@@ -29,14 +33,12 @@ class LoginManager {
          
             self.checkIfUserExist(id, completion: { (exist, user_node) in
                 
-                if exist == false {
+                if exist == false {     // new user
                     
-                    self.uploadUserInfoToFirebase(result)
+                    self.uploadUserInfoToFirebase(.FB, tempUserInfo: result)
                     
-                } else {
+                } else {    // existed user
                     
-//                    return
-
                     dispatch_async(dispatch_get_main_queue(), {
                         
                         self.delegate?.manager(self, userDidLogin: true)
@@ -47,6 +49,17 @@ class LoginManager {
             })
             
         }
+    }
+    
+    
+    func anonymousLogin() {
+        
+        let url = "https://firebasestorage.googleapis.com/v0/b/bond-14171.appspot.com/o/anonymous%20login%403x.png?alt=media&token=3adb2fb9-82d2-4ffd-8803-c7e5689f3b9d"
+
+        let result: [String: String] = ["fbID": "null", "name": "ME", "email": "null", "fbProfileLink": "null", "pictureUrl": url]
+        
+        self.uploadUserInfoToFirebase(.Anonymous, tempUserInfo: result)
+        
     }
     
 }
@@ -127,20 +140,38 @@ extension LoginManager {
     
     
     
-    private func uploadUserInfoToFirebase(tempUserInfo: [String: AnyObject]) {
+    private func uploadUserInfoToFirebase(loginWay: loginType, tempUserInfo: [String: AnyObject]) {
         
-        let fbUserInfoSentRef = FirebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
         var uploadUserInfo = tempUserInfo
         
-        let newUser_node = fbUserInfoSentRef.key
-        
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        uploadUserInfo["userNode"] = newUser_node
-        
-        uploadUserInfo["authID"] = uid
-        
-        fbUserInfoSentRef.setValue(uploadUserInfo)
+        switch loginWay {
+        case .FB:
+            let fbUserInfoSentRef = FirebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
+            let newUser_node = fbUserInfoSentRef.key
+            
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            
+            uploadUserInfo["userNode"] = newUser_node
+            
+            uploadUserInfo["authID"] = uid
+            
+            fbUserInfoSentRef.setValue(uploadUserInfo)
+
+        case .Anonymous:
+            
+            let anonymousRef = FirebaseDatabaseRef.shared.child("users").childByAutoId()
+            
+            let newUser_node = anonymousRef.key
+            
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            
+            uploadUserInfo["userNode"] = newUser_node
+            
+            uploadUserInfo["authID"] = uid
+            
+            anonymousRef.setValue(uploadUserInfo)
+
+        }
         
         dispatch_async(dispatch_get_main_queue(), {
 

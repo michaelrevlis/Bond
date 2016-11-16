@@ -23,6 +23,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var Hint: UILabel!
     @IBAction func AddFriendPressed(sender: AnyObject) {
         
+        // invite friend to download this app. url not correct.
         let content = FBSDKAppInviteContent()
         let inviteURL = "https://www.facebook.com/BOND-communication-tool-145977405872589/?fref=ts"
         content.appLinkURL = NSURL(string: inviteURL)
@@ -45,6 +46,8 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        friendListInit()
         
         LoadingSpinner.color = UIColor.SD_CellBorderGreen_60AB81()
         LoadingSpinner.startAnimating()
@@ -191,7 +194,27 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
             selectedIndexes.append(indexPath)
         }
         
+    }
+    
+    
+    func friendListInit() {
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        guard
+            let email = userDefault.stringForKey("user_email") as String!,
+                 node = userDefault.stringForKey("user_userNode") as String!,
+                 pictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
+            else {
+                FIRCrashMessage("Fail to convert current user self info as friend")
+                return
+        }
         
+        self.friendList.append(existedFBUser(userNode: node, name: "ME", email: email, pictureUrl: pictureUrl))
+    
+        self.CollectionView.reloadData()
+        
+        LoadingSpinner.stopAnimating()
+        LoadingSpinner.hidden = true
+
     }
     
     //MARK: Lock Screen Setup Delegate
@@ -221,15 +244,8 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func unlockWasCancelledForPadLockScreenViewController(padLockScreenViewController: ABPadLockScreenViewController!) {
         print("Unlock Cancled")
-        
-        
-        
     }
 
-
-
-    
-    
 }
 
 
@@ -237,7 +253,10 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
 extension ContactsViewController: ContactsManagerDelegate {
     
     func manager(manager: ContactsManager, didGetFriendList friendList: [existedFBUser]) {
-        self.friendList = friendList
+        
+        for friend in friendList {
+            self.friendList.append(friend)
+        }
         
         self.CollectionView.reloadData()
         

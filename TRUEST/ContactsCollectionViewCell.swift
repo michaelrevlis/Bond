@@ -27,7 +27,6 @@ class ContactsCollectionViewCell: UICollectionViewCell {
         // each cell is 110 * 110
         imageInSmall.frame = CGRect(center: CGPoint(x: 55, y: 40), size: CGSize(width: 70, height: 70))
         imageInSmall.contentMode = .ScaleAspectFill
-        imageInSmall.backgroundColor = UIColor.greenColor()
         imageInSmall.clipsToBounds = true
         imageInSmall.layer.masksToBounds = true
         imageInSmall.layer.cornerRadius = imageInSmall.frame.height / 2

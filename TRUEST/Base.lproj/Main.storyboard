@@ -69,6 +69,9 @@
                                             <constraint firstAttribute="width" constant="50" id="i1Y-Wd-DZg"/>
                                         </constraints>
                                         <state key="normal" title="way4" image="tweet login"/>
+                                        <connections>
+                                            <action selector="anonymousPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FaW-zh-FhI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
