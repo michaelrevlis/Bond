@@ -568,9 +568,9 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap an intimate to create a bond." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiT-eZ-xlG">
-                                <rect key="frame" x="170" y="446" width="260" height="21"/>
+                                <rect key="frame" x="170" y="425" width="260" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Y2K-Th-3A1"/>
+                                    <constraint firstAttribute="height" constant="42" id="Y2K-Th-3A1"/>
                                     <constraint firstAttribute="width" constant="260" id="l5L-4S-4hQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

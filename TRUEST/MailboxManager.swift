@@ -99,7 +99,7 @@ class MailboxManager {
                     
                     do {
                         try managedContext.save()
-                        FIRAnalytics.logEventWithName("saving received postcard in Core", parameters: nil)
+                        FIRAnalytics.logEventWithName("save received postcard in Core", parameters: nil)
                     } catch {
                         FIRCrashMessage("Error in saving received postcards into core data")
                     }

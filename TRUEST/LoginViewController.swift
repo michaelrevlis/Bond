@@ -24,7 +24,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var button4: UIButton!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
 
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,10 +48,11 @@ class LoginViewController: UIViewController {
         FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
             
             if user != nil {
-                
+
                 LoginManager.shared.delegate = self
                 
                 if loginTime == 1 {
+                    
                     self.manager(LoginManager(), userDidLogin: true)
                 }
                 
@@ -74,6 +77,10 @@ extension LoginViewController {
         
         FIRAnalytics.logEventWithName("loginWithFB", parameters: nil)
         
+        userDefaults.setObject("FB", forKey: "loginMethod")
+        
+        userDefaults.synchronize()
+        
         loginWithFacebook()
         
         self.loadingSpinnerActive(true)
@@ -84,6 +91,10 @@ extension LoginViewController {
     @IBAction func anonymousPressed(sender: AnyObject) {
         
         FIRAnalytics.logEventWithName("loginWithAnonymous", parameters: nil)
+        
+        userDefaults.setObject("anonymous", forKey: "loginMethod")
+        
+        userDefaults.synchronize()
         
         loginWithAnonymous()
         
@@ -139,12 +150,12 @@ extension LoginViewController: LoginManagerDelegate {
     
     func manager(manager: LoginManager, userDidLogin: Bool) {
         if userDidLogin == true {
-            
+            print("downloadCurrentUserInfo")
             UserDefaultManager().downloadCurrentUserInfo()
             
             self.hideLoginButtons(false)
             self.loadingSpinnerActive(false)
-            
+            print("switchViewController to TabBar")
             switchViewController(from: self, to: "TabBarController")
             
         }
@@ -183,7 +194,7 @@ extension LoginViewController {
                 
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                     
-                    LoginManager.shared.userLogin()
+                    LoginManager.shared.userLogin(loginWith: .FB)
                     
                 }
             }
@@ -204,9 +215,9 @@ extension LoginViewController {
             
             _ = anonymousUser!.anonymous // true
             let anonymousUid = anonymousUser!.uid
-            print(anonymousUid)
+            print("anonymousUid: \(anonymousUid)")
 
-            LoginManager.shared.anonymousLogin()
+            LoginManager.shared.userLogin(loginWith: .Anonymous)
             
         })
 

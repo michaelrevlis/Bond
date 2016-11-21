@@ -39,22 +39,31 @@ class ContactsManager {
     
     weak var delegate: ContactsManagerDelegate?
     
-    func myFriends(){
+    func myFriends(loginWith loginWith: loginType){
         
-        getFriendList { (success, results) in
+        meAsFriend()
+        
+        switch loginWith {
             
-            if success == true {
+        case .FB:
+            
+            getFriendList { (success, results) in
                 
-                self.getFriendInfo(friendlist: results)
-                
+                if success == true {
+                    
+                    self.getFriendInfo(friendlist: results)
+                    
+                }
             }
+            
+        case .Anonymous:
+            
+            self.getFriendInfo(friendlist: [])
+            
         }
+
     }
     
-    
-    func meMyself(){
-        
-    }
     
 }
 
@@ -113,6 +122,24 @@ extension ContactsManager {
     }
     
     
+    
+    private func meAsFriend() {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        guard let  userNode = userDefaults.objectForKey("user_userNode") as? String,
+                        email = userDefaults.objectForKey("user_email") as? String,
+                        pictureUrl = userDefaults.objectForKey("user_pictureUrl") as? String
+            else {
+                FIRCrashMessage("Error in access userInfo from userDefaults")
+                return
+        }
+        
+        self.friendList.append(existedFBUser(userNode: userNode, name: "ME", email: email, pictureUrl: pictureUrl))
+    }
+    
+    
+    
     private func getFriendInfo(friendlist friendlist: [NSDictionary]) {
         
         for user in friendlist {
@@ -123,7 +150,7 @@ extension ContactsManager {
                             pictureUrl = user["pictureUrl"] as? String
                 else {
                     FIRCrashMessage("error in matching user's info with their fb id")
-                    break
+                    return
             }
             
             self.friendList.append(existedFBUser(userNode: userNode, name: name, email: email, pictureUrl: pictureUrl))
@@ -133,6 +160,7 @@ extension ContactsManager {
         self.delegate?.manager(self, didGetFriendList: self.friendList)
         
     }
+    
     
     
     func cleanupFriendlist() {

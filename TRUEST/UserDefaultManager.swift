@@ -12,10 +12,20 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrash
 
+
+protocol UserDefaultManagerDelegate: class {
+    func manager(manager: UserDefaultManager, userDefaultsDidSet: Bool)
+}
+
+
 // TODO: read/write from userDefault takes time, consider to adopt core data 
 class UserDefaultManager {
     
+    static let shared = UserDefaultManager()
+    
     private let currentUserAuth = FIRAuth.auth()!.currentUser!.uid
+    
+    weak var delegate: UserDefaultManagerDelegate?
     
     func downloadCurrentUserInfo() {
         
@@ -47,6 +57,9 @@ class UserDefaultManager {
             
             MailboxManager.shared.downloadReceivedPostcards()
             
+            dispatch_async(dispatch_get_main_queue(), {
+                self.delegate?.manager(self, userDefaultsDidSet: true)
+            })
         })
         
     }

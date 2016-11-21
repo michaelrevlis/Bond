@@ -23,6 +23,7 @@ class SettingManager {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("user_pictureUrl")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("user_authID")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("currentPasscode")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("loginMethod")
         
         NSUserDefaults.standardUserDefaults().synchronize()
 

@@ -42,12 +42,13 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     private(set) var thePasscode: String?
     private var foregroundNotification: NSObjectProtocol!
+    private var firstTimeFriendlistInit = Int()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friendListInit()
+//        friendListInit()
         
         LoadingSpinner.color = UIColor.SD_CellBorderGreen_60AB81()
         LoadingSpinner.startAnimating()
@@ -93,8 +94,8 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         ContactsManager.shared.delegate = self
         
-        ContactsManager.shared.myFriends()
-
+        UserDefaultManager.shared.delegate = self
+        
         CollectionView.delegate = self
         
         CollectionView.dataSource = self
@@ -118,16 +119,15 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         Hint.layer.addSublayer(dotborder)
         
         
-      self.NavigationItem.titleView = logoView
+        self.NavigationItem.titleView = logoView
 
     }
+    
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-
     }
-    
     
     
     
@@ -195,27 +195,25 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
     }
-    
-    
-    func friendListInit() {
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        guard
-            let email = userDefault.stringForKey("user_email") as String!,
-                 node = userDefault.stringForKey("user_userNode") as String!,
-                 pictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
-            else {
-                FIRCrashMessage("Fail to convert current user self info as friend")
-                return
-        }
-        
-        self.friendList.append(existedFBUser(userNode: node, name: "ME", email: email, pictureUrl: pictureUrl))
-    
-        self.CollectionView.reloadData()
-        
-        LoadingSpinner.stopAnimating()
-        LoadingSpinner.hidden = true
 
-    }
+//        let userDefault = NSUserDefaults.standardUserDefaults()
+//        guard
+//            let email = userDefault.stringForKey("user_email") as String!,
+//                 node = userDefault.stringForKey("user_userNode") as String!,
+//                 pictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
+//            else {
+//                FIRCrashMessage("Fail to convert current user self info as friend")
+//                return
+//        }
+//
+//        self.friendList.append(existedFBUser(userNode: node, name: "ME", email: email, pictureUrl: pictureUrl))
+//    
+//        self.CollectionView.reloadData()
+//        
+//        LoadingSpinner.stopAnimating()
+//        LoadingSpinner.hidden = true
+//
+//    }
     
     //MARK: Lock Screen Setup Delegate
 //    func pinSet(pin: String!, padLockScreenSetupViewController padLockScreenViewController: ABPadLockScreenSetupViewController!) {
@@ -311,5 +309,50 @@ extension ContactsViewController: FBSDKAppInviteDialogDelegate {
         print("cannot invite a friend: \(error)")
     }
     
+}
+
+
+extension ContactsViewController {
+    override func viewDidAppear(animated: Bool) {
+        if self.firstTimeFriendlistInit == 0 {
+            self.friendListInit()
+            self.firstTimeFriendlistInit += 1
+        }
+    }
+}
+
+
+
+
+extension ContactsViewController: UserDefaultManagerDelegate {
+    func manager(manager: UserDefaultManager, userDefaultsDidSet: Bool) {
+        
+        self.friendListInit()
+        
+    }
+    
+    func friendListInit() {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        guard let loginMethod = userDefaults.stringForKey("loginMethod") as String!
+            else {
+                FIRCrashMessage("Error in access loginMethod")
+                return
+        }
+        
+        switch loginMethod {
+            
+        case "FB":
+            ContactsManager.shared.myFriends(loginWith: .FB)
+            
+        case "anonymous":
+            ContactsManager.shared.myFriends(loginWith: .Anonymous)
+            
+        default:
+            FIRCrashMessage("invalid loginMethod")
+            return
+        }
+    }
 }
 

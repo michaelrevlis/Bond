@@ -27,42 +27,44 @@ class LoginManager {
     
     weak var delegate: LoginManagerDelegate?
     
-    func userLogin() {
+    func userLogin(loginWith loginWith: loginType) {
         
-        getFacebookUserInfo { (result, id) in
-         
-            self.checkIfUserExist(id, completion: { (exist, user_node) in
+        switch loginWith {
+        case .FB:
+            getFacebookUserInfo { (result, id) in
                 
-                if exist == false {     // new user
+                self.checkIfUserExist(id, completion: { (exist, user_node) in
                     
-                    self.uploadUserInfoToFirebase(.FB, tempUserInfo: result)
-                    
-                } else {    // existed user
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
+                    if exist == false {     // new user
                         
-                        self.delegate?.manager(self, userDidLogin: true)
+                        self.uploadUserInfoToFirebase(loginWith: .FB, tempUserInfo: result)
                         
-                    })
-                }
-                
-            })
+                    } else {    // existed user
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            self.delegate?.manager(self, userDidLogin: true)
+                            
+                        })
+                    }
+                    
+                })
+        }
+        
+        case .Anonymous:
             
+            let url = "https://firebasestorage.googleapis.com/v0/b/bond-14171.appspot.com/o/anonymous%20login%403x.png?alt=media&token=3adb2fb9-82d2-4ffd-8803-c7e5689f3b9d"
+            
+            let result: [String: String] = ["fbID": "null", "name": "ME", "email": "null", "fbProfileLink": "null", "pictureUrl": url]
+            
+            self.uploadUserInfoToFirebase(loginWith: .Anonymous, tempUserInfo: result)
+
         }
     }
     
-    
-    func anonymousLogin() {
-        
-        let url = "https://firebasestorage.googleapis.com/v0/b/bond-14171.appspot.com/o/anonymous%20login%403x.png?alt=media&token=3adb2fb9-82d2-4ffd-8803-c7e5689f3b9d"
-
-        let result: [String: String] = ["fbID": "null", "name": "ME", "email": "null", "fbProfileLink": "null", "pictureUrl": url]
-        
-        self.uploadUserInfoToFirebase(.Anonymous, tempUserInfo: result)
-        
-    }
-    
 }
+
+
 
 extension LoginManager {
     
@@ -140,11 +142,11 @@ extension LoginManager {
     
     
     
-    private func uploadUserInfoToFirebase(loginWay: loginType, tempUserInfo: [String: AnyObject]) {
+    private func uploadUserInfoToFirebase(loginWith loginWith: loginType, tempUserInfo: [String: AnyObject]) {
         
         var uploadUserInfo = tempUserInfo
         
-        switch loginWay {
+        switch loginWith {
         case .FB:
             let fbUserInfoSentRef = FirebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
             let newUser_node = fbUserInfoSentRef.key
