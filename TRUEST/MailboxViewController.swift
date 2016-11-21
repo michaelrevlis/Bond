@@ -15,9 +15,11 @@ import FirebaseAnalytics
 class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var NavigationItem: UINavigationItem!
-    
     @IBOutlet weak var MailboxTableView: UITableView!
+    @IBOutlet weak var Hint: UILabel!
+
     var postcardsInMailbox = [PostcardInMailbox]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +43,17 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         if self.MailboxTableView != nil {
             self.MailboxTableView.reloadData()
         }
-        
-        
+
+        Hint.textColor = UIColor.lightGrayColor()
+        //        Hint.layer.borderWidth = 1
+        let dotborder =  CAShapeLayer()
+        dotborder.strokeColor = UIColor.grayColor().CGColor
+        dotborder.fillColor = nil
+        dotborder.lineDashPattern = [4, 2]
+        dotborder.path = UIBezierPath(roundedRect: Hint.bounds, cornerRadius: 5).CGPath
+        dotborder.frame = Hint.bounds
+        Hint.layer.addSublayer(dotborder)
+
     }
     
     

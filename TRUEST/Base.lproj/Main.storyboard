@@ -476,18 +476,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Here collects the bonds you sent. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4P-NA-sxh">
+                                <rect key="frame" x="168" y="446" width="265" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7vX-vE-buk" firstAttribute="top" secondItem="hhJ-Oi-TnN" secondAttribute="bottom" id="MdL-rx-fVq"/>
+                            <constraint firstItem="7vX-vE-buk" firstAttribute="top" secondItem="x4P-NA-sxh" secondAttribute="bottom" constant="20" id="WwY-zs-geL"/>
                             <constraint firstItem="hhJ-Oi-TnN" firstAttribute="leading" secondItem="14Q-fL-cpr" secondAttribute="leading" id="c35-zs-bqJ"/>
                             <constraint firstItem="hhJ-Oi-TnN" firstAttribute="top" secondItem="14Q-fL-cpr" secondAttribute="top" id="hj2-ii-bkS"/>
                             <constraint firstAttribute="trailing" secondItem="hhJ-Oi-TnN" secondAttribute="trailing" id="mAW-MC-ksN"/>
+                            <constraint firstItem="x4P-NA-sxh" firstAttribute="centerX" secondItem="14Q-fL-cpr" secondAttribute="centerX" id="tuH-L5-hzU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2uf-0q-jLH"/>
                     <connections>
                         <outlet property="DrawerTableView" destination="hhJ-Oi-TnN" id="CoH-Gj-E1j"/>
+                        <outlet property="Hint" destination="x4P-NA-sxh" id="nDL-mm-Xi3"/>
                         <outlet property="NavigationItem" destination="2uf-0q-jLH" id="ig8-qT-cvv"/>
                     </connections>
                 </viewController>
@@ -568,10 +577,10 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap an intimate to create a bond." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiT-eZ-xlG">
-                                <rect key="frame" x="170" y="425" width="260" height="42"/>
+                                <rect key="frame" x="160" y="425" width="280" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Y2K-Th-3A1"/>
-                                    <constraint firstAttribute="width" constant="260" id="l5L-4S-4hQ"/>
+                                    <constraint firstAttribute="width" constant="280" id="l5L-4S-4hQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -851,17 +860,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Here collects the bonds sent to you. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqH-bv-6Td">
+                                <rect key="frame" x="158" y="446" width="285" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="37a-DM-nDY" secondAttribute="trailing" id="Fhj-k5-h9w"/>
                             <constraint firstItem="37a-DM-nDY" firstAttribute="leading" secondItem="yQ1-2p-w09" secondAttribute="leading" id="Leo-UB-jVQ"/>
                             <constraint firstItem="37a-DM-nDY" firstAttribute="top" secondItem="yQ1-2p-w09" secondAttribute="top" id="TZr-Ak-mSy"/>
+                            <constraint firstItem="uqH-bv-6Td" firstAttribute="centerX" secondItem="yQ1-2p-w09" secondAttribute="centerX" id="cdO-Ag-7xJ"/>
+                            <constraint firstItem="Jk0-Qu-KZC" firstAttribute="top" secondItem="uqH-bv-6Td" secondAttribute="bottom" constant="20" id="qhs-fY-UF7"/>
                             <constraint firstItem="Jk0-Qu-KZC" firstAttribute="top" secondItem="37a-DM-nDY" secondAttribute="bottom" constant="-5" id="wCo-Dp-gWV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1x7-HC-euy"/>
                     <connections>
+                        <outlet property="Hint" destination="uqH-bv-6Td" id="moe-EI-U78"/>
                         <outlet property="MailboxTableView" destination="37a-DM-nDY" id="gcu-1X-cVq"/>
                         <outlet property="NavigationItem" destination="1x7-HC-euy" id="xZJ-F9-Ovn"/>
                     </connections>
@@ -1390,7 +1408,7 @@
         <image name="tweet login" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qeD-Vs-eUH"/>
         <segue reference="Ivp-Us-y1h"/>
+        <segue reference="qeD-Vs-eUH"/>
     </inferredMetricsTieBreakers>
 </document>

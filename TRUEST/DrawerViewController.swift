@@ -15,6 +15,8 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
    
     @IBOutlet weak var NavigationItem: UINavigationItem!
     @IBOutlet weak var DrawerTableView: UITableView!
+    @IBOutlet weak var Hint: UILabel!
+    
     var postcardsInDrawer = [PostcardInDrawer]()
 
     
@@ -72,6 +74,16 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if self.DrawerTableView != nil {
             self.DrawerTableView.reloadData()
         }
+        
+        Hint.textColor = UIColor.lightGrayColor()
+        //        Hint.layer.borderWidth = 1
+        let dotborder =  CAShapeLayer()
+        dotborder.strokeColor = UIColor.grayColor().CGColor
+        dotborder.fillColor = nil
+        dotborder.lineDashPattern = [4, 2]
+        dotborder.path = UIBezierPath(roundedRect: Hint.bounds, cornerRadius: 5).CGPath
+        dotborder.frame = Hint.bounds
+        Hint.layer.addSublayer(dotborder)
         
      }
     

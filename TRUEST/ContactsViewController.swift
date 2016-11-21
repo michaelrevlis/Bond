@@ -34,7 +34,7 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     var friendList: [existedFBUser] = []
-    var createNew: Bool = true // should be false, change to true for testing, it should be that pressed + and change it into true
+    var createNew: Bool = true // should be false, change to true for testing, it should be true after pressed +
     var selectedIndexes = [NSIndexPath]() {
         didSet {
             CollectionView.reloadData()
@@ -94,8 +94,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         ContactsManager.shared.delegate = self
         
-        UserDefaultManager.shared.delegate = self
-        
         CollectionView.delegate = self
         
         CollectionView.dataSource = self
@@ -107,7 +105,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
             logoView.contentMode = .ScaleAspectFit
             logoView.image = UIImage(named: "navi_logo")
        
-        Hint.text = "Tap an intimate to create a bond."
         Hint.textColor = UIColor.lightGrayColor()
 //        Hint.layer.borderWidth = 1
         let dotborder =  CAShapeLayer()
@@ -196,24 +193,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
 
-//        let userDefault = NSUserDefaults.standardUserDefaults()
-//        guard
-//            let email = userDefault.stringForKey("user_email") as String!,
-//                 node = userDefault.stringForKey("user_userNode") as String!,
-//                 pictureUrl = userDefault.stringForKey("user_pictureUrl") as String!
-//            else {
-//                FIRCrashMessage("Fail to convert current user self info as friend")
-//                return
-//        }
-//
-//        self.friendList.append(existedFBUser(userNode: node, name: "ME", email: email, pictureUrl: pictureUrl))
-//    
-//        self.CollectionView.reloadData()
-//        
-//        LoadingSpinner.stopAnimating()
-//        LoadingSpinner.hidden = true
-//
-//    }
     
     //MARK: Lock Screen Setup Delegate
 //    func pinSet(pin: String!, padLockScreenSetupViewController padLockScreenViewController: ABPadLockScreenSetupViewController!) {
@@ -324,12 +303,7 @@ extension ContactsViewController {
 
 
 
-extension ContactsViewController: UserDefaultManagerDelegate {
-    func manager(manager: UserDefaultManager, userDefaultsDidSet: Bool) {
-        
-        self.friendListInit()
-        
-    }
+extension ContactsViewController {
     
     func friendListInit() {
         
@@ -345,9 +319,11 @@ extension ContactsViewController: UserDefaultManagerDelegate {
             
         case "FB":
             ContactsManager.shared.myFriends(loginWith: .FB)
+            Hint.text = "Tap an intimate to create a bond."
             
         case "anonymous":
             ContactsManager.shared.myFriends(loginWith: .Anonymous)
+            Hint.text = "Send a bond to yourself! Or login with Facebook to have more friends."
             
         default:
             FIRCrashMessage("invalid loginMethod")
