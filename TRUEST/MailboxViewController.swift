@@ -53,6 +53,9 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         dotborder.path = UIBezierPath(roundedRect: Hint.bounds, cornerRadius: 5).CGPath
         dotborder.frame = Hint.bounds
         Hint.layer.addSublayer(dotborder)
+        
+        //  TODO: show Hint only if there's no any postcard
+        Hint.hidden = true
 
     }
     

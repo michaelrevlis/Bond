@@ -85,6 +85,9 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         dotborder.frame = Hint.bounds
         Hint.layer.addSublayer(dotborder)
         
+        //  TODO: show Hint only if there's no any postcard
+        Hint.hidden = true
+        
      }
     
 
